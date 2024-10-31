@@ -15,4 +15,6 @@ interface ItemRepositoryInterface extends RepositoryInterface
         $priceNew,
         $priceOld
     );
+
+    public function selectItem($id_product, $id_item);
 }

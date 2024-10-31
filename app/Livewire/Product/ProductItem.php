@@ -26,6 +26,23 @@ class ProductItem extends Component
     {
         $this->itemRepos = $itemRepos;
     }
+
+    public function resetColumn()
+    {
+        $this->id_product = '';
+        $this->id_color = '';
+        $this->id_item = '';
+        $this->image = '';
+        $this->name = '';
+        $this->priceNew = '';
+        $this->priceOld = '';
+    }
+
+    public function setItemId($id)
+    {
+        $this->id_item = $id;
+    }
+
     public function create()
     {
         $create = $this->itemRepos->createItemPro(
@@ -37,6 +54,8 @@ class ProductItem extends Component
             $this->priceNew,
             $this->priceOld
         );
+
+        $this->resetColumn();
     }
 
     public function render()
@@ -53,7 +72,8 @@ class ProductItem extends Component
 
         $orders = OrderItem::all();
         $colors = Color::all();
-        $name_pro = Product::find($this->id_product)->name;
+        $product = Product::find($this->id_product);
+        $name_pro = $product ? $product->name : 'Product Not Found';
 
         return view('admins.product.livewire.product-item', [
             'orders' => $orders,

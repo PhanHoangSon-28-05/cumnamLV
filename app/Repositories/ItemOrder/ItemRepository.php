@@ -23,7 +23,7 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface
         $priceNew,
         $priceOld
     ) {
-
+        // dd($id_item);
         if ($image) {
             $extension = $image->getClientOriginalName();
             $filename = time() . '_' . $extension;
@@ -44,5 +44,11 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface
         ];
         $model = $this->model->create($attributes);
         return;
+    }
+
+    public function selectItem($id_product, $id_item)
+    {
+        $list = $this->model->where('id_product', $id_product)->where('id_item', $id_item)->get();
+        return $list;
     }
 }
