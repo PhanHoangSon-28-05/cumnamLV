@@ -5,7 +5,7 @@
                 <h5 class="modal-title">{{ $name_pro }}</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body" wire:poll.keep-alive.1s>
+            <div class="modal-body" wire:ignore>
                 <div class="accordion" id="accordionExample">
                     <div class="card">
                         <div class="card-header">
@@ -97,17 +97,18 @@
                                     ])
                                     <div class="text-left">
                                         <a class="btn btn-secondary" data-toggle="collapse" href="#{{ $value->slug }}"
-                                            role="button" aria-expanded="false" aria-controls="{{ $value->slug }}"><i
-                                                class="fa-regular fa-image"></i></a>
+                                            role="button" aria-expanded="false" aria-controls="{{ $value->slug }}"
+                                            wire:ignore.self><i class="fa-regular fa-image"></i></a>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="collapse multi-collapse" id="{{ $value->slug }}">
+                                            <div class="collapse multi-collapse" id="{{ $value->slug }}"
+                                                wire:ignore.self>
                                                 <div class="card card-body">
                                                     <form wire:submit.prevent="create">
                                                         <div class="modal-body" wire:loading.remove>
                                                             <div class="row">
-                                                                <div class="mb-3 col-8 pr-3" wire:loading.remove>
+                                                                <div class="mb-3 col-8 pr-3">
                                                                     <div class="row">
                                                                         <label
                                                                             class="crud-label p-0 mt-2 mb-0">Name:</label>

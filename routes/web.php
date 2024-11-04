@@ -7,15 +7,21 @@ use App\Http\Controllers\Admin\HeaderController;
 use App\Http\Controllers\Admin\OrderItemController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ViewController;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+// Client
+Route::get('/', [ViewController::class, 'home']);
+
+
+// Admin
 Route::get('admin/register', [UserController::class, 'showRegistrationForm']);
 Route::post('admin/register', [UserController::class, 'register'])->name('register');
 
