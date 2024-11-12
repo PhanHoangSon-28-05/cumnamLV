@@ -37,6 +37,10 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'from' => 'required|integer',
+            'fromOLD' => 'required|integer',
+            'promotion' => 'required|integer',
+            'description' => 'required',
             'about' => 'required',
             'details' => 'required|string',
             'materials_care' => 'required|string',
@@ -62,12 +66,17 @@ class ProductController extends Controller
         try {
             $request->validate([
                 'name' => 'required|string',
+                'from' => 'required|integer',
+                'fromOLD' => 'required|integer',
+                'promotion' => 'required|integer',
+                'description' => 'required',
                 'about' => 'required',
                 'details' => 'required|string',
                 'materials_care' => 'required|string',
             ]);
             $attributes = $request->all();
             // dd($attributes);
+            // $product = $this->productRepo->createProduct($attributes);
             $product = $this->productRepo->updateProduct($id, $attributes);
 
             return redirect()->route('products.index')->with('success', 'Product Update Successfully');

@@ -17,6 +17,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     public function createProduct($attributes = [])
     {
+        dd($attributes);
         $attributes['slug'] = Str::slug($attributes['name']);
         $attributes['pic'] = 'null';
         $product = $this->model->create($attributes);
@@ -27,6 +28,8 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     public function updateProduct($id, $attributes = [])
     {
         $result = $this->find($id);
+        $attributes['slug'] = Str::slug($attributes['name']);
+        // dd($result);
         if ($result) {
             $result->update($attributes);
             return $result;
@@ -62,5 +65,17 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $productModel = $this->model->find($id);
         $productModel->update(['pic' => $image]);
         return $productModel;
+    }
+
+    public function getProduct()
+    {
+        $listproduct = $this->model->orderBy('id', 'desc')->take(4)->get();
+        return $listproduct;
+    }
+
+    public function getProductSlug($slug)
+    {
+        $product = $this->model->where('slug', $slug)->first();
+        return $product;
     }
 }

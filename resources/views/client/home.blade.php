@@ -52,56 +52,6 @@
                             space."</p>
                     </div>
                 </div>
-                <!-- <div class="col-4">
-                                    <div class="card pl-1 mb-md-5 mb-sm-1 border-0">
-                                        <div class="d-flex d-md-block">
-                                            <img src="{{ URL::asset('view/style/images/32acce8ca1f734b86113d04540b96eb8.svg') }}" alt="Measure"
-                                                class="step-icon rounded w-50 d-sm-block d-md-none mr-2">
-                                            <img src="{{ URL::asset('view/style/images/32acce8ca1f734b86113d04540b96eb8.svg') }}" alt="Measure"
-                                                class="step-icon rounded d-none d-md-block mr-2">
-                                            <div>
-                                                <h5 class="step-title text-uppercase mb-0">BEST PRICING</h5>
-                                                <p class="mt-1">"Meals with my family are always extra special because of the beautiful
-                                                    plates I got from Custom & Nooke."</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="card pl-1 mb-md-5 mb-1 border-0">
-                                        <div class="d-flex d-md-block">
-                                            <img src="{{ URL::asset('view/style/images/03bd4576649ef1d56e4816d333f80cfc.svg') }}" alt="Measure"
-                                                class="step-icon rounded w-50 d-sm-block d-md-none mr-2">
-                                            <img src="{{ URL::asset('view/style/images/03bd4576649ef1d56e4816d333f80cfc.svg') }}" alt="Measure"
-                                                class="step-icon rounded d-none d-md-block mr-2">
-                                            <div class="">
-                                                <h5 class="step-title text-uppercase">PERFECT FIT</h5>
-                                                <p>"Very pleased with my new sofa--the quality is great, it's comfortable, and elevates
-                                                    the
-                                                    look
-                                                    of my home."
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="card pl-1 mb-md-5 mb-1 border-0">
-                                        <div class="d-flex d-md-block">
-                                            <img src="{{ URL::asset('view/style/images/7e38d417227a447a118273e451275720.svg') }}" alt="Measure"
-                                                class="step-icon rounded w-50 d-sm-block d-md-none mr-2">
-                                            <img src="{{ URL::asset('view/style/images/7e38d417227a447a118273e451275720.svg') }}" alt="Measure"
-                                                class="step-icon rounded d-none d-md-block mr-2">
-                                            <div class="">
-                                                <h5 class="step-title text-uppercase">SATISFACTIO​N GUARENTEE</h5>
-                                                <p>"I love how timeless my decor are. I just need to move things around to update the
-                                                    look
-                                                    of my
-                                                    space."</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
             </div>
             </div>
         </section>
@@ -119,293 +69,168 @@
                 </div>
                 <div class=" d-none d-sm-block">
                     <div class="row">
-                        <div class="col-3 my-1 ">
-                            <a href="product.html">
-                                <div class="card">
-                                    <img id="productImage1"
-                                        src="{{ URL::asset('view/style/images/Wooden Shade/Artboard 64@4x.jpg') }}"
-                                        class="card-img-top" alt="Oakley">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="color-dot" style="background-color: #d2b48c;"
-                                                onmouseover="changeImage('productImage1', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 64@4x.jpg') }}">
+                        @if ($lisporudct)
+                            @foreach ($lisporudct as $value)
+                                <div class="col-3 my-1 ">
+                                    <a href="{{ URL::route('home.products', $value->slug) }}">
+                                        <div class="card">
+                                            <img id="{{ $value->slug }}" src="{{ URL::asset('storage/' . $value->pic) }}"
+                                                class="card-img-top" alt="Oakley">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    @if (count($value->item) != 0)
+                                                        <?php
+                                                        $count = count($value->item);
+                                                        $i = 1;
+                                                        $moreShown = false;
+                                                        ?>
+
+                                                        @if ($count <= 5)
+                                                            @foreach ($value->item as $color)
+                                                                @if ($color->id_color != null)
+                                                                    <div class="color-dot"
+                                                                        style="background-color: {{ $color->color->code_color }};"
+                                                                        onmouseover="changeImage('{{ $value->slug }}', '{{ URL::asset('storage/' . $color->image) }}')">
+                                                                    </div>
+                                                                @endif
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($value->item as $color)
+                                                                @if ($i <= 4)
+                                                                    @if ($color->id_color != null)
+                                                                        <div class="color-dot"
+                                                                            style="background-color: {{ $color->color->code_color }};"
+                                                                            onmouseover="changeImage('{{ $value->slug }}', '{{ URL::asset('storage/' . $color->image) }}')">
+                                                                        </div>
+                                                                        <?php $i++; ?>
+                                                                    @endif
+                                                                @elseif (!$moreShown)
+                                                                    <p><a href="#"
+                                                                            class="text-decoration-none text-dark">+
+                                                                            {{ $count - $i }} more</a></p>
+                                                                    <?php $moreShown = true; ?>
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                                <h5 class="card-title">
+                                                    <span class="float-left">{{ $value->name }}</span>
+                                                    @if ($value->promotion)
+                                                        <span
+                                                            class="badge badge-discount float-right text-uppercase">{{ $value->promotion }}%
+                                                            OFF</span>
+                                                    @endif
+                                                </h5>
+                                                <br>
+                                                <p class="card-text">{{ $value->description }}</p>
+                                                @if ($value->fromOLD)
+                                                    <p class="card-text card-price">
+                                                        <small class="text-muted">From
+                                                            <span
+                                                                class="font-weight-bolder h5 text-danger">${{ $value->from }}</span>
+                                                            <del>${{ $value->fromOLD }}</del>
+                                                        </small>
+                                                    </p>
+                                                @else
+                                                    <p class="card-text card-price">
+                                                        <small class="text-muted">From
+                                                            <span
+                                                                class="font-weight-bolder h5 text-black">${{ $value->from }}</span>
+                                                        </small>
+                                                    </p>
+                                                @endif
                                             </div>
-                                            <div class="color-dot" style="background-color: #f5f5dc;"
-                                                onmouseover="changeImage('productImage1', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 47@4x.png') }}">
-                                            </div>
-                                            <div class="color-dot" style="background-color: #faf0e6;"
-                                                onmouseover="changeImage('productImage1', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 47@4x.jpg') }}">
-                                            </div>
-                                            <div class="color-dot" style="background-color: #fff5ee;"
-                                                onmouseover="changeImage('productImage1', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 65@4x.jpg') }}">
-                                            </div>
-                                            <p><a href="#" class="text-decoration-none text-dark">+ 9 more</a>
-                                            </p>
                                         </div>
-                                        <h5 class="card-title">
-                                            <span class="float-left">Wooden Shade</span>
-                                            <span class="badge badge-discount float-right text-uppercase">10%
-                                                OFF</span>
-                                        </h5>
-                                        <br>
-                                        <p class="card-text">Cross Linen Texture Curtains</p>
-                                        <p class="card-text card-price"><small class="text-muted">From
-                                                <span class="font-weight-bolder h5 text-danger">$110</span>
-                                                <del>$150</del></small></p>
-                                    </div>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="col-3  my-1">
-                            <a href="product.html">
-                                <div class="card">
-                                    <img id="productImage2"
-                                        src="{{ URL::asset('view/style/images/Zebra/Artboard 169@4x.jpg') }}"
-                                        class="card-img-top" alt="Oakley">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="color-dot" style="background-color: #d2b48c;"
-                                                onmouseover="changeImage('productImage2', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 64@4x.jpg') }}">
-                                            </div>
-                                            <div class="color-dot" style="background-color: #f5f5dc;"
-                                                onmouseover="changeImage('productImage2', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 47@4x.png') }}">
-                                            </div>
-                                            <div class="color-dot" style="background-color: #faf0e6;"
-                                                onmouseover="changeImage('productImage2', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 47@4x.jpg') }}">
-                                            </div>
-                                            <div class="color-dot" style="background-color: #fff5ee;"
-                                                onmouseover="changeImage('productImage2', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 65@4x.jpg') }}">
-                                            </div>
-                                            <p><a href="#" class="text-decoration-none text-dark">+ 9 more</a>
-                                            </p>
-                                        </div>
-                                        <h5 class="card-title">
-                                            <span class="float-left">Zebra </span>
-                                            <span class="badge badge-discount float-right text-uppercase">10%
-                                                OFF</span>
-                                        </h5>
-                                        </br>
-                                        <p class="card-text">Cross Linen Texture Curtains</p>
-                                        <p class="card-text card-price"><small class="text-muted">From
-                                                <span class="font-weight-bolder h5 text-danger">$110</span>
-                                                <del>$150</del></small></p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-3 my-1">
-                            <a href="product.html">
-                                <div class="card">
-                                    <img src="{{ URL::asset('view/style/images/Roman shade/Artboard 78@4x.jpg') }}"
-                                        class="card-img-top" alt="Oakley">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="color-dot" style="background-color: #d2b48c;">
-                                            </div>
-                                            <div class="color-dot" style="background-color: #f5f5dc;">
-                                            </div>
-                                            <div class="color-dot" style="background-color: #faf0e6;">
-                                            </div>
-                                            <div class="color-dot" style="background-color: #fff5ee;">
-                                            </div>
-                                            <p><a href="#" class="text-decoration-none text-dark">+ 9 more</a>
-                                            </p>
-                                        </div>
-                                        <h5 class="card-title">
-                                            <span class="float-left">Roman shade </span>
-                                            <span class="badge badge-discount float-right text-uppercase">10%
-                                                OFF</span>
-                                        </h5>
-                                        </br>
-                                        <p class="card-text">Cross Linen Texture Curtains</p>
-                                        <p class="card-text card-price"><small class="text-muted">From
-                                                <span class="font-weight-bolder h5 text-danger">$110</span>
-                                                <del>$150</del></small></p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-3  my-1">
-                            <a href="product.html">
-                                <div class="card">
-                                    <img src="{{ URL::asset('view/style/images/Horizontal Sheer/7FF04775-82ED-4EF2-ABF1-462534813D96.JPG') }}"
-                                        class="card-img-top" alt="Oakley">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="color-dot" style="background-color: #d2b48c;">
-                                            </div>
-                                            <div class="color-dot" style="background-color: #f5f5dc;">
-                                            </div>
-                                            <div class="color-dot" style="background-color: #faf0e6;">
-                                            </div>
-                                            <div class="color-dot" style="background-color: #fff5ee;">
-                                            </div>
-                                            <p><a href="#" class="text-decoration-none text-dark">+ 9 more</a>
-                                            </p>
-                                        </div>
-                                        <h5 class="card-title">
-                                            <span class="float-left">Horizontal sheer</span>
-                                            <span class="badge badge-discount float-right text-uppercase">10%
-                                                OFF</span>
-                                        </h5>
-                                        </br>
-                                        <p class="card-text">Cross Linen Texture Curtains</p>
-                                        <p class="card-text card-price"><small class="text-muted">From
-                                                <span class="font-weight-bolder h5 text-danger">$110</span>
-                                                <del>$150</del></small></p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                            @endforeach
+                        @else
+                            Updating !!!!!
+                        @endif
                     </div>
                 </div>
                 <div class=" d-md-none d-block">
                     <div class="row">
                         <div class="flipster">
-
                             <ul class="flip-items">
-                                <li class="col-10">
-                                    <a href="product.html">
-                                        <div class="card">
-                                            <img id="productImage1"
-                                                src="{{ URL::asset('view/style/images/Wooden Shade/Artboard 64@4x.jpg') }}"
-                                                class="card-img-top" alt="Oakley">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="color-dot" style="background-color: #d2b48c;"
-                                                        onmouseover="changeImage('productImage1', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 64@4x.jpg') }}">
+                                @if ($lisporudct)
+                                    @foreach ($lisporudct as $value)
+                                        <li class="col-10">
+                                            <a href="{{ URL::route('home.products', $value->slug) }}">
+                                                <div class="card">
+                                                    <img src="{{ URL::asset('storage/' . $value->pic) }}"
+                                                        class="card-img-top" alt="Oakley">
+                                                    <div class="card-body">
+                                                        <div class="d-flex">
+                                                            @if (count($value->item) != 0)
+                                                                <?php
+                                                                $count = count($value->item);
+                                                                $i = 1;
+                                                                $moreShown = false;
+                                                                ?>
+
+                                                                @if ($count <= 5)
+                                                                    @foreach ($value->item as $color)
+                                                                        @if ($color->id_color != null)
+                                                                            <div class="color-dot"
+                                                                                style="background-color: {{ $color->color->code_color }};">
+                                                                            </div>
+                                                                        @endif
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($value->item as $color)
+                                                                        @if ($i <= 4)
+                                                                            @if ($color->id_color != null)
+                                                                                <div class="color-dot"
+                                                                                    style="background-color: {{ $color->color->code_color }};">
+                                                                                </div>
+                                                                                <?php $i++; ?>
+                                                                            @endif
+                                                                        @elseif (!$moreShown)
+                                                                            <p><a href="#"
+                                                                                    class="text-decoration-none text-dark">+
+                                                                                    {{ $count - $i }} more</a></p>
+                                                                            <?php $moreShown = true; ?>
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+                                                        </div>
+                                                        <h5 class="card-title">
+                                                            <span class="float-left">{{ $value->name }}</span>
+                                                            @if ($value->promotion)
+                                                                <span
+                                                                    class="badge badge-discount float-right text-uppercase">{{ $value->promotion }}%
+                                                                    OFF</span>
+                                                            @endif
+                                                        </h5>
+                                                        <br>
+                                                        <p class="card-text">{{ $value->description }}</p>
+                                                        @if ($value->fromOLD)
+                                                            <p class="card-text card-price">
+                                                                <small class="text-muted">From
+                                                                    <span
+                                                                        class="font-weight-bolder h5 text-danger">${{ $value->from }}</span>
+                                                                    <del>${{ $value->fromOLD }}</del>
+                                                                </small>
+                                                            </p>
+                                                        @else
+                                                            <p class="card-text card-price">
+                                                                <small class="text-muted">From
+                                                                    <span
+                                                                        class="font-weight-bolder h5 text-black">${{ $value->from }}</span>
+                                                                </small>
+                                                            </p>
+                                                        @endif
                                                     </div>
-                                                    <div class="color-dot" style="background-color: #f5f5dc;"
-                                                        onmouseover="changeImage('productImage1', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 47@4x.png') }}">
-                                                    </div>
-                                                    <div class="color-dot" style="background-color: #faf0e6;"
-                                                        onmouseover="changeImage('productImage1', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 47@4x.jpg') }}">
-                                                    </div>
-                                                    <div class="color-dot" style="background-color: #fff5ee;"
-                                                        onmouseover="changeImage('productImage1', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 65@4x.jpg') }}">
-                                                    </div>
-                                                    <p><a href="#" class="text-decoration-none text-dark">+ 9
-                                                            more</a>
-                                                    </p>
                                                 </div>
-                                                <h5 class="card-title">
-                                                    <span class="float-left">Wooden Shade</span>
-                                                    <span class="badge badge-discount float-right text-uppercase">10%
-                                                        OFF</span>
-                                                </h5>
-                                                <br>
-                                                <p class="card-text">Cross Linen Texture Curtains</p>
-                                                <p class="card-text card-price"><small class="text-muted">From
-                                                        <span class="font-weight-bolder h5 text-danger">$110</span>
-                                                        <del>$150</del></small></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="col-10">
-                                    <a href="product.html">
-                                        <div class="card">
-                                            <img id="productImage2"
-                                                src="{{ URL::asset('view/style/images/Zebra/Artboard 169@4x.jpg') }}"
-                                                class="card-img-top" alt="Oakley">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="color-dot" style="background-color: #d2b48c;"
-                                                        onmouseover="changeImage('productImage2', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 64@4x.jpg') }}">
-                                                    </div>
-                                                    <div class="color-dot" style="background-color: #f5f5dc;"
-                                                        onmouseover="changeImage('productImage2', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 47@4x.png') }}">
-                                                    </div>
-                                                    <div class="color-dot" style="background-color: #faf0e6;"
-                                                        onmouseover="changeImage('productImage2', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 47@4x.jpg') }}">
-                                                    </div>
-                                                    <div class="color-dot" style="background-color: #fff5ee;"
-                                                        onmouseover="changeImage('productImage2', '{{ URL::asset('view/style/images/Wooden Shade/Artboard 65@4x.jpg') }}">
-                                                    </div>
-                                                    <p><a href="#" class="text-decoration-none text-dark">+ 9
-                                                            more</a>
-                                                    </p>
-                                                </div>
-                                                <h5 class="card-title">
-                                                    <span class="float-left">Zebra </span>
-                                                    <span class="badge badge-discount float-right text-uppercase">10%
-                                                        OFF</span>
-                                                </h5>
-                                                </br>
-                                                <p class="card-text">Cross Linen Texture Curtains</p>
-                                                <p class="card-text card-price"><small class="text-muted">From
-                                                        <span class="font-weight-bolder h5 text-danger">$110</span>
-                                                        <del>$150</del></small></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="col-10">
-                                    <a href="product.html">
-                                        <div class="card">
-                                            <img src="{{ URL::asset('view/style/images/Roman shade/Artboard 78@4x.jpg') }}"
-                                                class="card-img-top" alt="Oakley">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="color-dot" style="background-color: #d2b48c;">
-                                                    </div>
-                                                    <div class="color-dot" style="background-color: #f5f5dc;">
-                                                    </div>
-                                                    <div class="color-dot" style="background-color: #faf0e6;">
-                                                    </div>
-                                                    <div class="color-dot" style="background-color: #fff5ee;">
-                                                    </div>
-                                                    <p><a href="#" class="text-decoration-none text-dark">+ 9
-                                                            more</a>
-                                                    </p>
-                                                </div>
-                                                <h5 class="card-title">
-                                                    <span class="float-left">Roman shade </span>
-                                                    <span class="badge badge-discount float-right text-uppercase">10%
-                                                        OFF</span>
-                                                </h5>
-                                                </br>
-                                                <p class="card-text">Cross Linen Texture Curtains</p>
-                                                <p class="card-text card-price"><small class="text-muted">From
-                                                        <span class="font-weight-bolder h5 text-danger">$110</span>
-                                                        <del>$150</del></small></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="col-10">
-                                    <a href="product.html">
-                                        <div class="card">
-                                            <img src="{{ URL::asset('view/style/images/Horizontal Sheer/7FF04775-82ED-4EF2-ABF1-462534813D96.JPG') }}"
-                                                class="card-img-top" alt="Oakley">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="color-dot" style="background-color: #d2b48c;">
-                                                    </div>
-                                                    <div class="color-dot" style="background-color: #f5f5dc;">
-                                                    </div>
-                                                    <div class="color-dot" style="background-color: #faf0e6;">
-                                                    </div>
-                                                    <div class="color-dot" style="background-color: #fff5ee;">
-                                                    </div>
-                                                    <p><a href="#" class="text-decoration-none text-dark">+ 9
-                                                            more</a>
-                                                    </p>
-                                                </div>
-                                                <h5 class="card-title">
-                                                    <span class="float-left">Horizontal sheer</span>
-                                                    <span class="badge badge-discount float-right text-uppercase">10%
-                                                        OFF</span>
-                                                </h5>
-                                                </br>
-                                                <p class="card-text">Cross Linen Texture Curtains</p>
-                                                <p class="card-text card-price"><small class="text-muted">From
-                                                        <span class="font-weight-bolder h5 text-danger">$110</span>
-                                                        <del>$150</del></small></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @else
+                                    Updating !!!!!
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -593,4 +418,49 @@
             </div>
         </section>
     </main>
+@endsection
+
+@section('script')
+
+    <script>
+        function changeImage(imageId, newImageSrc) {
+            document.getElementById(imageId).src = newImageSrc;
+        }
+    </script>
+
+    <!-- Slider product -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://unpkg.com/jquery.flipster@1.1.2/dist/jquery.flipster.min.js"></script>
+    <!-- End slider pruduct -->
+
+    <script>
+        console.clear();
+
+        var flipContainer = $('.flipster'),
+            flipItemContainer = flipContainer.find('.flip-items'),
+            flipItem = flipContainer.find('li');
+
+        var f = flipContainer.flipster({
+            itemContainer: flipItemContainer,
+            itemSelector: flipItem,
+            loop: true,
+            style: 'carousel',
+            spacing: -0.5,
+            scrollwheel: false,
+            buttons: true,
+            animationSpeed: 3000,
+            autoplay: 3000,
+            onItemSwitch: function(currentItem, previousItem) {
+                $('.flipster__nav__item').removeClass('flipster__nav__item--current');
+                var currentIndex = $(currentItem).index();
+                $('.flipster__nav__item').eq(currentIndex).addClass('flipster__nav__item--current');
+            }
+        });
+
+        // Xử lý khi click vào dấu chấm
+        $(document).on('click', '.flipster__nav__item', function() {
+            var index = $(this).index();
+            f.flipster('jump', index); // Nhảy đến hình ảnh tương ứng với dấu chấm
+        });
+    </script>
 @endsection

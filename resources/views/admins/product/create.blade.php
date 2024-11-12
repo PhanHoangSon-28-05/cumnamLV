@@ -35,14 +35,45 @@
                 <div class="body">
                     <div class="container-fluid">
                         <div class="row px-3">
-                            <label class="crud-label p-0 mt-2 mb-0">Name:</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control crud-input" name="name"
-                                    value="{{ old('name') }}">
+                            <div class="col-6 pl-0">
+                                <label class="crud-label mx-1 p-0">Name:</label>
+                                <div class="p-0 input-group">
+                                    <input type="text" class="form-control crud-input" name="name"
+                                        value="{{ old('name') }}">
+                                </div>
+                                @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                            @error('name')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            <div class="col-2 pl-0">
+                                <label class="crud-label mx-1 p-0">Price new ($):</label>
+                                <div class="p-0 input-group">
+                                    <input type="text" class="form-control" name="from" value="0"
+                                        placeholder="Recipient's username" aria-label="Recipient's username"
+                                        aria-describedby="basic-addon2">
+                                </div>
+                                @error('from')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-2 pl-0">
+                                <label class="crud-label mx-1 p-0">Price old ($):</label>
+                                <div class="p-0 input-group">
+                                    <input type="text" class="form-control crud-input" name="fromOLD" value="0">
+                                </div>
+                                @error('fromOLD')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-2 p-0">
+                                <label class="crud-label mx-1 p-0">Promotion ($):</label>
+                                <div class="p-0 input-group">
+                                    <input type="text" class="form-control crud-input" name="promotion" value="0">
+                                </div>
+                                @error('promotion')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="row px-3">
@@ -56,6 +87,16 @@
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
+
+                        <div class="row px-3">
+                            <label class="crud-label p-0 mt-2 mb-0">Description:</label>
+                            <div class="input-group">
+                                <textarea type="text" class="form-control crud-input" name="description"></textarea>
+                            </div>
+                            @error('description')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="row px-3">

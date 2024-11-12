@@ -59,6 +59,15 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-tex">Description:</label>
+                        </div>
+                        <textarea type="text" class="form-control" wire:model.lazy="description"></textarea>
+                        @error('description')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
                 <div class="modal-footer" wire:loading.remove wire:target="modalSetup">
                     <button type="button" class="btn btn-secondary"

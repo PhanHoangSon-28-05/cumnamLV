@@ -16,7 +16,7 @@
             </button>
         </div>
 
-        <div class="list" wire:poll.keep-alive.1s>
+        <div class="list" wire:poll.keep-alive.10s>
             <ul class="list-group">
                 @foreach ($categories as $value)
                     <li class="list-group-item p-0 mb-1">

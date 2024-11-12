@@ -2,12 +2,102 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Footer;
+use App\Models\Header;
+use App\Models\OrderItem;
+use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\ItemOrder\ItemRepositoryInterface;
+use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ViewController extends Controller
 {
+    protected $cateRepo;
+    protected $productRepo;
+    protected $itemRepo;
+
+    public function __construct(
+        CategoryRepositoryInterface $cateRepo,
+        ProductRepositoryInterface $productRepo,
+        ItemRepositoryInterface $itemRepo
+    ) {
+        $this->cateRepo = $cateRepo;
+        $this->productRepo = $productRepo;
+        $this->itemRepo = $itemRepo;
+    }
+
+    public function get()
+    {
+        $header = Header::all()->first();
+        $footer = Footer::all()->first();
+        $cate = $this->cateRepo->getParent();
+
+        return [
+            //Header
+            'header' => $header,
+            // 'cateSearchPro' => $cateSearchPro,
+            'cates' => $cate,
+            // /Header
+
+            'footer' => $footer,
+        ];
+    }
     public function home()
     {
-        return view('client.home');
+        $lisporudct = $this->productRepo->getProduct();
+        // dd($lisporudct);
+        $attributes = [
+            'lisporudct' => $lisporudct,
+        ];
+
+        $result = array_merge($attributes, $this->get());
+        return view('client.home', $result);
+    }
+
+    public function categories($slug)
+    {
+        $cate = $this->cateRepo->getProduct($slug);
+        $products = $this->cateRepo->getProduct($slug)->products()->get();
+        $attributes = [
+            'cate' => $cate,
+            'products' => $products
+        ];
+        $result = array_merge($attributes, $this->get());
+        return view('client.catergory', $result);
+    }
+
+    public function products($slug)
+    {
+        $product = $this->productRepo->getProductSlug($slug);
+        $attributes = ['product' => $product,];
+
+        $result = array_merge($attributes, $this->get());
+        return view('client.product', $result);
+    }
+    public function productCustomizeBuy(Request $request, $slug)
+    {
+        $width1 = $request->input('width1');
+        $height1 = $request->input('height1');
+        $width2 = $request->input('width2');
+        $height2 = $request->input('height2');
+
+        $orders = OrderItem::all();
+
+        $product = $this->productRepo->getProductSlug($slug);
+        $colorPros = $this->itemRepo->getColorProduct($product->id);
+
+        $attributes = [
+            'width1' => $width1,
+            'height1' => $height1,
+            'width2' => $width2,
+            'height2' => $height2,
+            'product' => $product,
+            'colorPros' => $colorPros,
+            'orders' => $orders,
+        ];
+
+        $result = array_merge($attributes, $this->get());
+        return view('client.product-customize-buy', $result);
     }
 }

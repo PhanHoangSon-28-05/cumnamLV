@@ -11,4 +11,6 @@ interface ProductRepositoryInterface extends RepositoryInterface
     public function updateProduct($id, $attributes = []);
     public function UploadImageProduct($id, $images);
     public function selectProduct($idPro, $image);
+    public function getProduct();
+    public function getProductSlug($slug);
 }

@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Client
-Route::get('/', [ViewController::class, 'home']);
+Route::get('/', [ViewController::class, 'home'])->name('home');
+Route::get('/{slug}', [ViewController::class, 'categories'])->name('home.category');
+Route::get('/product/{slug}', [ViewController::class, 'products'])->name('home.products');
+Route::get('/product/{slug}/order-item', [ViewController::class, 'productCustomizeBuy'])->name('home.order');
 
 
 // Admin

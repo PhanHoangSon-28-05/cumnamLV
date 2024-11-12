@@ -658,12 +658,31 @@ footer .btn {
     transition: border-color 0.3s;
 }
 
-#order-shutters .radio-img-label img {
-    max-width: 30px;
-    height: 60px;
+#order-shutters .color .radio-img-label img {
+    width: 250px;
+    height: 100px;
     display: block;
     border-color: #000;
 }
+
+#order-shutters .item .radio-img-label img {
+    max-width: 120px;
+    height: 160px;
+    display: block;
+    border-color: #000;
+}
+
+#myUL {
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.color-option {
+    display: inline-block;
+    margin-right: 10px;
+}
+
 
 #order-shutters .radio-img:checked+.radio-img-label {
     border-color: #007bff;

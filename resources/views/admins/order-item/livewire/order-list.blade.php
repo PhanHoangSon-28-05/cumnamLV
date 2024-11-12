@@ -1,7 +1,7 @@
 <div>
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title floar-left d-inline">Order</h5>
+            <h5 class="card-title floar-left d-inline">Item</h5>
             <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#crudOrderModal"
                 wire:ignore.self>
                 Add New

@@ -20,7 +20,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return $this->model->select('Category_name')->take(5)->get();
     }
 
-    public function createCate($stt, $parent_id, $name)
+    public function createCate($stt, $parent_id, $name, $description)
     {
         $stt = $stt ?? 0;
         $cateData = [
@@ -28,13 +28,14 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
             'parent_id' => $parent_id,
             'name' => trim($name),
             'slug' => Str::slug($name),
+            'description' => trim($description),
         ];
         $cate = $this->model->create($cateData);
 
         return $cate;
     }
 
-    public function updateCate($model, $stt, $parent_id, $name)
+    public function updateCate($model, $stt, $parent_id, $name, $description)
     {
         $stt = $stt ?? 0;
         $cateData = [
@@ -42,6 +43,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
             'parent_id' => $parent_id,
             'name' => trim($name),
             'slug' => Str::slug($name),
+            'description' => trim($description),
         ];
         $cate = $model->update($cateData);
 
@@ -64,5 +66,11 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     {
         $cate = $this->model->where('parent_id', $id)->orderBy('stt')->get();
         return $cate;
+    }
+
+    public function getProduct($slug)
+    {
+        $products = $this->model->where('slug', $slug)->first();
+        return $products;
     }
 }
