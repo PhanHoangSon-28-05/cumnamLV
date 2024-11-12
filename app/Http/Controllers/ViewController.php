@@ -70,7 +70,11 @@ class ViewController extends Controller
     public function products($slug)
     {
         $product = $this->productRepo->getProductSlug($slug);
-        $attributes = ['product' => $product,];
+        $colorPros = $this->itemRepo->getColorProduct($product->id);
+        $attributes = [
+            'product' => $product,
+            'colorPros' => $colorPros,
+        ];
 
         $result = array_merge($attributes, $this->get());
         return view('client.product', $result);

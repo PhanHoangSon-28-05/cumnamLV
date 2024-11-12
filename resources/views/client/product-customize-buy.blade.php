@@ -293,8 +293,6 @@
         window.onload = calculateTotal;
     </script>
 
-
-
     <script>
         function scrollToView(element) {
             element.parentElement.scrollIntoView({

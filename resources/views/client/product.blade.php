@@ -1,18 +1,32 @@
 @extends('client.master')
 @section('title', $product->name)
 
+@section('style')
+    <style>
+        .mySlides,
+        .demo {
+            display: block !important;
+        }
+    </style>
+@endsection
+
 @section('content')
     <main id="content-wrapper" class="main-v2">
         <section id="order-shutters" class="container-fluid my-5">
             <div class="row">
                 <div class="col-md-6 col-12 text-center pl-0">
                     <div class="shutter-image bg-light d-flex justify-content-center align-items-center">
-                        <img src="{{ URL::asset('view/style/images/Horizontal Sheer/Image 4-16-24 at 3.32 PM.JPG') }}"
-                            id="Cream" class="tabcontent default" alt="Shutter Image" class="img-fluid">
-                        <img src="{{ URL::asset('view/style/images/Horizontal Sheer/Image 4-16-24 at 3.30 PM.JPG') }}"
-                            id="Simply" class="tabcontent nodefault" alt="Shutter Image" class="img-fluid">
-                        <img src="{{ URL::asset('view/style/images/Horizontal Sheer/Image 4-16-24 at 3.33 PM.JPG') }}"
-                            id="Winter" class="tabcontent nodefault" alt="Shutter Image" class="img-fluid">
+                        <span class="d-none">{{ $con = 1 }} </span>
+                        @foreach ($colorPros as $value)
+                            @if ($con == 1)
+                                <img src="{{ URL::asset('storage/' . $value->image) }}" id="{{ $value->id }}"
+                                    class="tabcontent default" alt="Shutter Image" class="img-fluid">
+                                <span class="d-none">{{ $con++ }} </span>
+                            @else
+                                <img src="{{ URL::asset('storage/' . $value->image) }}" id="{{ $value->id }}"
+                                    class="tabcontent nodefault" alt="Shutter Image" class="img-fluid">
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-md-4 col-12">
@@ -35,27 +49,15 @@
                                         <p class="mb-0">Color:</p>
                                         <div class="color-options">
                                             <ul class="d-flex flex-row bd-highlight mb-3" id="myUL">
-                                                <li class="color-option text-center tablinks"
-                                                    onmouseover="openCity(event, 'Cream')">
-                                                    <label for="option1" class="radio-img-label">
-                                                        <img src="{{ URL::asset('view/style/images/Color/S_15_051.jpg') }}"
-                                                            alt="Option 1" id="option1">
-                                                    </label>
-                                                </li>
-                                                <li class="color-option text-center tablinks"
-                                                    onmouseover="openCity(event, 'Simply')">
-                                                    <label for="option2" class="radio-img-label">
-                                                        <img src="{{ URL::asset('view/style/images/Color/S_15_729.jpg') }}"
-                                                            alt="Option 2" id="option2">
-                                                    </label>
-                                                </li>
-                                                <li class="color-option text-center tablinks"
-                                                    onmouseover="openCity(event, 'Winter')">
-                                                    <label for="option3" class="radio-img-label">
-                                                        <img src="{{ URL::asset('view/style/images/Color/S_15_922.jpg') }}"
-                                                            alt="Option 3" id="option3">
-                                                    </label>
-                                                </li>
+                                                @foreach ($colorPros as $value)
+                                                    <li class="color-option text-center tablinks"
+                                                        onmouseover="openCity(event, '{{ $value->id }}')">
+                                                        <label for="option1" class="radio-img-label">
+                                                            <img src="{{ URL::asset('storage/' . $value->fabriccolor) }}"
+                                                                alt="Option 1" id="option1">
+                                                        </label>
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
@@ -244,8 +246,8 @@
 
                     <div class="col-md-3 col-12 mb-2">
                         <div class="card">
-                            <img src="{{ URL::asset('view/style/images/Zebra/Artboard 13@4x.jpg') }}" class="card-img-top"
-                                alt="Zebra Roman">
+                            <img src="{{ URL::asset('view/style/images/Zebra/Artboard 13@4x.jpg') }}"
+                                class="card-img-top" alt="Zebra Roman">
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase">3" VANE-2" SHEER</h5>
                                 <p class="card-text font-weight-bolder">THE ZEBRA ROMAN</p>
@@ -303,7 +305,8 @@
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("Cream").style.display = "block";
+            var firstColorName = @json($colorPros->first()->id);
+            document.getElementById(firstColorName).style.display = "block";
             document.querySelector(".color-option img").style.border = "double black";
         });
     </script>

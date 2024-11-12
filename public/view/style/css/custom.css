@@ -658,6 +658,13 @@ footer .btn {
     transition: border-color 0.3s;
 }
 
+#order-shutters .radio-img-label img {
+    width: 30px;
+    height: 60px;
+    display: block;
+    border-color: #000;
+}
+
 #order-shutters .color .radio-img-label img {
     width: 250px;
     height: 100px;
@@ -666,8 +673,8 @@ footer .btn {
 }
 
 #order-shutters .item .radio-img-label img {
-    max-width: 120px;
-    height: 160px;
+    width: 200px;
+    height: 300px;
     display: block;
     border-color: #000;
 }
