@@ -5,7 +5,7 @@
 @endphp
 
 @foreach ($item as $value)
-    <div class="">
+    <div class="mr-1">
         <div class="card card-body">
             <div class="media">
                 @if ($id_pro_item == $value->id)

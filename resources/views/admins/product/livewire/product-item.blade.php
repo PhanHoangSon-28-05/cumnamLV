@@ -17,7 +17,7 @@
                             <div class="d-flex flex-row bd-highlight">
                                 <div class="row">
                                     @foreach ($colorPros as $value)
-                                        <div class="">
+                                        <div class="mr-1">
                                             <div class="card card-body">
                                                 <div class="media">
                                                     @if ($id_pro_item == $value->id)

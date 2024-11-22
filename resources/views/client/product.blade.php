@@ -9,7 +9,7 @@
         }
     </style>
 @endsection
-
+{{-- @dd($colorPros) --}}
 @section('content')
     <main id="content-wrapper" class="main-v2">
         <section id="order-shutters" class="container-fluid my-5">
@@ -17,16 +17,22 @@
                 <div class="col-md-6 col-12 text-center pl-0">
                     <div class="shutter-image bg-light d-flex justify-content-center align-items-center">
                         <span class="d-none">{{ $con = 1 }} </span>
-                        @foreach ($colorPros as $value)
-                            @if ($con == 1)
-                                <img src="{{ URL::asset('storage/' . $value->image) }}" id="{{ $value->id }}"
-                                    class="tabcontent default" alt="Shutter Image" class="img-fluid">
-                                <span class="d-none">{{ $con++ }} </span>
-                            @else
-                                <img src="{{ URL::asset('storage/' . $value->image) }}" id="{{ $value->id }}"
-                                    class="tabcontent nodefault" alt="Shutter Image" class="img-fluid">
-                            @endif
-                        @endforeach
+                        @if ($colorPros && $colorPros->isNotEmpty())
+                            @foreach ($colorPros as $value)
+                                @if ($con == 1)
+                                    <img src="{{ URL::asset('storage/' . $value->image) }}" id="{{ $value->id }}"
+                                        class="tabcontent default img-fluid" alt="Shutter Image">
+                                    <span class="d-none">{{ $con++ }} </span>
+                                @else
+                                    <img src="{{ URL::asset('storage/' . $value->image) }}" id="{{ $value->id }}"
+                                        class="tabcontent nodefault img-fluid" alt="Shutter Image">
+                                @endif
+                            @endforeach
+                        @else
+                            <img src="{{ URL::asset('storage/' . $product->pic) }}" id="defaultImage"
+                                class="tabcontent default img-fluid" alt="Shutter Image">
+                        @endif
+
                     </div>
                 </div>
                 <div class="col-md-4 col-12">
@@ -49,15 +55,24 @@
                                         <p class="mb-0">Color:</p>
                                         <div class="color-options">
                                             <ul class="d-flex flex-row bd-highlight mb-3" id="myUL">
-                                                @foreach ($colorPros as $value)
-                                                    <li class="color-option text-center tablinks"
-                                                        onmouseover="openCity(event, '{{ $value->id }}')">
-                                                        <label for="option1" class="radio-img-label">
-                                                            <img src="{{ URL::asset('storage/' . $value->fabriccolor) }}"
-                                                                alt="Option 1" id="option1">
-                                                        </label>
-                                                    </li>
-                                                @endforeach
+                                                @if ($colorPros && $colorPros->isNotEmpty())
+                                                    <ul class="d-flex flex-row bd-highlight mb-3" id="myUL">
+                                                        @foreach ($colorPros as $value)
+                                                            <li class="color-option text-center tablinks"
+                                                                onmouseover="openCity(event, '{{ $value->id }}')">
+                                                                <label for="option{{ $loop->index }}"
+                                                                    class="radio-img-label">
+                                                                    <img src="{{ URL::asset('storage/' . $value->fabriccolor) }}"
+                                                                        alt="Option {{ $loop->index }}"
+                                                                        id="option{{ $loop->index }}">
+                                                                </label>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @else
+                                                    <p>No colors available for this product.</p>
+                                                @endif
+
                                             </ul>
                                         </div>
                                     </div>
@@ -305,9 +320,11 @@
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            var firstColorName = @json($colorPros->first()->id);
-            document.getElementById(firstColorName).style.display = "block";
-            document.querySelector(".color-option img").style.border = "double black";
+            @if ($colorPros && $colorPros->isNotEmpty())
+                var firstColorName = @json($colorPros->first()->id);
+                document.getElementById(firstColorName).style.display = "block";
+                document.querySelector(".color-option img").style.border = "double black";
+            @endif
         });
     </script>
 @endsection

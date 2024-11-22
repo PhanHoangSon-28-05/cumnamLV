@@ -224,6 +224,10 @@
                                 @endforeach
                             </div>
                         </div>
+                    @else
+                        <div class="mySlides">
+                            <img src="{{ asset('storage/' . $product->pic) }}" style="width:100%; heigth: 100px;">
+                        </div>
                     @endif
                 </div>
             </div>
