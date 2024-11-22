@@ -123,6 +123,39 @@
                             <p class="text-uppercase w-50 mx-auto">{{ $product->description }}</p>
                         </div>
                         <div class="mb-1">
+                            <div class="card rounded border-0">
+                                <div class="card-header bg-white border-dark" id="headingOne">
+                                    <div class="window-size">
+                                        <label>Window Width (Inch):</label>
+                                        <div class="size-select">
+                                            <select class="mb-2" name="width1">
+                                                <option>40</option>
+                                                <option>50</option>
+                                                <option>60</option>
+                                            </select>
+                                            <select class="mb-2" name="width2">
+                                                <option>1/8</option>
+                                                <option>1/4</option>
+                                                <option>1/2</option>
+                                            </select>
+                                        </div>
+
+                                        <label>Window Height (Inch):</label>
+                                        <div class="size-select">
+                                            <select name="height1">
+                                                <option>50</option>
+                                                <option>60</option>
+                                                <option>70</option>
+                                            </select>
+                                            <select name="height2">
+                                                <option>1/4</option>
+                                                <option>1/2</option>
+                                                <option>3/4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             @if (count($colorPros) != 0)
                                 <div class="card rounded border-0 color">
                                     <div class="card-header bg-white border-dark" id="headingOne">
@@ -226,7 +259,11 @@
                         </div>
                     @else
                         <div class="mySlides">
-                            <img src="{{ asset('storage/' . $product->pic) }}" style="width:100%; heigth: 100px;">
+                            @if ($product->pic)
+                                <img src="{{ asset('storage/' . $product->pic) }}" style="width:100%; heigth: 100px;">
+                            @else
+                                <p class="text-body">Updating product images</p>
+                            @endif
                         </div>
                     @endif
                 </div>

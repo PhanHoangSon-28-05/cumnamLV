@@ -29,8 +29,12 @@
                                 @endif
                             @endforeach
                         @else
-                            <img src="{{ URL::asset('storage/' . $product->pic) }}" id="defaultImage"
-                                class="tabcontent default img-fluid" alt="Shutter Image">
+                            @if ($product->pic)
+                                <img src="{{ URL::asset('storage/' . $product->pic) }}" id="defaultImage"
+                                    class="tabcontent default img-fluid" alt="">
+                            @else
+                                <p class="text-body">Updating product images</p>
+                            @endif
                         @endif
 
                     </div>
