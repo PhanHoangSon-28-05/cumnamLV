@@ -17,7 +17,6 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     public function createProduct($attributes = [])
     {
-        dd($attributes);
         $attributes['slug'] = Str::slug($attributes['name']);
         $attributes['pic'] = 'null';
         $product = $this->model->create($attributes);
