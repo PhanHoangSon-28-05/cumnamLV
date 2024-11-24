@@ -85,6 +85,13 @@ class ProductController extends Controller
         }
     }
 
+    public function item($id)
+    {
+        return view(
+            'admins.product.item',
+            ['id' => $id]
+        );
+    }
     public function destroy($id)
     {
         try {

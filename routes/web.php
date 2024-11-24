@@ -46,6 +46,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         // Route::get('/{coupon}', 'show')->name('show');
         Route::get('/{coupon}/edit', 'edit')->name('edit');
         Route::put('/{coupon}', 'update')->name('update');
+        Route::get('/{coupon}/item', 'item')->name('item');
         Route::get('/{coupon}', 'destroy')->name('destroy');
     });
 

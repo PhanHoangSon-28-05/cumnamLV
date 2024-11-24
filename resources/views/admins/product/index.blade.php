@@ -88,12 +88,14 @@
                                             </button>
                                         </td>
                                         <td scope="row" class="text-center">
-                                            <livewire:product.product-item :id_product="$value->id" />
+                                            <a href="{{ route('products.item', $value->id) }}" class="btn btn-light"><i
+                                                    class="fa-solid fa-sitemap"></i>
+                                            </a>
+                                            {{-- <livewire:product.product-item :id_product="$value->id" />
                                             <button type="button" class="btn btn-light" data-toggle="modal"
                                                 data-target="#modal_remote_{{ $value->id }}">
                                                 <i class="fa-solid fa-sitemap"></i>
-                                            </button>
-
+                                            </button> --}}
                                         </td>
                                         <td class="text-center">
                                             <a href="{{ route('products.edit', $value->id) }}"

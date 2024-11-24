@@ -36,6 +36,7 @@ class ProductItem extends Component
 
     public function resetColumn()
     {
+        $this->fabriccolor = '';
         $this->image = '';
         $this->name = '';
         $this->priceNew = '';

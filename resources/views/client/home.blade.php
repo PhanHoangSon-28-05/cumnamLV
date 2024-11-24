@@ -74,8 +74,15 @@
                                 <div class="col-3 my-1 ">
                                     <a href="{{ URL::route('home.products', $value->slug) }}">
                                         <div class="card">
-                                            <img id="{{ $value->slug }}" src="{{ URL::asset('storage/' . $value->pic) }}"
-                                                class="card-img-top" alt="Oakley">
+                                            @if ($value->pic != "null")
+                                                <img id="{{ $value->slug }}"
+                                                    src="{{ URL::asset('storage/' . $value->pic) }}" class="card-img-top"
+                                                    alt="Oakley">
+                                            @else
+                                                <img id="{{ $value->slug }}"
+                                                    src="{{ URL::asset('images/placeholder/placeholder.png') }}"
+                                                    class="card-img-top" alt="Oakley">
+                                            @endif
                                             <div class="card-body">
                                                 <div class="d-flex">
                                                     @if (count($value->item) != 0)

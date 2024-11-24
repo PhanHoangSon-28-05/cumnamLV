@@ -113,7 +113,7 @@
                             </div>
                         </div>
                         <div class="text-md-left">
-                            <button id="customizeBuyButton" type="submit" class="btn text-uppercase rounded-pill">Customize
+                            <button id="customizeBuyButton" type="submit" class="btn text-uppercase rounded-pill">Customize 
                                 &
                                 Buy</button>
                         </div>
