@@ -359,34 +359,9 @@
                 </div>
             </div>
         </section>
-        <section id="appointment">
-            <div class="container-fluid my-5">
-                <div class="row">
-                    <div class="col-md-6 col-12">
-                        <img src="{{ URL::asset('view/style/images/hinh-3.jpg') }}" alt="">
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <h3 class="font-weight-bold text-center h1">Free in-home appointment</h3>
-                        <p class="text-center">Meet our guys to explore our collections, fabrics and color ​options</p>
-                        <div class="input">
-                            <label for="">Full name (Required)</label>
-                            <input type="text" name="fullname">
-                        </div>
-                        <div class="input">
-                            <label for="">Email (required)</label>
-                            <input type="email" name="email">
-                        </div>
-                        <div class="input">
-                            <label for="">Message</label>
-                            <input class="message" type="text" name="message">
-                        </div>
-                        <div class="send text-center">
-                            <a class="btn btn-primary rounded-pill mt-md-5 mt-2" href="">SEND</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        {{-- Email --}}
+        @include('client.mail')
+
         <section id="client">
             <div class="container-fluid my-md-5 my-2">
                 <div class="row">

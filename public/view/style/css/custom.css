@@ -501,10 +501,15 @@ ul {
     height: 50px;
     border-color: #000000;
     border-radius: 40px;
+    padding: 10px;
 }
 
 #appointment .input .message {
-    height: 150px;
+    width: 550px;
+    height: 200px;
+    border-color: #000000;
+    border-radius: 40px;
+    padding: 10px;
 }
 
 #appointment .btn {

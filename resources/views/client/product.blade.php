@@ -57,22 +57,19 @@
 
                                     <div class="color-selection">
                                         <p class="mb-0">Color:</p>
-                                        <div class="color-options">
+                                        <div class="">
                                             <ul class="d-flex flex-row bd-highlight mb-3" id="myUL">
                                                 @if ($colorPros && $colorPros->isNotEmpty())
-                                                    <ul class="d-flex flex-row bd-highlight mb-3" id="myUL">
-                                                        @foreach ($colorPros as $value)
-                                                            <li class="color-option text-center tablinks"
-                                                                onmouseover="openCity(event, '{{ $value->id }}')">
-                                                                <label for="option{{ $loop->index }}"
-                                                                    class="radio-img-label">
-                                                                    <img src="{{ URL::asset('storage/' . $value->fabriccolor) }}"
-                                                                        alt="Option {{ $loop->index }}"
-                                                                        id="option{{ $loop->index }}">
-                                                                </label>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
+                                                    @foreach ($colorPros as $value)
+                                                        <li class="color-option text-center tablinks"
+                                                            onmouseover="openCity(event, '{{ $value->id }}')">
+                                                            <label for="option{{ $loop->index }}" class="radio-img-label">
+                                                                <img src="{{ URL::asset('storage/' . $value->fabriccolor) }}"
+                                                                    alt="Option {{ $loop->index }}"
+                                                                    id="option{{ $loop->index }}">
+                                                            </label>
+                                                        </li>
+                                                    @endforeach
                                                 @else
                                                     <p>No colors available for this product.</p>
                                                 @endif
@@ -113,7 +110,7 @@
                             </div>
                         </div>
                         <div class="text-md-left">
-                            <button id="customizeBuyButton" type="submit" class="btn text-uppercase rounded-pill">Customize 
+                            <button id="customizeBuyButton" type="submit" class="btn text-uppercase rounded-pill">Customize
                                 &
                                 Buy</button>
                         </div>

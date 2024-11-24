@@ -309,11 +309,15 @@
     </script>
     <script>
         function selectImage(imageSrc, text, idSuffix) {
-            document.getElementById('selectedImage' + idSuffix).src = imageSrc;
-            document.getElementById('selectedImage' + idSuffix).style.display = 'inline';
+            // Ensure idSuffix is unique for each product item
+            let selectedImageId = 'selectedImage' + idSuffix;
+            let selectedTextId = 'selectedText' + idSuffix;
 
-            document.getElementById('selectedText' + idSuffix).innerHTML = text;
-            document.getElementById('selectedText' + idSuffix).style.display = 'block';
+            document.getElementById(selectedImageId).src = imageSrc;
+            document.getElementById(selectedImageId).style.display = 'inline';
+
+            document.getElementById(selectedTextId).innerHTML = text;
+            document.getElementById(selectedTextId).style.display = 'block';
 
             $('#collapseOne' + idSuffix).collapse('hide');
 

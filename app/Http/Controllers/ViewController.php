@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailCunamhouse;
 use App\Models\Category;
 use App\Models\Footer;
 use App\Models\Header;
@@ -53,6 +54,24 @@ class ViewController extends Controller
 
         $result = array_merge($attributes, $this->get());
         return view('client.home', $result);
+    }
+
+    // Mail
+    public function sendmail(Request $request)
+    {
+        $request->validate([
+            'fullname' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        $mailData = [
+            'fullname' => $request->fullname,
+            'message' => $request->message,
+        ];
+        $attributes = $request->all();
+
+        \Mail::to('hoangson28052002@gmail.com')->send(new MailCunamhouse($mailData));
+        return redirect()->route('home')->with('success', 'Your message has been sent successfully!');
     }
 
     public function categories($slug)

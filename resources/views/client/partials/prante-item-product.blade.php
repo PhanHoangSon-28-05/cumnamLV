@@ -6,11 +6,6 @@
     @endphp
     @if (count($item) != 0)
         <div class="card rounded border-0 item">
-            <div class="card-header">
-                <h2 class="mb-0">
-                </h2>
-            </div>
-
             <div class="card-header bg-white border-dark" id="{{ 'headingOne' . $value->id }}">
                 <h2 class="mb-0">
                     <button class="btn btn-link btn-block text-left d-flex" type="button" data-toggle="collapse"

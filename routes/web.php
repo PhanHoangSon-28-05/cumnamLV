@@ -22,6 +22,7 @@ Route::get('/', [ViewController::class, 'home'])->name('home');
 Route::get('/{slug}', [ViewController::class, 'categories'])->name('home.category');
 Route::get('/product/{slug}', [ViewController::class, 'products'])->name('home.products');
 Route::get('/product/{slug}/order-item', [ViewController::class, 'productCustomizeBuy'])->name('home.order');
+Route::post('send-mail', [ViewController::class, 'sendmail'])->name('send-email');
 
 
 // Admin
