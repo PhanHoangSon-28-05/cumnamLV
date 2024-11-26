@@ -3,7 +3,7 @@
 @php
     $item = $itemRepos->selectItem($id_product, $id_item);
 @endphp
-
+{{-- @dd($item) --}}
 @foreach ($item as $value)
     <li class="color-option text-center">
         <input type="radio" id="{{ 'option' . $value->id }}" name="{{ $name_item }}" class="radio-img"

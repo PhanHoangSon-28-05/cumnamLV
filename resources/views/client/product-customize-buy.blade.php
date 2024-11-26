@@ -179,6 +179,7 @@
                                         data-parent="#accordionExample">
                                         <div class="card-body">
                                             <ul class="d-flex flex-row bd-highlight mb-3 mt-3" id="myUL">
+                                                {{-- @dd($colorPros) --}}
                                                 @foreach ($colorPros as $value)
                                                     <li class="color-option text-center">
                                                         <input type="radio" id="{{ 'option' . $value->id }}"
@@ -309,15 +310,11 @@
     </script>
     <script>
         function selectImage(imageSrc, text, idSuffix) {
-            // Ensure idSuffix is unique for each product item
-            let selectedImageId = 'selectedImage' + idSuffix;
-            let selectedTextId = 'selectedText' + idSuffix;
+            document.getElementById('selectedImage' + idSuffix).src = imageSrc;
+            document.getElementById('selectedImage' + idSuffix).style.display = 'inline';
 
-            document.getElementById(selectedImageId).src = imageSrc;
-            document.getElementById(selectedImageId).style.display = 'inline';
-
-            document.getElementById(selectedTextId).innerHTML = text;
-            document.getElementById(selectedTextId).style.display = 'block';
+            document.getElementById('selectedText' + idSuffix).innerHTML = text;
+            document.getElementById('selectedText' + idSuffix).style.display = 'block';
 
             $('#collapseOne' + idSuffix).collapse('hide');
 
