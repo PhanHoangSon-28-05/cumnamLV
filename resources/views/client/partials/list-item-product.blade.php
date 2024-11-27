@@ -6,7 +6,7 @@
 {{-- @dd($item) --}}
 @foreach ($item as $value)
     <li class="color-option text-center">
-        <input type="radio" id="{{ 'option' . $value->id }}" name="{{ $name_item }}" class="radio-img"
+        <input type="radio" id="{{ 'option' . $value->id }}" name="{{ $name_item }}" wire:model="selectedValues.{{ $name_item }}" class="radio-img"
             value="{{ $value->id }}"
             onclick="selectImage('{{ asset('storage/' . $value->image) }}', '{{ $value->name }} </br> {{ $value->priceNew }}$', '{{ $id_item }}'); scrollToView(this)">
         <label for="{{ 'option' . $value->id }}" class="radio-img-label">
