@@ -74,7 +74,7 @@
                                 <div class="col-3 my-1 ">
                                     <a href="{{ URL::route('home.products', $value->slug) }}">
                                         <div class="card">
-                                            @if ($value->pic != "null")
+                                            @if ($value->pic != 'null')
                                                 <img id="{{ $value->slug }}"
                                                     src="{{ URL::asset('storage/' . $value->pic) }}" class="card-img-top"
                                                     alt="Oakley">
@@ -166,7 +166,7 @@
                                         <li class="col-10">
                                             <a href="{{ URL::route('home.products', $value->slug) }}">
                                                 <div class="card">
-                                                    <img src="{{ URL::asset('storage/' . $value->pic) }}"
+                                                    <img src="{{ route('storages.image', [$value->pic]) }}"
                                                         class="card-img-top" alt="Oakley">
                                                     <div class="card-body">
                                                         <div class="d-flex">

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\HeaderController;
 use App\Http\Controllers\Admin\OrderItemController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ViewController;
 use App\Models\Category;
 use App\Models\Color;
@@ -24,6 +25,7 @@ Route::get('/product/{slug}', [ViewController::class, 'products'])->name('home.p
 Route::get('/product/{slug}/order-item', [ViewController::class, 'productCustomizeBuy'])->name('home.order');
 Route::post('send-mail', [ViewController::class, 'sendmail'])->name('send-email');
 
+Route::get('storage/{url}', [ImageController::class, 'getImage'])->name('storages.image');
 
 // Admin
 Route::get('admin/register', [UserController::class, 'showRegistrationForm']);

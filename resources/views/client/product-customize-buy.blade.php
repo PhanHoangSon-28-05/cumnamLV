@@ -122,7 +122,8 @@
                         <div class="">
                             @foreach ($colorPros as $value)
                                 <div class="mySlides">
-                                    <img src="{{ asset('storage/' . $value->image) }}" style="width:100%; heigth: 100px;">
+                                    <img src="{{ route('storages.image', [$value->image]) }}"
+                                        style="width:100%; heigth: 100px;">
                                 </div>
                             @endforeach
                             <div class="caption-container">
@@ -133,7 +134,7 @@
                                 <span class="d-none"></span> <?php $i = 1; ?>
                                 @foreach ($colorPros as $value)
                                     <div class="column">
-                                        <img class="demo cursor" src="{{ asset('storage/' . $value->fabriccolor) }}"
+                                        <img class="demo cursor" src="{{ route('storages.image', [$value->fabriccolor]) }}"
                                             style="width:100%" onclick="currentSlide({{ $i }})"
                                             alt="{{ $value->name }}">
                                     </div>
@@ -144,7 +145,8 @@
                     @else
                         <div class="mySlides">
                             @if ($product->pic)
-                                <img src="{{ asset('storage/' . $product->pic) }}" style="width:100%; heigth: 100px;">
+                                <img src="{{ route('storages.image', [$product->pic]) }}"
+                                    style="width:100%; heigth: 100px;">
                             @else
                                 <p class="text-body">Updating product images</p>
                             @endif
