@@ -51,6 +51,12 @@
     @livewireStyles
     @stack('style')
 
+    <style>
+        .sidebar-user-material {
+            background-image: url("{{ asset('admins/global_assets/images/backgrounds/user_bg4.jpg') }}");
+        }
+    </style>
+
 </head>
 
 <body>

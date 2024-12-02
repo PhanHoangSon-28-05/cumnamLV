@@ -29,7 +29,7 @@
             <div class="icon">
                 <a class="h3 position-absolute " href="" style="right: 50px; top: 50px"><i
                         class="fa-solid fa-magnifying-glass text-body"></i></a>
-                <a class="h3 position-absolute " href="cart.html" style="right: 10px; top: 50px"><i
+                <a class="h3 position-absolute " href="{{ route('shopping-cart') }}" style="right: 10px; top: 50px"><i
                         class="fa-solid fa-cart-shopping text-body"></i></a>
             </div>
         </div>

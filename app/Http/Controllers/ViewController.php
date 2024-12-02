@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\MailCunamhouse;
-use App\Models\Category;
 use App\Models\Footer;
 use App\Models\Header;
+use App\Models\Category;
 use App\Models\OrderItem;
-use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Mail\MailCunamhouse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Repositories\ItemOrder\ItemRepositoryInterface;
 use App\Repositories\Product\ProductRepositoryInterface;
-use Illuminate\Http\Request;
+use App\Repositories\Category\CategoryRepositoryInterface;
 
 class ViewController extends Controller
 {
@@ -122,5 +123,16 @@ class ViewController extends Controller
 
         $result = array_merge($attributes, $this->get());
         return view('client.product-customize-buy', $result);
+    }
+
+    public function shoppingCart() {
+        $result = array_merge($attributes ?? [], $this->get());
+        return view('client.shopping-cart', $result);
+    }
+
+    public function removeCartItem(Request $request) {
+        $index = $request->input('index');
+        Session::forget('shopping-cart.'.$index);
+        return redirect()->route('shopping-cart');
     }
 }

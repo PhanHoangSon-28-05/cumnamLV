@@ -2,8 +2,9 @@
 
 namespace App\Livewire;
 
-use App\Repositories\ItemOrder\ItemRepositoryInterface;
 use Livewire\Component;
+use Illuminate\Support\Facades\Session;
+use App\Repositories\ItemOrder\ItemRepositoryInterface;
 
 class ProductSelectOrder extends Component
 {
@@ -20,8 +21,12 @@ class ProductSelectOrder extends Component
     {
         $this->itemRepo = $itemRepo;
     }
-    public function mount()
+    public function mount($product, $colorPros, $orders)
     {
+        $this->product = $product;
+        $this->colorPros = $colorPros;
+        $this->orders = $orders;
+
         $this->getData();
     }
 
@@ -45,18 +50,38 @@ class ProductSelectOrder extends Component
 
     public function add()
     {
-        //  dd($this->selectedValues);
+        // dd($this->selectedValues);
+        $cart_item = [
+            'name' => $this->product->name,
+            'width' => $this->width1.'" '.$this->width2,
+            'height' => $this->height1.'" '.$this->height2,
+            'image' => $this->product->pic,
+        ];
+        $total_price = 0;
         foreach ($this->selectedValues as $value) {
             $item = $this->itemRepo->find($value);
             // dd($item);
-            if (count($this->listItem) == 0) {
-                # code...
-                $this->listItem = ["id" => $item->id, "name" => $item->name, "priceNew" => $item->priceNew, "image" => $item->image];
+            // if (count($this->listItem) == 0) {
+            //     # code...
+            //     $this->listItem = ["id" => $item->id, "name" => $item->name, "priceNew" => $item->priceNew, "image" => $item->image];
+            // } else {
+            //     $this->listItem = [$this->listItem, ["id" => $item->id, "name" => $item->name, "priceNew" => $item->priceNew, "image" => $item->image]];
+            // }
+            // $this->listItem[] = ["id" => $item->id, "name" => $item->name, "priceNew" => $item->priceNew, "image" => $item->image];
+            
+            if ($item->id_color > 0) {
+                $cart_item['fabric'] = $item->name;
             } else {
-                $this->listItem = [$this->listItem, ["id" => $item->id, "name" => $item->name, "priceNew" => $item->priceNew, "image" => $item->image]];
+                $cart_item['orders'][$item->order->name] = $item->name;
             }
+            $total_price += $item->priceNew;
         }
-        dd($this->listItem);
+        $cart_item['price'] = $total_price;
+
+        // Session::forget('shopping-cart');
+        Session::push('shopping-cart', $cart_item);
+        // dd(Session::get('shopping-cart'));
+        // dd($this->listItem);
     }
 
     public function render()

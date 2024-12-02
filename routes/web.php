@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 // Client
 Route::get('/', [ViewController::class, 'home'])->name('home');
+Route::get('/shopping-cart', [ViewController::class, 'shoppingCart'])->name('shopping-cart');
+Route::get('/shopping-cart/remove', [ViewController::class, 'removeCartItem'])->name('shopping-cart.remove');
 Route::get('/{slug}', [ViewController::class, 'categories'])->name('home.category');
 Route::get('/product/{slug}', [ViewController::class, 'products'])->name('home.products');
 Route::get('/product/{slug}/order-item', [ViewController::class, 'productCustomizeBuy'])->name('home.order');

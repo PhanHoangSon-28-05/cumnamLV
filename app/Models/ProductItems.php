@@ -28,4 +28,8 @@ class ProductItems extends Model
     {
         return $this->belongsTo(Color::class, 'id_color');
     }
+
+    public function order() {
+        return $this->belongsTo(OrderItem::class, 'id_item');
+    }
 }

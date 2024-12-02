@@ -10,28 +10,28 @@
                     <div class="window-size">
                         <label>Window Width (Inch):</label>
                         <div class="size-select">
-                            <select class="mb-2" name="width1" wire:model="width1">
+                            <select class="mb-2" name="width1" wire:model.blur="width1">
                                 @for ($i = 0; $i <= 100; $i += 10)
                                     <option value="{{ $i }}">{{ $i }}</option>
                                 @endfor
                             </select>
-                            <select class="mb-2" name="width2" wire:model="width2">
-                                <option>1/8</option>
-                                <option>1/4</option>
-                                <option>1/2</option>
+                            <select class="mb-2" name="width2" wire:model.blur="width2">
+                                <option value="1/8">1/8</option>
+                                <option value="1/4">1/4</option>
+                                <option value="1/2">1/2</option>
                             </select>
                         </div>
                         <label>Window Height (Inch):</label>
                         <div class="size-select">
-                            <select name="height1" wire:model="height1">
+                            <select name="height1" wire:model.blur="height1">
                                 @for ($i = 0; $i <= 100; $i += 10)
                                     <option value="{{ $i }}">{{ $i }}</option>
                                 @endfor
                             </select>
-                            <select name="height2" wire:model="height2">
-                                <option>1/4</option>
-                                <option>1/2</option>
-                                <option>3/4</option>
+                            <select name="height2" wire:model.blur="height2">
+                                <option value="1/4">1/4</option>
+                                <option value="1/2">1/2</option>
+                                <option value="3/4">3/4</option>
                             </select>
                         </div>
                     </div>

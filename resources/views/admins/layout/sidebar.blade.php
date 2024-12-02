@@ -16,7 +16,7 @@
                             </button>
                         </div>
                         <a href="#" class="flex-1 text-center"><img
-                                src="../../../../global_assets/images/placeholders/placeholder.jpg"
+                                src="{{ asset('images/clipart3643767.png') }}"
                                 class="img-fluid rounded-circle shadow-sm" width="80" height="80"
                                 alt=""></a>
                         <div class="flex-1 text-right">
