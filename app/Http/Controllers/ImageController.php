@@ -10,8 +10,10 @@ class ImageController extends Controller
 {
     public function __construct() {}
 
-    public function getImage($url)
+    public function getImage(Request $request)
     {
+        dd($request);
+        $url = $request->url;
         return response()->file(storage_path($url));
     }
 }

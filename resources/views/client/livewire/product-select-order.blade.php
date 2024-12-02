@@ -64,7 +64,7 @@
                                 @foreach ($colorPros as $value)
                                     <li class="color-option text-center">
                                         <input type="radio" id="{{ 'option' . $value->id }}" name="image-radio"
-                                            wire:model="selectedValues.color" class="radio-img"
+                                            wire:model.live="selectedValues.color" class="radio-img"
                                             value="{{ $value->id }}"
                                             onclick="selectImage('{{ asset('storage/' . $value->fabriccolor) }}', '{{ $value->color->name }}', '0'); scrollToView(this)">
                                         <label for="{{ 'option' . $value->id }}" class="radio-img-label">
