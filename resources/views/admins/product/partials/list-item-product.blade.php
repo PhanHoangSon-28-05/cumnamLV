@@ -66,7 +66,7 @@
 
                 <div class="ml-3">
                     <a href="#">
-                        <img src="{{ route('storages.image', [$value->image]) }}" class="rounded" width="100"
+                        <img src="{{ URL::asset('storage/' . $value->image) }}" class="rounded" width="100"
                             height="100" alt="">
                     </a>
                 </div>

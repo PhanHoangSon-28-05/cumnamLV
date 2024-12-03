@@ -20,17 +20,17 @@
                         @if ($colorPros && $colorPros->isNotEmpty())
                             @foreach ($colorPros as $value)
                                 @if ($con == 1)
-                                    <img src="{{ route('storages.image', [$value->image]) }}" id="{{ $value->id }}"
+                                    <img src="{{ URL::asset('storage/' . $value->image) }}" id="{{ $value->id }}"
                                         class="tabcontent default img-fluid" alt="Shutter Image">
                                     <span class="d-none">{{ $con++ }} </span>
                                 @else
-                                    <img src="{{ route('storages.image', [$value->image]) }}" id="{{ $value->id }}"
+                                    <img src="{{ URL::asset('storage/' . $value->image) }}" id="{{ $value->id }}"
                                         class="tabcontent nodefault img-fluid" alt="Shutter Image">
                                 @endif
                             @endforeach
                         @else
                             @if ($product->pic)
-                                <img src="{{ route('storages.image', [$product->pic]) }}" id="defaultImage"
+                                <img src="{{ URL::asset('storage/' . $product->pic) }}" id="defaultImage"
                                     class="tabcontent default img-fluid" alt="">
                             @else
                                 <p class="text-body">Updating product images</p>

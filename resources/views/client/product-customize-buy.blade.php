@@ -122,7 +122,7 @@
                         <div class="">
                             @foreach ($colorPros as $value)
                                 <div class="mySlides">
-                                    <img src="{{ route('storages.image', [$value->image]) }}"
+                                    <img src="{{ URL::asset('storage/' . $value->image) }}"
                                         style="width:100%; heigth: 100px;">
                                 </div>
                             @endforeach

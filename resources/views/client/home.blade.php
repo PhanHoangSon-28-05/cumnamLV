@@ -166,7 +166,7 @@
                                         <li class="col-10">
                                             <a href="{{ URL::route('home.products', $value->slug) }}">
                                                 <div class="card">
-                                                    <img src="{{ route('storages.image', [$value->pic]) }}"
+                                                    <img src="{{ URL::asset('storage/' . $value->pic) }}"
                                                         class="card-img-top" alt="Oakley">
                                                     <div class="card-body">
                                                         <div class="d-flex">
