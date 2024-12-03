@@ -14,8 +14,8 @@
 <div class="container-fluid">
     <div class="name-logo row">
         <div class="logodiv col-12 p-0 text-center d-flex justify-content-center align-items-end">
-            <a
-                href="{{ URL::route('home') }}" style="display: flex; align-items: center; text-decoration: none; color: black;">
+            <a href="{{ URL::route('home') }}"
+                style="display: flex; align-items: center; text-decoration: none; color: black;">
                 <img class="logo" src="{{ URL::asset('view/style/images/Logo-1.png') }}" alt="">
                 <div style="margin-left: 10px; margin-bottom: 0;">
                     <p class="name h2" style=" margin-bottom: 0;">
@@ -45,36 +45,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        {{-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-uppercase" href="#" role="button"
-                                data-toggle="dropdown" aria-expanded="false">
-                                Shades <i class="fas fa-angle-down"></i>
-                            </a>
-                            <div class="dropdown-menu custom-dropdown">
-                                <a class="dropdown-item" href="catergory.html">Horizontal Sheer</a>
-                                <a class="dropdown-item" href="catergory.html">Vertical Sheer</a>
-                                <a class="dropdown-item" href="catergory.html">Cellular</a>
-                                <a class="dropdown-item" href="catergory.html">Roller</a>
-                                <a class="dropdown-item" href="catergory.html">Roman</a>
-                                <a class="dropdown-item" href="catergory.html">Combi Roman</a>
-                            </div>
-                        </li> --}}
                         @foreach ($cates as $cate)
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-uppercase" href="#" role="button"
-                                    data-toggle="dropdown" aria-expanded="false">
+                            <li class="nav-item dropdown" id="menu-{{ $cate->slug }}">
+                                <a class="nav-link dropdown-toggle text-uppercase text-body" href="#"
+                                    role="button" data-toggle="dropdown" aria-expanded="false">
                                     {{ $cate->name }}
                                     @if ($cate->slug != 'how-to')
                                         <i class="fas fa-angle-down"></i>
                                     @endif
                                 </a>
-                                @if ($cate->slug != 'how-to')
-                                    <div class="dropdown-menu custom-dropdown">
-                                        @include('client.partials.catergoryChild', [
-                                            'parentId' => $cate->id,
-                                        ])
-                                    </div>
-                                @endif
+
                             </li>
                         @endforeach
                     </ul>
@@ -131,3 +111,26 @@
         </div>
     </div>
 </div>
+
+@foreach ($cates as $cate)
+    @if ($cate->slug != 'how-to')
+        <div class="display" id="{{ $cate->slug }}-content">
+            <div class="containers">
+                <div class="menu">
+                    <h2 class="text-uppercase">{{ $cate->name }}</h2>
+                    <ul>
+                        @include('client.partials.catergoryChild', [
+                            'parentId' => $cate->id,
+                        ])
+                    </ul>
+                </div>
+                <div class="content">
+                    <img src="{{ URL::asset('storage/' . $cate->image) }}"
+                        alt="A modern living room with a white couch and a large painting on the wall">
+                    <p>Introducing: goop x CB2</p>
+                    <a href="#">SHOP THE NEW COLLECTION</a>
+                </div>
+            </div>
+        </div>
+    @endif
+@endforeach

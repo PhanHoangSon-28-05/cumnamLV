@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:100">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="{{ URL::asset('view/style/css/font-face.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('view/style/css/header.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('view/style/css/custom.css') }}">
 
     <!-- Slider product -->
@@ -35,7 +36,7 @@
     @yield('content')
 
     <footer class="mt-3" style="background-color: D9D9D9;">
-       @include('client.footer')
+        @include('client.footer')
     </footer>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -43,6 +44,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="{{ URL::asset('view/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ URL::asset('view/style/js/custom.js') }}"></script>
+    <script src="{{ URL::asset('view/style/js/header.js') }}"></script>
 
     @yield('script')
 

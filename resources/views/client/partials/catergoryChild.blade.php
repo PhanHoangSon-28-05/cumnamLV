@@ -4,6 +4,7 @@
     $childCategories = $categoryRepo->getChildNew($parentId);
 @endphp
 
+
 @foreach ($childCategories as $value)
-    <a class="dropdown-item" href="{{ route('home.category', $value->slug) }}">{{ $value->name }}</a>
+    <li><a href="#">{{ $value->name }}</a></li>
 @endforeach

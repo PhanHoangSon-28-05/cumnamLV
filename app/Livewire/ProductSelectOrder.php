@@ -53,8 +53,8 @@ class ProductSelectOrder extends Component
         // dd($this->selectedValues);
         $cart_item = [
             'name' => $this->product->name,
-            'width' => $this->width1.'" '.$this->width2,
-            'height' => $this->height1.'" '.$this->height2,
+            'width' => $this->width1 . '" ' . $this->width2,
+            'height' => $this->height1 . '" ' . $this->height2,
             'image' => $this->product->pic,
         ];
         $total_price = 0;
@@ -68,7 +68,7 @@ class ProductSelectOrder extends Component
             //     $this->listItem = [$this->listItem, ["id" => $item->id, "name" => $item->name, "priceNew" => $item->priceNew, "image" => $item->image]];
             // }
             // $this->listItem[] = ["id" => $item->id, "name" => $item->name, "priceNew" => $item->priceNew, "image" => $item->image];
-            
+
             if ($item->id_color > 0) {
                 $cart_item['fabric'] = $item->name;
             } else {
@@ -82,6 +82,7 @@ class ProductSelectOrder extends Component
         Session::push('shopping-cart', $cart_item);
         // dd(Session::get('shopping-cart'));
         // dd($this->listItem);
+        return redirect()->to('/shopping-cart');
     }
 
     public function render()

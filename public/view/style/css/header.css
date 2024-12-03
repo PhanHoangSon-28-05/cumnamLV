@@ -1,0 +1,72 @@
+.display {
+    display: none;
+}
+
+.display .containers {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff;
+}
+
+.display .containers {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.display .menu {
+    margin-right: 50px;
+}
+
+.display .menu h2 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.display .menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.display .menu ul li {
+    margin-bottom: 10px;
+}
+
+.display .menu ul li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+
+.display .content {
+    text-align: center;
+}
+
+.display .content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.display .content p {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.display .content a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Hiển thị nội dung khi hover vào <li> hoặc .display */
+.nav-item.dropdown:hover .display,
+.nav-item.dropdown .display:hover {
+    display: block;
+}

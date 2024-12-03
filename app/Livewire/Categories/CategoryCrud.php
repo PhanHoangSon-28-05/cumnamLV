@@ -6,18 +6,21 @@ use App\Models\Category;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CategoryCrud extends Component
 {
+    use WithFileUploads;
     public $action,
         $stt,
         $parent_id,
         $modelCate,
+        $pic,
         $category_id;
 
     #[Rule('required|string|max:255', message: 'Please provide a category name')]
     public $name;
-    
+
     public $description;
 
     protected $cateRepos;
@@ -46,11 +49,13 @@ class CategoryCrud extends Component
             $this->parent_id = $this->modelCate->parent_id;
             $this->name = $this->modelCate->name;
             $this->description = $this->modelCate->description;
+            $this->pic = $this->modelCate->image;
         } else {
             $this->stt = '';
             $this->parent_id = 0;
             $this->name = '';
             $this->description = '';
+            $this->pic = '';
         }
     }
 
@@ -62,7 +67,8 @@ class CategoryCrud extends Component
             $this->stt,
             $this->parent_id,
             $this->name,
-            $this->description
+            $this->description,
+            $this->pic
         );
         $this->dispatch('$refresh')->to('categories.category-list');
         $this->dispatch('closeCrudCategory');
@@ -77,7 +83,8 @@ class CategoryCrud extends Component
             $this->stt,
             $this->parent_id,
             $this->name,
-            $this->description
+            $this->description,
+            $this->pic
         );
 
         $this->dispatch('$refresh')->to('categories.category-list');

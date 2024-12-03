@@ -4,6 +4,7 @@ namespace App\Repositories\Category;
 
 use App\Repositories\BaseRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
@@ -20,7 +21,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return $this->model->select('Category_name')->take(5)->get();
     }
 
-    public function createCate($stt, $parent_id, $name, $description)
+    public function createCate($stt, $parent_id, $name, $description, $image)
     {
         $stt = $stt ?? 0;
         $cateData = [
@@ -30,12 +31,21 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
             'slug' => Str::slug($name),
             'description' => trim($description),
         ];
+
+        if ($image != '') {
+            $extension = $image->getClientOriginalName();
+            $filename = time() . '_' . $extension;
+
+            $path =  $image->storeAs('category', $filename, 'public');
+
+            $cateData['image'] = $path;
+        }
         $cate = $this->model->create($cateData);
 
         return $cate;
     }
 
-    public function updateCate($model, $stt, $parent_id, $name, $description)
+    public function updateCate($model, $stt, $parent_id, $name, $description, $image)
     {
         $stt = $stt ?? 0;
         $cateData = [
@@ -45,6 +55,30 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
             'slug' => Str::slug($name),
             'description' => trim($description),
         ];
+
+        if ($image) {
+            if ($image != $model->image) {
+                try {
+                    Storage::disk('public')->delete($model->image);
+                    $extension = $image->getClientOriginalName();
+                    $filename = time() . '_' . $extension;
+
+                    $path =  $image->storeAs('category', $filename, 'public');
+
+                    $cateData['image'] = $path;
+                } catch (\Throwable $th) {
+                    $extension = $image->getClientOriginalName();
+                    $filename = time() . '_' . $extension;
+
+                    $path =  $image->storeAs('category', $filename, 'public');
+
+                    $cateData['image'] = $path;
+                }
+            } else {
+                $path = $model->image;
+            }
+        }
+
         $cate = $model->update($cateData);
 
         return $cate;
