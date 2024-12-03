@@ -6,5 +6,5 @@
 
 
 @foreach ($childCategories as $value)
-    <li><a href="#">{{ $value->name }}</a></li>
+    <li class="text-dark"><a href="{{ URL::route('home.category', $value->slug) }}">{{ $value->name }}</a></li>
 @endforeach
