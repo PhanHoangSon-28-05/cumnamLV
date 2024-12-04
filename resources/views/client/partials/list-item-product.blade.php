@@ -8,7 +8,8 @@
     <li class="color-option text-center">
         <input type="radio" id="{{ 'option' . $value->id }}" name="{{ $name_item }}"
             wire:model.live="selectedValues.{{ $name_item }}" class="radio-img" value="{{ $value->id }}"
-            onclick="selectImage('{{ route('storages.image', ['url' => $value->image]) }}', '{{ $value->name }} </br> {{ $value->priceNew }}$', '{{ $id_item }}'); scrollToView(this)">
+            {{-- onclick="selectImage('{{ route('storages.image', ['url' => $value->image]) }}', '{{ $value->name }} </br> {{ $value->priceNew }}$', '{{ $id_item }}'); scrollToView(this)" --}}
+            >
         <label for="{{ 'option' . $value->id }}" class="radio-img-label">
             <img src="{{ route('storages.image', ['url' => $value->image]) }}" alt="{{ $value->name }}"> </br>
             <span class="text-dark">{{ $value->name }}</span> </br>

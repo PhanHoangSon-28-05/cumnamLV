@@ -38,7 +38,7 @@
 <div class="container-fluid">
     <div class="row justify-content-md-center">
         <div class="d-none d-md-block">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white pb-0">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -114,7 +114,7 @@
 
 @foreach ($cates as $cate)
     @if ($cate->slug != 'how-to')
-        <div class="display" id="{{ $cate->slug }}-content">
+        <div class="display menu-dropdown" id="{{ $cate->slug }}-content">
             <div class="containers">
                 <div class="menu">
                     <h2 class="text-uppercase">{{ $cate->name }}</h2>
@@ -134,3 +134,7 @@
         </div>
     @endif
 @endforeach
+
+@section('script')
+
+@endsection

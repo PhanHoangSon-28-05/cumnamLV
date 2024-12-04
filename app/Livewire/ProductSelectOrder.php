@@ -27,12 +27,13 @@ class ProductSelectOrder extends Component
         $this->colorPros = $colorPros;
         $this->orders = $orders;
 
-        $this->getData();
+        // $this->getData();
     }
 
     public function getData()
     {
         // dd($this->product);
+        $this->totalPrice = 0;
         $acreage = $this->width1 * $this->width2;
         if ($this->product->priceNew != 0) {
             # code...
@@ -53,8 +54,10 @@ class ProductSelectOrder extends Component
         // dd($this->selectedValues);
         $cart_item = [
             'name' => $this->product->name,
-            'width' => $this->width1 . '" ' . $this->width2,
-            'height' => $this->height1 . '" ' . $this->height2,
+            // 'width' => $this->width1 . '" ' . $this->width2,
+            // 'height' => $this->height1 . '" ' . $this->height2,
+            'width' => $this->width1 * $this->width2,
+            'height' => $this->height1 * $this->height2,
             'image' => $this->product->pic,
         ];
         $total_price = 0;
@@ -87,20 +90,22 @@ class ProductSelectOrder extends Component
 
     public function render()
     {
-        $acreage = $this->width1 * $this->width2;
+        // $acreage = $this->width1 * $this->width2;
 
-        if ($this->product->priceNew != 0) {
-            # code...
-            $this->totalPrice += $acreage * $this->product->priceNew;
-            dd($this->product->priceNew);
-        } else {
-            $this->totalPrice += $acreage * $this->product->fromOLD;
-        }
+        // if ($this->product->priceNew != 0) {
+        //     # code...
+        //     $this->totalPrice += $acreage * $this->product->priceNew;
+        //     dd($this->product->priceNew);
+        // } else {
+        //     $this->totalPrice += $acreage * $this->product->fromOLD;
+        // }
 
-        foreach ($this->selectedValues as $value) {
-            $item = $this->itemRepo->find($value);
-            $this->totalPrice += $item->priceNew;
-        }
+        // foreach ($this->selectedValues as $value) {
+        //     $item = $this->itemRepo->find($value);
+        //     $this->totalPrice += $item->priceNew;
+        // }
+
+        $this->getData();
 
         return view(
             'client.livewire.product-select-order'
