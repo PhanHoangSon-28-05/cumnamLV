@@ -42,7 +42,8 @@
                             <tr class="odd">
                                 <td class="sorting_1">{{ $value->name }}</td>
                                 <td>{{ $value->description }}</td>
-                                <td class="w-25"><img src="{{ asset('storage/' . $value->image) }}" class="w-50"
+                                <td class="w-25">
+                                    <img src="{{ route('storages.image', ['url' => $value->image]) }}" class="w-50"
                                         alt="">
                                 </td>
                                 <td class="text-center">
