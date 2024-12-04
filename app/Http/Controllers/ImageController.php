@@ -12,8 +12,8 @@ class ImageController extends Controller
 
     public function getImage(Request $request)
     {
-        dd($request);
         $url = $request->url;
-        return response()->file(storage_path($url));
+        $path = 'app/public/' . $url;
+        return response()->file(storage_path($path));
     }
 }

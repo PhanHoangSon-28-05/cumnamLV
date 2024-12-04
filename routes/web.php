@@ -27,7 +27,7 @@ Route::get('/product/{slug}', [ViewController::class, 'products'])->name('home.p
 Route::get('/product/{slug}/order-item', [ViewController::class, 'productCustomizeBuy'])->name('home.order');
 Route::post('send-mail', [ViewController::class, 'sendmail'])->name('send-email');
 
-Route::get('storage/', [ImageController::class, 'getImage'])->name('storages.image');
+Route::get('/show/image', [ImageController::class, 'getImage'])->name('storages.image');
 
 // Admin
 Route::get('admin/register', [UserController::class, 'showRegistrationForm']);
