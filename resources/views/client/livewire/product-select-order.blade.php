@@ -16,6 +16,7 @@
                                 @endfor
                             </select>
                             <select class="mb-2" name="width2" wire:model.blur="width2">
+                                <option value="0">0</option>
                                 <option value="0.125">1/8</option>
                                 <option value="0.25">1/4</option>
                                 <option value="0.5">1/2</option>
@@ -29,6 +30,7 @@
                                 @endfor
                             </select>
                             <select name="height2" wire:model.blur="height2">
+                                <option value="0">0</option>
                                 <option value="0.25">1/4</option>
                                 <option value="0.5">1/2</option>
                                 <option value="0.75">3/4</option>
@@ -65,9 +67,7 @@
                                     <li class="color-option text-center">
                                         <input type="radio" id="{{ 'option' . $value->id }}" name="image-radio"
                                             wire:model.live="selectedValues.color" class="radio-img"
-                                            value="{{ $value->id }}"
-                                            {{-- onclick="selectImage('{{ asset('storage/' . $value->fabriccolor) }}', '{{ $value->color->name }}', '0'); scrollToView(this)" --}}
-                                            >
+                                            value="{{ $value->id }}" {{-- onclick="selectImage('{{ asset('storage/' . $value->fabriccolor) }}', '{{ $value->color->name }}', '0'); scrollToView(this)" --}}>
                                         <label for="{{ 'option' . $value->id }}" class="radio-img-label">
                                             <img src="{{ asset('storage/' . $value->fabriccolor) }}"
                                                 alt="{{ $value->name }}">

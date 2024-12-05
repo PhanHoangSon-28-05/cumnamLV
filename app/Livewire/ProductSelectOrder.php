@@ -34,11 +34,12 @@ class ProductSelectOrder extends Component
     {
         // dd($this->product);
         $this->totalPrice = 0;
-        $acreage = $this->width1 * $this->width2;
-        if ($this->product->priceNew != 0) {
+        $acreage = ($this->width1 + $this->width2) * ($this->height1 + $this->height2);
+        // dd($this->product);
+        if ($this->product->from != 0) {
             # code...
-            $this->totalPrice += $acreage * $this->product->priceNew;
-            dd($this->product->priceNew);
+            $this->totalPrice += $acreage * $this->product->from;
+            // dd($this->product->from);
         } else {
             $this->totalPrice += $acreage * $this->product->fromOLD;
         }
@@ -56,8 +57,8 @@ class ProductSelectOrder extends Component
             'name' => $this->product->name,
             // 'width' => $this->width1 . '" ' . $this->width2,
             // 'height' => $this->height1 . '" ' . $this->height2,
-            'width' => $this->width1 * $this->width2,
-            'height' => $this->height1 * $this->height2,
+            'width' => $this->width1 + $this->width2,
+            'height' => $this->height1 + $this->height2,
             'image' => $this->product->pic,
         ];
         $total_price = 0;
