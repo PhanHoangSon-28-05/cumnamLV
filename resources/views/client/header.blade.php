@@ -115,7 +115,7 @@
 @foreach ($cates as $cate)
     @if ($cate->slug != 'how-to')
         <div class="display menu-dropdown" id="{{ $cate->slug }}-content">
-            <div class="containers">
+            <div class="containers" id="containers">
                 <div class="menu">
                     <h2 class="text-uppercase">{{ $cate->name }}</h2>
                     <ul>

@@ -3,12 +3,14 @@
 }
 
 .display .containers {
+    border-top: 2px #000 solid;
+    border-bottom: 0.5px #000 solid;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: auto;
     background-color: #fff;
 }
 
@@ -16,6 +18,9 @@
     display: flex;
     align-items: flex-start;
     padding: 20px;
+    position: absolute;
+    width: 100%;
+    z-index: 9999;
 }
 
 .display .menu {
@@ -23,7 +28,7 @@
 }
 
 .display .menu h2 {
-    font-size: 14px;
+    font-size: 17px;
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -49,7 +54,7 @@
 }
 
 .display .content img {
-    max-width: 100%;
+    max-width: 100px;
     height: auto;
 }
 
@@ -65,8 +70,33 @@
     font-weight: bold;
 }
 
+#navbarNavDropdown>ul>li>a {
+    position: relative;
+}
+
+#navbarNavDropdown>ul>li>a::before {
+    content: "";
+    height: 4px;
+    width: 0px;
+    background-color: #000;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    /* display: none; */
+    transition: 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#navbarNavDropdown>ul>li:hover>a::before {
+    width: 100%;
+    stroke-opacity: 0.3;
+}
+
 /* Hiển thị nội dung khi hover vào <li> hoặc .display */
-.nav-item.dropdown:hover .display,
+
+.nav-item.dropdown .main:hover {
+    opacity: 0.5;
+}
+
 .nav-item.dropdown .display:hover {
     display: block;
 }
