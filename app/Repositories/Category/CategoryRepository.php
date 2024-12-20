@@ -21,7 +21,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return $this->model->select('Category_name')->take(5)->get();
     }
 
-    public function createCate($stt, $parent_id, $name, $description, $image)
+    public function createCate($stt, $parent_id, $name, $description, $content, $image)
     {
         $stt = $stt ?? 0;
         $cateData = [
@@ -30,6 +30,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
             'name' => trim($name),
             'slug' => Str::slug($name),
             'description' => trim($description),
+            'content' => trim($content),
         ];
 
         if ($image != '') {
@@ -45,7 +46,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return $cate;
     }
 
-    public function updateCate($model, $stt, $parent_id, $name, $description, $image)
+    public function updateCate($model, $stt, $parent_id, $name, $description, $content, $image)
     {
         $stt = $stt ?? 0;
         $cateData = [
@@ -54,6 +55,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
             'name' => trim($name),
             'slug' => Str::slug($name),
             'description' => trim($description),
+            'content' => trim($content),
         ];
 
         if ($image) {

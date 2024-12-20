@@ -5,14 +5,14 @@
     <main id="content-wrapper" class="main-v2 text-body">
         <section id="introduction-section" class="container-fluid mt-2">
             <div class="row">
-                <div class="col-6 pr-0 pr-md-2">
-                    <img src="{{ URL::asset('view/style/images/hinh-1.jpg') }}" class="w-100 rounded" alt="Top Image">
+                <div class="col-6 pr-0 pr-md-2 image-left">
+                    <img src="{{ URL::asset('view/style/images/hinh-1.jpg') }}" class=" rounded" alt="Top Image">
                     <h3 class="">CUSTOM-MADE SHADES & BLINDS</h3>
                     <p class="">HIGH QUALITY WITHOUT HEFTY PRICE TAGS</p>
                     <a class="btn btn-primary rounded-pill">GET STARTED</a>
                 </div>
                 <div class="col-6 image-right">
-                    <img src="{{ URL::asset('view/style/images/hinh-2.png') }}" class="w-100 rounded" alt="Right Image">
+                    <img src="{{ URL::asset('view/style/images/hinh-2.png') }}" class="rounded" alt="Right Image">
                 </div>
             </div>
         </section>
@@ -73,11 +73,16 @@
                             @foreach ($lisporudct as $value)
                                 <div class="col-3 my-1 ">
                                     <a href="{{ URL::route('home.products', $value->slug) }}">
-                                        <div class="card">
+                                        <div class="card product-container">
                                             @if ($value->pic != 'null')
-                                                <img id="{{ $value->slug }}"
+                                                {{-- <img id="{{ $value->slug }}"
                                                     src="{{ URL::asset('storage/' . $value->pic) }}" class="card-img-top"
-                                                    alt="Oakley">
+                                                    alt="Oakley"> --}}
+                                                <img id="{{ $value->slug }}"
+                                                    src="{{ route('storages.image', ['url' => $value->pic]) }}"
+                                                    class="card-img-top product-image" alt="Oakley">
+                                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}"
+                                                    alt="Logo" id="logo" class="logo">
                                             @else
                                                 <img id="{{ $value->slug }}"
                                                     src="{{ URL::asset('images/placeholder/placeholder.png') }}"
@@ -342,17 +347,25 @@
                                 minimalist home, we ensure every​single piece makes to last</p>
                             <a class="btn btn-primary rounded-pill d-none d-md-inline">FR​EE SWATCHES</a>
                         </div>
-                        <div class="col-md-4 col-6">
+                        <div class="col-md-8 col-6">
+                            {{-- <img class="image"
+                                src="{{ URL::asset('view/style/images/49bff58e2403308511216c20edd05fdf.jpg') }}"
+                                alt=""> --}}
+                            <iframe class="w-100" height="100%"
+                                src="{{ URL::asset('images/placeholder/Download.mp4') }}" title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+                        {{-- <div class="col-md-4 col-6">
                             <img class="image"
                                 src="{{ URL::asset('view/style/images/49bff58e2403308511216c20edd05fdf.jpg') }}"
                                 alt="">
-                        </div>
-                        <div class="col-md-4 col-6">
-                            <img class="image"
-                                src="{{ URL::asset('view/style/images/49bff58e2403308511216c20edd05fdf.jpg') }}"
-                                alt="">
-                        </div>
-                        <div class="col-12 text-center d-sm-inline d-md-none mt-4">
+                        </div> --}}
+                        <div class="col-12
+                                    text-center d-sm-inline d-md-none mt-4">
                             <a class="btn btn-primary rounded-pill">FR​EE SWATCHES</a>
                         </div>
                     </div>

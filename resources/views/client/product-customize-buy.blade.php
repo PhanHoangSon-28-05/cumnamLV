@@ -114,16 +114,22 @@
                             id="Simply" class="tabcontent nodefault" alt="Shutter Image" class="img-fluid">
                         <img src="{{ URL::asset('view/style/images/Horizontal Sheer/Image 4-16-24 at 3.33 PM.JPG') }}"
                             id="Winter" class="tabcontent nodefault" alt="Shutter Image" class="img-fluid">
+                        {{-- <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo" id="logo"
+                            class="logo"> --}}
                     </div>
                 </div>
+                {{-- Select order --}}
                 @livewire('product-select-order', ['product' => $product, 'colorPros' => $colorPros, 'orders' => $orders])
+
                 <div class="col-md-6 col-12 d-none d-sm-block text-center pl-0">
                     @if (count($colorPros) != 0)
                         <div class="">
                             @foreach ($colorPros as $value)
-                                <div class="mySlides">
-                                    <img src="{{ route('storages.image', ['url' => $value->image]) }}"
+                                <div class="mySlides product-container">
+                                    <img class="product-image"src="{{ route('storages.image', ['url' => $value->image]) }}"
                                         style="width:100%; heigth: 100px;">
+                                    <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
+                                        id="logo" class="logo">
                                 </div>
                             @endforeach
                             <div class="caption-container">

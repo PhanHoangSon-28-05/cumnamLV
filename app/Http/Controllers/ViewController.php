@@ -34,12 +34,16 @@ class ViewController extends Controller
         $header = Header::all()->first();
         $footer = Footer::all()->first();
         $cate = $this->cateRepo->getParent();
+        $cateChilds = $this->cateRepo->getremoveParent();
+        $products = $this->productRepo->getAll();
 
         return [
             //Header
             'header' => $header,
             // 'cateSearchPro' => $cateSearchPro,
             'cates' => $cate,
+            'cateChilds' => $cateChilds,
+            'products' => $products,
             // /Header
 
             'footer' => $footer,
@@ -125,14 +129,16 @@ class ViewController extends Controller
         return view('client.product-customize-buy', $result);
     }
 
-    public function shoppingCart() {
+    public function shoppingCart()
+    {
         $result = array_merge($attributes ?? [], $this->get());
         return view('client.shopping-cart', $result);
     }
 
-    public function removeCartItem(Request $request) {
+    public function removeCartItem(Request $request)
+    {
         $index = $request->input('index');
-        Session::forget('shopping-cart.'.$index);
+        Session::forget('shopping-cart.' . $index);
         return redirect()->route('shopping-cart');
     }
 }

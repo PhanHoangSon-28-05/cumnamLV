@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ URL::asset('view/style/css/font-face.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('view/style/css/header.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('view/style/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('view/style/css/logo.css') }}">
 
     <!-- Slider product -->
     <link rel="stylesheet" href="https://unpkg.com/jquery.flipster@1.1.2/dist/jquery.flipster.min.css">

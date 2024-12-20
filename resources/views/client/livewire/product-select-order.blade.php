@@ -11,7 +11,7 @@
                         <label>Window Width (Inch):</label>
                         <div class="size-select">
                             <select class="mb-2" name="width1" wire:model.blur="width1">
-                                @for ($i = 0; $i <= 100; $i += 10)
+                                @for ($i = 0; $i <= 100; $i += 1)
                                     <option value="{{ $i }}">{{ $i }}</option>
                                 @endfor
                             </select>
@@ -25,7 +25,7 @@
                         <label>Window Height (Inch):</label>
                         <div class="size-select">
                             <select name="height1" wire:model.blur="height1">
-                                @for ($i = 0; $i <= 100; $i += 10)
+                                @for ($i = 0; $i <= 100; $i += 1)
                                     <option value="{{ $i }}">{{ $i }}</option>
                                 @endfor
                             </select>

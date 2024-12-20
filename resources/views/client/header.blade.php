@@ -27,8 +27,9 @@
             <div class="rounded-circle">
             </div>
             <div class="icon">
-                <a class="h3 position-absolute " href="" style="right: 50px; top: 50px"><i
-                        class="fa-solid fa-magnifying-glass text-body"></i></a>
+                <a class="h3 position-absolute " href="" style="right: 50px; top: 50px" data-toggle="modal"
+                    data-target="#exampleModal"><i class="fa-solid fa-magnifying-glass text-body"></i></a>
+                @include('client.search')
                 <a class="h3 position-absolute " href="{{ route('shopping-cart') }}" style="right: 10px; top: 50px"><i
                         class="fa-solid fa-cart-shopping text-body"></i></a>
             </div>
@@ -127,8 +128,8 @@
                 <div class="content">
                     <img src="{{ URL::asset('storage/' . $cate->image) }}"
                         alt="A modern living room with a white couch and a large painting on the wall">
-                    <p>Introducing: goop x CB2</p>
-                    <a href="#">SHOP THE NEW COLLECTION</a>
+                    <p>{{ $cate->content }}</p>
+                    {{-- <a href="#">SHOP THE NEW COLLECTION</a> --}}
                 </div>
             </div>
         </div>
@@ -136,5 +137,4 @@
 @endforeach
 
 @section('script')
-
 @endsection

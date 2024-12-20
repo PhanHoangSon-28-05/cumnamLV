@@ -143,6 +143,20 @@ ul {
     }
 }
 
+#myUL li {
+    font-family: YACkoA9eHeY-0;
+}
+
+.custom-list-item {
+    display: grid;
+    grid-template-columns: auto 150px;
+    /* Nội dung bên trái và ảnh bên phải */
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    gap: 10px;
+    /* Khoảng cách giữa các cột */
+}
+
 /* Introduce */
 
 #introduction-section {
@@ -159,7 +173,7 @@ ul {
 
 #introduction-section p {
     font-size: 1.2rem;
-    margin-top: 48px;
+    margin-top: 15px;
 }
 
 #introduction-section .btn {
@@ -168,13 +182,22 @@ ul {
     border: none;
     padding: 10px 20px;
     font-size: 1.2rem;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 #introduction-section button:hover {
     background-color: #816
 }
 
+#introduction-section .image-left img {
+    width: 100%;
+    height: 400px;
+}
+
+#introduction-section .image-right img {
+    width: 100%;
+    height: 600px;
+}
 
 
 @media (max-width: 767px) {
@@ -183,9 +206,6 @@ ul {
         padding: 20px 20px;
     }
 
-    #introduction-section .image-right .w-50 {
-        width: 200px;
-    }
 
     #introduction-section h3 {
         font-size: 1.2rem;
@@ -454,6 +474,7 @@ ul {
 #committed .custom-title {
     font-size: 3rem;
 }
+
 
 @media (max-width: 576px) {
     #committed .custom-title {

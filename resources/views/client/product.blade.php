@@ -15,28 +15,31 @@
         <section id="order-shutters" class="container-fluid my-5">
             <div class="row">
                 <div class="col-md-6 col-12 text-center pl-0">
-                    <div class="shutter-image bg-light d-flex justify-content-center align-items-center">
+                    <div class="shutter-image bg-light d-flex justify-content-center align-items-center product-container">
                         <span class="d-none">{{ $con = 1 }} </span>
                         @if ($colorPros && $colorPros->isNotEmpty())
                             @foreach ($colorPros as $value)
                                 @if ($con == 1)
                                     <img src="{{ route('storages.image', ['url' => $value->image]) }}"
-                                        id="{{ $value->id }}" class="tabcontent default img-fluid" alt="Shutter Image">
+                                        id="{{ $value->id }}" class="tabcontent default img-fluid product-image"
+                                        alt="Shutter Image">
                                     <span class="d-none">{{ $con++ }} </span>
                                 @else
                                     <img src="{{ route('storages.image', ['url' => $value->image]) }}"
-                                        id="{{ $value->id }}" class="tabcontent nodefault img-fluid" alt="Shutter Image">
+                                        id="{{ $value->id }}" class="tabcontent nodefault img-fluid product-image"
+                                        alt="Shutter Image">
                                 @endif
                             @endforeach
                         @else
                             @if ($product->pic)
                                 <img src="{{ route('storages.image', ['url' => $product->pic]) }}" id="defaultImage"
-                                    class="tabcontent default img-fluid" alt="">
+                                    class="tabcontent default img-fluid product-image" alt="">
                             @else
                                 <p class="text-body">Updating product images</p>
                             @endif
                         @endif
-
+                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo" id="logo"
+                            class="logo">
                     </div>
                 </div>
                 <div class="col-md-4 col-12">
@@ -77,7 +80,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="window-size">
+                                    {{-- <div class="window-size">
                                         <label>Window Width (Inch):</label>
                                         <div class="size-select">
                                             <select class="mb-2" name="width1">
@@ -105,7 +108,7 @@
                                                 <option>3/4</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -248,9 +251,11 @@
 
                 <div class="row">
                     <div class="col-md-3 col-12 mb-2">
-                        <div class="card">
+                        <div class="card product-container">
                             <img src="{{ URL::asset('view/style/images/Zebra/Artboard 120@4x.jpg') }}"
-                                class="card-img-top" alt="Wood Blind">
+                                class="card-img-top product-image" alt="Wood Blind">
+                            <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
+                                id="logo" class="logo">
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase">3" Vane</h5>
                                 <p class="card-text font-weight-bolder">WOOD BLIND</p>

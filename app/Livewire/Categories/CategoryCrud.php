@@ -21,7 +21,7 @@ class CategoryCrud extends Component
     #[Rule('required|string|max:255', message: 'Please provide a category name')]
     public $name;
 
-    public $description;
+    public $description, $content;
 
     protected $cateRepos;
 
@@ -49,12 +49,14 @@ class CategoryCrud extends Component
             $this->parent_id = $this->modelCate->parent_id;
             $this->name = $this->modelCate->name;
             $this->description = $this->modelCate->description;
+            $this->content = $this->modelCate->content;
             $this->pic = $this->modelCate->image;
         } else {
             $this->stt = '';
             $this->parent_id = 0;
             $this->name = '';
             $this->description = '';
+            $this->content = '';
             $this->pic = '';
         }
     }
@@ -68,6 +70,7 @@ class CategoryCrud extends Component
             $this->parent_id,
             $this->name,
             $this->description,
+            $this->content,
             $this->pic
         );
         $this->dispatch('$refresh')->to('categories.category-list');
@@ -84,6 +87,7 @@ class CategoryCrud extends Component
             $this->parent_id,
             $this->name,
             $this->description,
+            $this->content,
             $this->pic
         );
 
