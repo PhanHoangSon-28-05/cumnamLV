@@ -12,27 +12,36 @@ use Illuminate\Support\Facades\Session;
 use App\Repositories\ItemOrder\ItemRepositoryInterface;
 use App\Repositories\Product\ProductRepositoryInterface;
 use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Logos\LogoRepositoryInterface;
+use App\Repositories\Sliders\SliderRepositoryInterface;
 
 class ViewController extends Controller
 {
     protected $cateRepo;
     protected $productRepo;
     protected $itemRepo;
+    protected $sliderRepo;
+    protected $logoRepo;
 
     public function __construct(
         CategoryRepositoryInterface $cateRepo,
         ProductRepositoryInterface $productRepo,
-        ItemRepositoryInterface $itemRepo
+        ItemRepositoryInterface $itemRepo,
+        SliderRepositoryInterface $sliderRepo,
+        LogoRepositoryInterface $logoRepo,
     ) {
         $this->cateRepo = $cateRepo;
         $this->productRepo = $productRepo;
         $this->itemRepo = $itemRepo;
+        $this->sliderRepo = $sliderRepo;
+        $this->logoRepo = $logoRepo;
     }
 
     public function get()
     {
         $header = Header::all()->first();
         $footer = Footer::all()->first();
+        $logo = $this->logoRepo->getLogo();
         $cate = $this->cateRepo->getParent();
         $cateChilds = $this->cateRepo->getremoveParent();
         $products = $this->productRepo->getAll();
@@ -40,7 +49,7 @@ class ViewController extends Controller
         return [
             //Header
             'header' => $header,
-            // 'cateSearchPro' => $cateSearchPro,
+            'logo' => $logo,
             'cates' => $cate,
             'cateChilds' => $cateChilds,
             'products' => $products,
@@ -52,9 +61,11 @@ class ViewController extends Controller
     public function home()
     {
         $lisporudct = $this->productRepo->getProduct();
+        $sliders = $this->sliderRepo->getSlider();
         // dd($lisporudct);
         $attributes = [
             'lisporudct' => $lisporudct,
+            'sliders' => $sliders,
         ];
 
         $result = array_merge($attributes, $this->get());

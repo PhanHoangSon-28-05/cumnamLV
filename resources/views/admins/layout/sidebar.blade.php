@@ -15,8 +15,7 @@
                                 <i class="icon-wrench"></i>
                             </button>
                         </div>
-                        <a href="#" class="flex-1 text-center"><img
-                                src="{{ asset('images/clipart3643767.png') }}"
+                        <a href="#" class="flex-1 text-center"><img src="{{ asset('images/clipart3643767.png') }}"
                                 class="img-fluid rounded-circle shadow-sm" width="80" height="80"
                                 alt=""></a>
                         <div class="flex-1 text-right">
@@ -126,6 +125,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('posts.index') }}" class="nav-link">
+                        <i class="fa-solid fa-pencil"></i></i>
+                        <span>
+                            Post
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('headers.index') }}" class="nav-link">
                         <i class="fa-solid fa-heading"></i>
                         <span>
@@ -138,6 +145,22 @@
                         <i class="fa-solid fa-font-awesome"></i>
                         <span>
                             Footer
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route(\App\Models\Slider::INDEX) }}" class="nav-link">
+                        <i class="fa-solid fa-image"></i>
+                        <span>
+                            Slider
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route(\App\Models\Logo::INDEX) }}" class="nav-link">
+                        <i class="fa-brands fa-slack"></i>
+                        <span>
+                            Logo
                         </span>
                     </a>
                 </li>

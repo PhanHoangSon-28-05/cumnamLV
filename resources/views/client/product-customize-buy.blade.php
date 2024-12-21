@@ -126,10 +126,21 @@
                         <div class="">
                             @foreach ($colorPros as $value)
                                 <div class="mySlides product-container">
-                                    <img class="product-image"src="{{ route('storages.image', ['url' => $value->image]) }}"
-                                        style="width:100%; heigth: 100px;">
-                                    <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
-                                        id="logo" class="logo">
+                                    @if ($value->image != 'null')
+                                        <img class="product-image"src="{{ route('storages.image', ['url' => $value->image]) }}"
+                                            style="width:100%; heigth: 100px;">
+                                    @else
+                                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
+                                            id="logo" class="logo">
+                                    @endif
+
+                                    @if ($logo)
+                                        <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" alt="Logo"
+                                            id="logo" class="logo">
+                                    @else
+                                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
+                                            id="logo" class="logo">
+                                    @endif
                                 </div>
                             @endforeach
                             <div class="caption-container">

@@ -1,5 +1,5 @@
 @extends('admins.layout.master')
-@section('title', 'Product')
+@section('title', 'Post')
 
 @section('content')
     <!-- Page header -->
@@ -7,9 +7,9 @@
         <div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
             <div class="d-flex">
                 <div class="breadcrumb">
-                    <a href="" class="breadcrumb-item"><i class="icon-home2 mr-2"></i>
+                    <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i>
                         Home</a>
-                    <a href="{{ route('products.index') }}" class="breadcrumb-item">Product</a>
+                    <a href="{{ route('posts.index') }}" class="breadcrumb-item">Post</a>
                 </div>
 
                 <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
@@ -39,8 +39,8 @@
     <div class="content">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title floar-left d-inline">Product</h5>
-                <a href="{{ route('products.create') }}" type="button" class="btn btn-success float-right">
+                <h5 class="card-title floar-left d-inline">Post</h5>
+                <a href="{{ route('posts.create') }}" type="button" class="btn btn-success float-right">
                     Add New
                 </a>
             </div>
@@ -65,43 +65,32 @@
                             <tr role="row">
                                 <th>S/N</th>
                                 <th class="sorting sorting_asc">Name</th>
+                                <th class="sorting">Description</th>
                                 <th class="sorting">Catergory</th>
                                 <th class="sorting">Picture</th>
-                                <th class="sorting">Item</th>
                                 <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions">
                                     Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @dd($product_list) --}}
-                            @if (count($product_list) > 0)
-                                @foreach ($product_list as $value)
+                            {{-- @dd($post_list) --}}
+                            @if (count($post_list) > 0)
+                                @foreach ($post_list as $value)
                                     <tr class="odd">
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="sorting_1">{{ $value->name }}</td>
-                                        <td>{{ $value->cate->name }}</td>
-                                        <td scope="row" class="text-center">
-                                            <button type="button" class="btn btn-sm rounded-0 btn-success text-uppercase"
-                                                data-toggle="modal" data-target="#imageProduct"
-                                                data-product-id={{ $value->id }} title="List Image">
-                                                <i class="fa-regular fa-images"></i>
-                                            </button>
+                                        <td class="">{{ $value->description }}</td>
+                                        <td>
+                                            @if ($value->category)
+                                                {{ $value->category->name }}
+                                            @endif
                                         </td>
-                                        <td scope="row" class="text-center">
-                                            <a href="{{ route('products.item', $value->id) }}" class="btn btn-light"><i
-                                                    class="fa-solid fa-sitemap"></i>
-                                            </a>
-                                            {{-- <livewire:product.product-item :id_product="$value->id" />
-                                            <button type="button" class="btn btn-light" data-toggle="modal"
-                                                data-target="#modal_remote_{{ $value->id }}">
-                                                <i class="fa-solid fa-sitemap"></i>
-                                            </button> --}}
-                                        </td>
+                                        <td><img src="{{ route('storages.image', ['url' => $value->pic]) }}" width="200"
+                                                height="auto" alt=""></td>
                                         <td class="text-center">
-                                            <a href="{{ route('products.edit', $value->id) }}"
-                                                class="btn btn-sm btn-primary" title="Edit"><i
-                                                    class="fa-solid fa-pen"></i></a>
-                                            <a href="{{ route('products.destroy', $value->id) }}"
+                                            <a href="{{ route('posts.edit', $value->id) }}" class="btn btn-sm btn-primary"
+                                                title="Edit"><i class="fa-solid fa-pen"></i></a>
+                                            <a href="{{ route('posts.destroy', $value->id) }}"
                                                 class="btn btn-sm btn-danger" title="Delete"><i
                                                     class="fa-solid fa-trash"></i></a>
                                         </td>
@@ -109,7 +98,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="4">No Product Found</td>
+                                    <td colspan="4">No Post Found</td>
                                 </tr>
                             @endif
                         </tbody>
@@ -121,7 +110,5 @@
             </div>
         </div>
     </div>
-    <!-- /content area -->
-    @livewire('product.product-image-crud')
 
 @endsection

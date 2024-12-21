@@ -38,8 +38,13 @@
                                 <p class="text-body">Updating product images</p>
                             @endif
                         @endif
-                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo" id="logo"
-                            class="logo">
+                        @if ($logo)
+                            <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" alt="Logo" id="logo"
+                                class="logo">
+                        @else
+                            <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo" id="logo"
+                                class="logo">
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-4 col-12">

@@ -3,8 +3,18 @@
 
 @section('content')
     <main id="content-wrapper" class="main-v2 text-body">
-        <section id="introduction-section" class="container-fluid mt-2">
-            <div class="row">
+        <section id="introduction-section" class="container-fluid mt-2 px-0">
+            <div class="slider-container">
+                <div id="sliderTrack" class="slider-track">
+                    @foreach ($sliders as $value)
+                        <div class="slider-item"
+                            style="background-image: url('{{ route('storages.image', ['url' => $value->pic]) }}');">
+                        </div>
+                    @endforeach
+                </div>
+                <button class="get-started-btn">Get Started</button>
+            </div>
+            {{-- <div class="row">
                 <div class="col-6 pr-0 pr-md-2 image-left">
                     <img src="{{ URL::asset('view/style/images/hinh-1.jpg') }}" class=" rounded" alt="Top Image">
                     <h3 class="">CUSTOM-MADE SHADES & BLINDS</h3>
@@ -14,7 +24,7 @@
                 <div class="col-6 image-right">
                     <img src="{{ URL::asset('view/style/images/hinh-2.png') }}" class="rounded" alt="Right Image">
                 </div>
-            </div>
+            </div> --}}
         </section>
         <section class="container my-md-5 mb-0 mt-3 process-work">
             <div class="row step-row">
@@ -81,8 +91,13 @@
                                                 <img id="{{ $value->slug }}"
                                                     src="{{ route('storages.image', ['url' => $value->pic]) }}"
                                                     class="card-img-top product-image" alt="Oakley">
-                                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}"
-                                                    alt="Logo" id="logo" class="logo">
+                                                @if ($logo)
+                                                    <img src="{{ route('storages.image', ['url' => $logo->pic]) }}"
+                                                        alt="Logo" id="logo" class="logo">
+                                                @else
+                                                    <img src="{{ URL::asset('images/placeholder/placeholder.png') }}"
+                                                        alt="Logo" id="logo" class="logo">
+                                                @endif
                                             @else
                                                 <img id="{{ $value->slug }}"
                                                     src="{{ URL::asset('images/placeholder/placeholder.png') }}"

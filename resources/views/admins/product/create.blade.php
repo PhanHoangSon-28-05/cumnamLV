@@ -109,7 +109,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="row px-3" wire:ignore>
+                        <div class="row px-3" >
                             <label class="crud-label p-0 mt-2 mb-0">Details</label>
                             <div class="col-12 p-0">
                                 <textarea name="details" value="" id="editor-full1" rows="4" cols="4">{{ old('details') }}</textarea>
@@ -118,7 +118,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="row px-3" wire:ignore>
+                        <div class="row px-3" >
                             <label class="crud-label p-0 mt-2 mb-0">Materials Care:</label>
                             <div class="col-12 p-0">
                                 <textarea name="materials_care" value="" id="editor-full2" rows="4" cols="4">{{ old('materials_care') }}</textarea>

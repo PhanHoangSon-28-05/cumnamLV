@@ -33,8 +33,20 @@
                             <div class="col-md-4 col-12 mb-2">
                                 <div class="card">
                                     <div class="position-relative">
-                                        <img src="{{ URL::asset('storage/' . $product->pic) }}"
-                                            class="card-img-top img-fluid" alt="{{ $product->name }}">
+                                        @if ($product->pic != 'null')
+                                            <img src="{{ URL::asset('storage/' . $product->pic) }}"
+                                                class="card-img-top img-fluid product-image" alt="{{ $product->name }}">
+                                        @else
+                                            <img src="{{ URL::asset('images/placeholder/placeholder.png') }}"
+                                                class="w-100">
+                                        @endif
+                                        @if ($logo)
+                                            <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" alt="Logo"
+                                                id="logo" class="logo">
+                                        @else
+                                            <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
+                                                id="logo" class="logo">
+                                        @endif
                                         <div class="price-tag position-absolute">
                                             From ${{ $product->from }}
                                         </div>

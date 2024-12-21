@@ -46,6 +46,7 @@
     <script src="{{ URL::asset('view/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ URL::asset('view/style/js/custom.js') }}"></script>
     <script src="{{ URL::asset('view/style/js/header.js') }}"></script>
+    <script src="{{ URL::asset('view/style/js/slider.js') }}"></script>
 
     @yield('script')
 
