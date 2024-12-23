@@ -50,7 +50,7 @@ ul {
 }
 
 #header .name-logo .logo {
-    width: 100px;
+    width: 100%;
     height: 100px;
     object-fit: cover;
     object-position: 50% 50%;

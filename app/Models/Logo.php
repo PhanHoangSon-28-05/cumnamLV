@@ -15,6 +15,7 @@ class Logo extends Model
 
     protected $fillable = [
         'stt',
-        'pic'
+        'pic',
+        'header'
     ];
 }

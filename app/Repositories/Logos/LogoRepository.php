@@ -15,10 +15,18 @@ class LogoRepository extends BaseRepository implements LogoRepositoryInterface
 
     public function getLogo()
     {
-        $logoCancel = $this->model->where('stt', '1')->get()->first();
-        if ($logoCancel) {
+        $logo = $this->model->where('stt', '1')->get()->first();
+        if ($logo) {
             # code...
-            return $logoCancel;
+            return $logo;
+        }
+    }
+    public function getLogoHeader()
+    {
+        $logo = $this->model->where('header', '1')->get()->first();
+        if ($logo) {
+            # code...
+            return $logo;
         }
     }
 
@@ -79,5 +87,19 @@ class LogoRepository extends BaseRepository implements LogoRepositoryInterface
         }
 
         $logo->update(['stt' => '1']);
+    }
+
+    public function selectLogoHeader($id)
+    {
+        $logo = $this->model->find($id);
+        $number = $logo->header;
+
+        $logoCancel = $this->model->where('header', '1')->get()->first();
+        if ($logoCancel) {
+            # code...
+            $logoCancel->update(['header' => $number]);
+        }
+
+        $logo->update(['header' => '1']);
     }
 }

@@ -16,16 +16,22 @@
         <div class="logodiv col-12 p-0 text-center d-flex justify-content-center align-items-end">
             <a href="{{ URL::route('home') }}"
                 style="display: flex; align-items: center; text-decoration: none; color: black;">
-                <img class="logo" src="{{ URL::asset('view/style/images/Logo-1.png') }}" alt="">
-                <div style="margin-left: 10px; margin-bottom: 0;">
+                {{-- @dd($logoHeader) --}}
+                @if ($logoHeader != 'null')
+                    <img src="{{ route('storages.image', ['url' => $logoHeader->pic]) }}" class="logo" alt="Oakley">
+                @else
+                    <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" class="logo" alt="Oakley">
+                @endif
+                {{-- <img class="logo" src="{{ URL::asset('view/style/images/Logo-1.png') }}" alt=""> --}}
+                {{-- <div style="margin-left: 10px; margin-bottom: 0;">
                     <p class="name h2" style=" margin-bottom: 0;">
                         <span class="font-weight-bold text-1" style="font-family: YAFcfpZDFTo-0;">unam</span>
                         <span class="text-2" style="">shades</span>
                     </p>
-                </div>
+                </div> --}}
             </a>
-            <div class="rounded-circle">
-            </div>
+            {{-- <div class="rounded-circle">
+            </div> --}}
             <div class="icon">
                 <a class="h3 position-absolute " href="" style="right: 50px; top: 50px" data-toggle="modal"
                     data-target="#exampleModal"><i class="fa-solid fa-magnifying-glass text-body"></i></a>

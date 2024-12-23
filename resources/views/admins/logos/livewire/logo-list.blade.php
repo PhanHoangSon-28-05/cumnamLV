@@ -27,7 +27,8 @@
                             <th>S/N</th>
                             <th class="sorting sorting_asc">Numerical order</th>
                             <th class="sorting">Image</th>
-                            <th class="sorting">Select</th>
+                            <th class="sorting">Logo Product</th>
+                            <th class="sorting">Logo Header</th>
                             <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions">
                                 Actions</th>
                         </tr>
@@ -45,6 +46,14 @@
                                         @if ($logo->stt != '1')
                                             <button type="button" class="btn btn-sm btn-success bd-highlight"
                                                 wire:click="selectImage({{ $logo->id }})">
+                                                <i class="fa-solid fa-check"></i>
+                                            </button>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($logo->header != '1')
+                                            <button type="button" class="btn btn-sm btn-success bd-highlight"
+                                                wire:click="selectHeaderLogo({{ $logo->id }})">
                                                 <i class="fa-solid fa-check"></i>
                                             </button>
                                         @endif

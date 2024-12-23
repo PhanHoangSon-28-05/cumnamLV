@@ -41,6 +41,7 @@ class ViewController extends Controller
     {
         $header = Header::all()->first();
         $footer = Footer::all()->first();
+        $logoHeader = $this->logoRepo->getLogoHeader();
         $logo = $this->logoRepo->getLogo();
         $cate = $this->cateRepo->getParent();
         $cateChilds = $this->cateRepo->getremoveParent();
@@ -50,6 +51,7 @@ class ViewController extends Controller
             //Header
             'header' => $header,
             'logo' => $logo,
+            'logoHeader' => $logoHeader,
             'cates' => $cate,
             'cateChilds' => $cateChilds,
             'products' => $products,

@@ -25,6 +25,11 @@ class LogoList extends Component
         $this->logoRepo->selectImage($id);
     }
 
+    public function selectHeaderLogo($id)
+    {
+        $this->logoRepo->selectLogoHeader($id);
+    }
+
     public function render()
     {
         $logos = Logo::orderBy('stt', 'ASC')->get();
