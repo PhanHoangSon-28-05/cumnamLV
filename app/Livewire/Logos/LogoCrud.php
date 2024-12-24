@@ -3,7 +3,7 @@
 namespace App\Livewire\Logos;
 
 use App\Models\Logo;
-use App\Repositories\Logos\LogoRepositoryInterface;
+use App\Repositories\Logos\LogooRepositoryInterface;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -17,10 +17,10 @@ class LogoCrud extends Component
 
     #[Validate('required', message: 'No order number has been entered')]
     public $stt;
-    
+
     protected $logoRepo;
 
-    public function boot(LogoRepositoryInterface $logoRepo)
+    public function boot(LogooRepositoryInterface $logoRepo)
     {
         $this->logoRepo = $logoRepo;
     }

@@ -4,7 +4,7 @@ namespace App\Repositories\Logos;
 
 use App\Repositories\RepositoryInterface;
 
-interface LogoRepositoryInterface extends RepositoryInterface
+interface LogooRepositoryInterface extends RepositoryInterface
 {
     //ví dụ: lấy 5 sản phầm đầu tiên
     public function getLogo();

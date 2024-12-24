@@ -3,7 +3,7 @@
 namespace App\Livewire\Logos;
 
 use App\Models\Logo;
-use App\Repositories\Logos\LogoRepositoryInterface;
+use App\Repositories\Logos\LogooRepositoryInterface;
 use Livewire\Component;
 
 class LogoList extends Component
@@ -15,7 +15,7 @@ class LogoList extends Component
 
     protected $logoRepo;
 
-    public function boot(LogoRepositoryInterface $logoRepo)
+    public function boot(LogooRepositoryInterface $logoRepo)
     {
         $this->logoRepo = $logoRepo;
     }

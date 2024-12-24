@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Sliders\SliderRepository::class
         );
         $this->app->singleton(
-            \App\Repositories\Logos\LogoRepositoryInterface::class,
+            \App\Repositories\Logos\LogooRepositoryInterface::class,
             \App\Repositories\Logos\LogoRepository::class
         );
     }

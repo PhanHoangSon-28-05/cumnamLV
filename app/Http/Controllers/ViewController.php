@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Session;
 use App\Repositories\ItemOrder\ItemRepositoryInterface;
 use App\Repositories\Product\ProductRepositoryInterface;
 use App\Repositories\Category\CategoryRepositoryInterface;
-use App\Repositories\Logos\LogoRepositoryInterface;
+use App\Repositories\Logos\LogooRepositoryInterface;
 use App\Repositories\Sliders\SliderRepositoryInterface;
 
 class ViewController extends Controller
@@ -28,7 +28,7 @@ class ViewController extends Controller
         ProductRepositoryInterface $productRepo,
         ItemRepositoryInterface $itemRepo,
         SliderRepositoryInterface $sliderRepo,
-        LogoRepositoryInterface $logoRepo,
+        LogooRepositoryInterface $logoRepo,
     ) {
         $this->cateRepo = $cateRepo;
         $this->productRepo = $productRepo;

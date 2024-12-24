@@ -6,7 +6,7 @@ use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class LogoRepository extends BaseRepository implements LogoRepositoryInterface
+class LogoRepository extends BaseRepository implements LogooRepositoryInterface
 {
     public function getModel()
     {
