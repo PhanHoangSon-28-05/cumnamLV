@@ -25,9 +25,10 @@ class ProductController extends Controller
         // dd($products);
         return view('admins.product.index', ['product_list' => $products]);
     }
+
     public function create()
     {
-        $categories = $this->cateRepo->getremoveParent();
+        $categories = $this->cateRepo->getremoveParentPro();
         return view(
             'admins.product.create',
             ['categories' => $categories]
@@ -53,7 +54,7 @@ class ProductController extends Controller
     }
     public function edit($id)
     {
-        $categories = $this->cateRepo->getremoveParent();
+        $categories = $this->cateRepo->getremoveParentPro();
         $product = $this->productRepo->find($id);
         return view('admins.product.edit', [
             'product' => $product,

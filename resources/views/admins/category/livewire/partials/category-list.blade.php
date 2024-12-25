@@ -22,6 +22,17 @@
                         data-target="#crudCategoryModal" data-category-id="{{ -$childCategory->id }}" title="Delete">
                         <i class="fa-solid fa-trash"></i>
                     </button>
+                    @if ($childCategory->post != 1)
+                        <button type="button" class="btn btn-sm btn-success bd-highlight mt-1"
+                            wire:click="selectPost({{ $childCategory->id }})">
+                            <i class="fa-solid fa-check"></i> Select This category belongs to post
+                        </button>
+                    @else
+                        <button type="button" class="btn btn-sm btn-secondary bd-highlight mt-1"
+                            wire:click="noselectPost({{ $childCategory->id }})">
+                            <i class="fa-solid fa-check"></i> No select This category belongs to post
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>

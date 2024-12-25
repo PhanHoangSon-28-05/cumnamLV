@@ -17,11 +17,16 @@
             <a href="{{ URL::route('home') }}"
                 style="display: flex; align-items: center; text-decoration: none; color: black;">
                 {{-- @dd($logoHeader) --}}
-                @if ($logoHeader != 'null')
-                    <img src="{{ route('storages.image', ['url' => $logoHeader->pic]) }}" class="logo" alt="Oakley">
+                @if ($logoHeader)
+                    @if ($logoHeader->pic != 'null')
+                        <img src="{{ route('storages.image', ['url' => $logoHeader->pic]) }}" class="logo">
+                    @else
+                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" class="logo">
+                    @endif
                 @else
-                    <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" class="logo" alt="Oakley">
+                    <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" class="logo">
                 @endif
+
                 {{-- <img class="logo" src="{{ URL::asset('view/style/images/Logo-1.png') }}" alt=""> --}}
                 {{-- <div style="margin-left: 10px; margin-bottom: 0;">
                     <p class="name h2" style=" margin-bottom: 0;">

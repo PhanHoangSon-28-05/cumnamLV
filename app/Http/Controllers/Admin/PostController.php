@@ -28,7 +28,7 @@ class PostController extends Controller
     }
     public function create()
     {
-        $categories = $this->cateRepo->getremoveParent();
+        $categories = $this->cateRepo->getremoveParentPost();
         return view(
             'admins.post.create',
             [
@@ -47,7 +47,7 @@ class PostController extends Controller
     }
     public function edit($id)
     {
-        $categories = $this->cateRepo->getremoveParent();
+        $categories = $this->cateRepo->getremoveParentPost();
         $post = $this->postRepo->find($id);
         return view('admins.post.edit', [
             'post' => $post,

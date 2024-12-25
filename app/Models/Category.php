@@ -22,11 +22,16 @@ class Category extends Model
         'slug',
         'description',
         'content',
-        'image'
+        'image',
+        'post',
     ];
 
     public function products(): HasMany
     {
         return $this->hasMany(Product::class, 'id_cate');
+    }
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'category_id');
     }
 }

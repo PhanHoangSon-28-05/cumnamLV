@@ -29,7 +29,8 @@
                             <p class="text-center">There are currently no products.</p>
                         </div>
                     @else
-                        @foreach ($products as $product)
+                        {{-- @dd($productcates) --}}
+                        @foreach ($productcates as $product)
                             <div class="col-md-4 col-12 mb-2">
                                 <div class="card">
                                     <div class="position-relative">

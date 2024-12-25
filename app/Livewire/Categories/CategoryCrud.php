@@ -73,7 +73,7 @@ class CategoryCrud extends Component
             $this->content,
             $this->pic
         );
-        $this->dispatch('$refresh')->to('categories.category-list');
+        $this->dispatch('refreshList')->to('categories.category-list');
         $this->dispatch('closeCrudCategory');
     }
 
@@ -91,14 +91,14 @@ class CategoryCrud extends Component
             $this->pic
         );
 
-        $this->dispatch('$refresh')->to('categories.category-list');
+        $this->dispatch('refreshList')->to('categories.category-list');
         $this->dispatch('closeCrudCategory');
     }
 
     public function delete()
     {
         $cate = $this->modelCate->delete();
-        $this->dispatch('$refresh')->to('categories.category-list');
+        $this->dispatch('refreshList')->to('categories.category-list');
         $this->dispatch('closeCrudCategory');
     }
 

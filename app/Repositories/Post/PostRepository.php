@@ -46,8 +46,8 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
         $attributes = []
     ) {
         $result = $this->find($id);
-        dd($attributes);
-        if ($attributes['pic'] != $result->pic) {
+        // dd($attributes['pic'] != $result->pic);
+        if ($attributes['pic'] == $result->pic) {
             Storage::disk('public')->delete($result->pic);
             $extension = $attributes['pic']->getClientOriginalName();
             $filename = time() . '_' . $extension;

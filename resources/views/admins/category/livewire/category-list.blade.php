@@ -1,8 +1,8 @@
 @push('style')
     <style>
         /* .dropdown-menu-right {
-                                                    width:
-                                                } */
+                                                                            width:
+                                                                        } */
     </style>
 @endpush
 
@@ -16,7 +16,7 @@
             </button>
         </div>
 
-        <div class="list" wire:poll.keep-alive.10s>
+        <div class="list">
             <ul class="list-group">
                 @foreach ($categories as $value)
                     <li class="list-group-item p-0 mb-1">

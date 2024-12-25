@@ -10,9 +10,13 @@ interface CategoryRepositoryInterface extends RepositoryInterface
     public function getCategory();
     public function createCate($stt, $parent_id, $name, $description, $content, $image);
     public function updateCate($model, $stt, $parent_id, $name, $description, $content, $image);
+    public function selectPost($id);
+    public function noselectPost($id);
     public function getParent();
     public function getremoveParent();
+    public function getremoveParentPro();
+    public function getremoveParentPost();
     public function getChildNew($id);
 
-    public function getProduct($slug);
+    public function getProductPostSlug($slug);
 }

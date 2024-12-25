@@ -13,6 +13,7 @@ use App\Repositories\ItemOrder\ItemRepositoryInterface;
 use App\Repositories\Product\ProductRepositoryInterface;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Repositories\Logos\LogooRepositoryInterface;
+use App\Repositories\Post\PostRepositoryInterface;
 use App\Repositories\Sliders\SliderRepositoryInterface;
 
 class ViewController extends Controller
@@ -22,6 +23,7 @@ class ViewController extends Controller
     protected $itemRepo;
     protected $sliderRepo;
     protected $logoRepo;
+    protected $postRepo;
 
     public function __construct(
         CategoryRepositoryInterface $cateRepo,
@@ -29,12 +31,14 @@ class ViewController extends Controller
         ItemRepositoryInterface $itemRepo,
         SliderRepositoryInterface $sliderRepo,
         LogooRepositoryInterface $logoRepo,
+        PostRepositoryInterface $postRepo,
     ) {
         $this->cateRepo = $cateRepo;
         $this->productRepo = $productRepo;
         $this->itemRepo = $itemRepo;
         $this->sliderRepo = $sliderRepo;
         $this->logoRepo = $logoRepo;
+        $this->postRepo = $postRepo;
     }
 
     public function get()
@@ -94,14 +98,45 @@ class ViewController extends Controller
 
     public function categories($slug)
     {
-        $cate = $this->cateRepo->getProduct($slug);
-        $products = $this->cateRepo->getProduct($slug)->products()->get();
+        $cate = $this->cateRepo->getProductPostSlug($slug);
+        $productcates = $this->cateRepo->getProductPostSlug($slug)->products()->get();
+        // @dd($products);
         $attributes = [
             'cate' => $cate,
-            'products' => $products
+            'productcates' => $productcates
         ];
         $result = array_merge($attributes, $this->get());
         return view('client.catergory', $result);
+    }
+    public function categoriespost($slug)
+    {
+        // dd($slug);
+        $cate = $this->cateRepo->getProductPostSlug($slug);
+        $postcates = $this->cateRepo->getProductPostSlug($slug)->posts()->get();
+        // @dd($postcates);
+        $attributes = [
+            'cate' => $cate,
+            'postcates' => $postcates
+        ];
+        $result = array_merge($attributes, $this->get());
+        // $result = array_merge($this->get());
+        return view('client.catergory-post', $result);
+    }
+    public function post($slug, $post)
+    {
+        // dd($slug);
+        $cate = $this->cateRepo->getProductPostSlug($slug);
+        $postcates = $this->cateRepo->getProductPostSlug($slug)->posts()->get();
+        $post = $this->postRepo->getSlug($post);
+        // @dd($postcates);
+        $attributes = [
+            'cate' => $cate,
+            'postcates' => $postcates,
+            'post' => $post,
+        ];
+        $result = array_merge($attributes, $this->get());
+        // $result = array_merge($this->get());
+        return view('client.post', $result);
     }
 
     public function products($slug)

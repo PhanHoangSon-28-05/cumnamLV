@@ -26,81 +26,89 @@
             </div>
             <form wire:submit.prevent="{{ $action }}">
                 <div class="modal-body" wire:loading.remove wire:target="modalSetup">
-                    <div class="row">
-                        <div class="input-group mb-3 col-6">
-                            <div class="input-group-prepend mr-1">
-                                <span class="input-group-text" id="basic-addon1">Numerical order</span>
+                    @if ($action == 'delete')
+                        <div class="container-fluid">
+                            <div class="row">
+                                <span>Do you want to delete category "{{ $name }}"?</span>
                             </div>
-                            <input type="number" class="form-control" wire:model.lazy="stt">
-                            {{-- @error('stt')
+                        </div>
+                    @else
+                        <div class="row">
+                            <div class="input-group mb-3 col-6">
+                                <div class="input-group-prepend mr-1">
+                                    <span class="input-group-text" id="basic-addon1">Numerical order</span>
+                                </div>
+                                <input type="number" class="form-control" wire:model.lazy="stt">
+                                {{-- @error('stt')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror --}}
+                            </div>
+                            <div class="input-group mb-3 col-6">
+                                <div class="input-group-prepend mr-1">
+                                    <label class="input-group-text" for="inputGroupSelect01">Parent item</label>
+                                </div>
+                                <select class="custom-select text-uppercase" wire:model.lazy="parent_id"
+                                    id="inputGroupSelect01">
+                                    <option selected>Choose...</option>
+                                    @foreach ($categories as $value)
+                                        <option value="{{ $value->id }}" class="">{{ $value->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Name</span>
+                            </div>
+                            <input type="text" class="form-control" wire:model.lazy="name">
+                            @error('name')
                                 <span class="text-danger">{{ $message }}</span>
-                            @enderror --}}
+                            @enderror
                         </div>
-                        <div class="input-group mb-3 col-6">
-                            <div class="input-group-prepend mr-1">
-                                <label class="input-group-text" for="inputGroupSelect01">Parent item</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-tex">Description:</label>
                             </div>
-                            <select class="custom-select text-uppercase" wire:model.lazy="parent_id"
-                                id="inputGroupSelect01">
-                                <option selected>Choose...</option>
-                                @foreach ($categories as $value)
-                                    <option value="{{ $value->id }}" class="">{{ $value->name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <textarea type="text" class="form-control" wire:model.lazy="description"></textarea>
+                            @error('description')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Name</span>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-tex">Content:</label>
+                            </div>
+                            <textarea type="text" class="form-control" wire:model.lazy="content"></textarea>
+                            @error('content')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
-                        <input type="text" class="form-control" wire:model.lazy="name">
-                        @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-tex">Description:</label>
-                        </div>
-                        <textarea type="text" class="form-control" wire:model.lazy="description"></textarea>
-                        @error('description')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-tex">Content:</label>
-                        </div>
-                        <textarea type="text" class="form-control" wire:model.lazy="content"></textarea>
-                        @error('content')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="row">
-                        <input type="file" wire:model="pic">
+                        <div class="row">
+                            <input type="file" wire:model="pic">
 
-                        @if ($pic)
-                            @if (gettype($pic) == 'string')
-                                <img src="{{ asset('storages/' . $pic) }}" class="p-0 mr-2 mb-1 col-4"
-                                    id="image-preview">
-                            @else
-                                <img src="{{ asset($pic->temporaryUrl()) }}" class="p-0 mr-2 mb-1 col-4"
-                                    id="image-preview">
+                            @if ($pic)
+                                @if (gettype($pic) == 'string')
+                                    <img src="{{ asset('storages/' . $pic) }}" class="p-0 mr-2 mb-1 col-4"
+                                        id="image-preview">
+                                @else
+                                    <img src="{{ asset($pic->temporaryUrl()) }}" class="p-0 mr-2 mb-1 col-4"
+                                        id="image-preview">
+                                @endif
                             @endif
-                        @endif
 
-                        @error('pic')
-                            <span class="error">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    {{-- <span class="text-danger">{{ $message }}</span>
-                    @enderror --}}
+                            @error('pic')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        {{-- <span class="text-danger">{{ $message }}</span>
+                @enderror --}}
+                    @endif
                 </div>
                 <div class="modal-footer" wire:loading.remove wire:target="modalSetup">
                     <button type="button" class="btn btn-secondary"
                         data-dismiss="modal">{{ $action == 'delete' ? 'Exit' : 'Close' }}</button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn {{ $action == 'delete' ? 'btn-danger' : 'btn-primary' }}">
                         @if ($action == 'delete')
                             Yes
                         @elseif ($action == 'update')

@@ -86,6 +86,19 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return $cate;
     }
 
+    public function selectPost($id)
+    {
+        $model = $this->model->find($id);
+        // dd($model);
+        $model->update(['post' => 1]);
+    }
+
+    public function noselectPost($id)
+    {
+        $model = $this->model->find($id);
+        $model->update(['post' => 0]);
+    }
+
     public function getParent()
     {
         $cate = $this->model->where('parent_id', 0)->orderBy('stt')->get();
@@ -97,6 +110,16 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         $cate = $this->model->where('parent_id', '!=', 0)->orderBy('stt')->get();
         return $cate;
     }
+    public function getremoveParentPro()
+    {
+        $cate = $this->model->where('parent_id', '!=', 0)->where('post', '=', 0)->orderBy('stt')->get();
+        return $cate;
+    }
+    public function getremoveParentPost()
+    {
+        $cate = $this->model->where('post', '=', 1)->orderBy('stt')->get();
+        return $cate;
+    }
 
     public function getChildNew($id)
     {
@@ -104,7 +127,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return $cate;
     }
 
-    public function getProduct($slug)
+    public function getProductPostSlug($slug)
     {
         $products = $this->model->where('slug', $slug)->first();
         return $products;

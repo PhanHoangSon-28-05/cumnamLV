@@ -1003,3 +1003,178 @@ footer .btn {
 }
 
 /* End Cart */
+#category-post {
+    font-family: YACkoA9eHeY-0;
+}
+
+#personal-computer {
+    font-family: YACkoA9eHeY-0;
+    background-color: #EBEBEA;
+    padding: 20px 0;
+}
+
+#personal-computer .post-content {
+    text-align: left;
+}
+
+#personal-computer .post-content h5 {
+    font-weight: bold;
+}
+
+#personal-computer .post-content .btn {
+    background-color: white;
+    border: 1px solid #8A8911;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#personal-computer .post-content .btn:hover {
+    background-color: #8A8911;
+}
+
+#personal-computer .post-image {
+    width: 600px;
+    height: 400px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    #personal-computer .post-order-1 {
+        order: 2;
+    }
+
+    #personal-computer .post-order-2 {
+        order: 1;
+    }
+}
+
+/* mobi */
+#mobi .post-slider {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+}
+
+#mobi .post-container {
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+}
+
+#mobi .post-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+#mobi .post-content {
+    position: absolute;
+    bottom: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 5px;
+    max-width: 80%;
+}
+
+#mobi .post-content h5 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#mobi .post-content .btn {
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#mobi .post-content .btn:hover {
+    background-color: #ccc;
+    color: #000;
+}
+
+@media (max-width: 768px) {
+    #mobi .post-container {
+        width: 100%;
+    }
+
+    #mobi .post-content {
+        max-width: 90%;
+        bottom: 10px;
+        /* left: 10px;
+        padding: 10px; */
+    }
+}
+
+#category-post .image-content-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+#category-post .image-content-container img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+}
+
+#category-post .overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* padding: 20px; */
+    border-radius: 8px;
+    text-align: center;
+    max-width: 80%;
+    color: white;
+}
+
+#content-post {
+    font-family: YACkoA9eHeY-0;
+}
+
+#content-post .image-content-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+#content-post .image-content-container img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+#content-post .overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    text-align: center;
+    max-width: 80%;
+    color: white;
+}
+
+#content-post .content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#content-post .share-buttons {
+    margin: 20px 0;
+}
+
+#content-post .share-buttons a {
+    margin-right: 15px;
+    color: #333;
+}
+
+#content-post .share-buttons a:hover {
+    text-decoration: none;
+    color: #007bff;
+}
