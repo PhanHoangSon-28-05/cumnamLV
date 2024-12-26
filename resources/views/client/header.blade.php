@@ -66,7 +66,6 @@
                                         <i class="fas fa-angle-down"></i>
                                     @endif
                                 </a>
-
                             </li>
                         @endforeach
                     </ul>
@@ -86,14 +85,24 @@
                     <div class="name-logo row d-flex justify-content-start">
                         <div class="logo col-12 p-0 text-center d-flex justify-content-center align-items-end"
                             style="height: 50px;">
-                            <img class="logo" src="{{ URL::asset('view/style/images/Logo-1.png') }}" alt="">
+                            @if ($logoHeader)
+                                @if ($logoHeader->pic != 'null')
+                                    <img src="{{ route('storages.image', ['url' => $logoHeader->pic]) }}"
+                                        class="logo">
+                                @else
+                                    <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" class="logo">
+                                @endif
+                            @else
+                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" class="logo">
+                            @endif
+                            {{-- <img class="logo" src="{{ URL::asset('view/style/images/Logo-1.png') }}" alt="">
                             <div style="margin-left: 10px; margin-bottom: 0;">
                                 <p class="name h2" style=" margin-bottom: 0;">
                                     <span class="font-weight-bold text-1"
                                         style="font-family: YAFcfpZDFTo-0;">unam</span>
                                     <span class="text-2" style="">shades</span>
                                 </p>
-                            </div>
+                            </div> --}}
                         </div>
                         <!-- <button type="button" class="bs-canvas-close close" aria-label="Close"><span
                                 aria-hidden="true" class="text-body">&times;</span></button> -->
