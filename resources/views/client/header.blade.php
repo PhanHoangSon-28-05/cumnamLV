@@ -110,7 +110,7 @@
                 </header>
                 <div class="bs-canvas-content">
                     @foreach ($cates as $cate)
-                        <div class="dropdown border-bottom border-dark">
+                        <div class="dropdown border-bottom border-dark" id="catergoryChild">
                             <button class="btn dropdown-toggle w-100 text-left text-uppercase" type="button"
                                 data-toggle="dropdown" aria-expanded="false">
                                 {{ $cate->name }}

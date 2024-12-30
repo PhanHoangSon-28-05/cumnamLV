@@ -7,10 +7,10 @@
 
 @foreach ($childCategories as $value)
     @if ($value->post == 0)
-        <li class="text-dark"><a href="{{ URL::route('home.category', $value->slug) }}">{{ $value->name }}</a></li>
+        <p><a class="text-dark" href="{{ URL::route('home.category', $value->slug) }}">{{ $value->name }}</a></p>
     @elseif ($value->post == 1)
-        <li class="text-dark"><a href="{{ URL::route('home.category-post', $value->slug) }}">{{ $value->name }}</a></li>
+        <p><a class="text-dark" href="{{ URL::route('home.category-post', $value->slug) }}">{{ $value->name }}</a></p>
     @else
-        <li class="text-dark"><a href="#">{{ $value->name }}</a></li>
+        <p><a class="text-dark" href="#">{{ $value->name }}</a></p>
     @endif
 @endforeach

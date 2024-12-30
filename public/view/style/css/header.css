@@ -91,7 +91,45 @@
     stroke-opacity: 0.3;
 }
 
-/* Hiển thị nội dung khi hover vào <li> hoặc .display */
+/* #catergoryChild>p>a::before {
+    content: "";
+    height: 4px;
+    width: 0px;
+    background-color: #000;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: none;
+    transition: 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#catergoryChild>p:hover>a::before {
+    width: 100%;
+    stroke-opacity: 0.3;
+} */
+
+/* #catergoryChild .hover-item {
+    display: block;
+    padding: 10px 15px;
+    color: #000000;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+#catergoryChild .hover-item:hover {
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+#catergoryChild .dropdown-menu {
+    border: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+} */
 
 .nav-item.dropdown .main:hover {
     opacity: 0.5;
