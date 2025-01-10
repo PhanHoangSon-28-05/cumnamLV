@@ -63,6 +63,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/{coupon}/item', 'item')->name('item');
         Route::get('/{coupon}', 'destroy')->name('destroy');
     });
+    
     Route::prefix('posts')->controller(PostController::class)->name('posts.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');

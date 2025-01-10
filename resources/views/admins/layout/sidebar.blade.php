@@ -124,14 +124,14 @@
                         </span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('posts.index') }}" class="nav-link">
-                        <i class="fa-solid fa-pencil"></i></i>
-                        <span>
-                            Post
-                        </span>
-                    </a>
-                </li>
+                @if (Route::has('posts.index'))
+                    <li class="nav-item">
+                        <a href="{{ route('posts.index') }}" class="nav-link">
+                            <i class="fa-solid fa-pencil"></i>
+                            <span>Post</span>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('headers.index') }}" class="nav-link">
                         <i class="fa-solid fa-heading"></i>
