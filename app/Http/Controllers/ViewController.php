@@ -12,8 +12,10 @@ use Illuminate\Support\Facades\Session;
 use App\Repositories\ItemOrder\ItemRepositoryInterface;
 use App\Repositories\Product\ProductRepositoryInterface;
 use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Client\ClientRepositoryInterface;
 use App\Repositories\Logos\LogooRepositoryInterface;
 use App\Repositories\Post\PostRepositoryInterface;
+use App\Repositories\ProductHome\ProductHomeRepositoryInterface;
 use App\Repositories\Sliders\SliderRepositoryInterface;
 
 class ViewController extends Controller
@@ -24,6 +26,8 @@ class ViewController extends Controller
     protected $sliderRepo;
     protected $logoRepo;
     protected $postRepo;
+    protected $clientRepo;
+    protected $producthomeRepo;
 
     public function __construct(
         CategoryRepositoryInterface $cateRepo,
@@ -32,6 +36,8 @@ class ViewController extends Controller
         SliderRepositoryInterface $sliderRepo,
         LogooRepositoryInterface $logoRepo,
         PostRepositoryInterface $postRepo,
+        ClientRepositoryInterface $clientRepo,
+        ProductHomeRepositoryInterface $producthomeRepo,
     ) {
         $this->cateRepo = $cateRepo;
         $this->productRepo = $productRepo;
@@ -39,6 +45,8 @@ class ViewController extends Controller
         $this->sliderRepo = $sliderRepo;
         $this->logoRepo = $logoRepo;
         $this->postRepo = $postRepo;
+        $this->clientRepo = $clientRepo;
+        $this->producthomeRepo = $producthomeRepo;
     }
 
     public function get()
@@ -68,10 +76,14 @@ class ViewController extends Controller
     {
         $lisporudct = $this->productRepo->getProduct();
         $sliders = $this->sliderRepo->getSlider();
+        $clientTestimonials = $this->clientRepo->getClientGet3();
+        $producthome = $this->producthomeRepo->getProductHome();
         // dd($lisporudct);
         $attributes = [
             'lisporudct' => $lisporudct,
             'sliders' => $sliders,
+            'clientTestimonials' => $clientTestimonials,
+            'producthome' => $producthome,
         ];
 
         $result = array_merge($attributes, $this->get());

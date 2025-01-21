@@ -66,4 +66,9 @@ class ClientRepository extends BaseRepository implements ClientRepositoryInterfa
 
         return $clientModel->delete();
     }
+
+    public function getClientGet3()
+    {
+        return $this->model->orderBy('stt', 'ASC')->take(3)->get();
+    }
 }

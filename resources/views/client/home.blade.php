@@ -68,10 +68,8 @@
         <section class="container-fluid my-md-5 mt-0 products" style="background-color: #EFEFEF;">
             <div class="container-product">
                 <div class="px-md-5 px-sm-0">
-                    <h1 class="text-center text-uppercase">OUR PREMIER PRODUCTS</h1>
-                    <p class="text-center">WCustom Made , Discover the story behind our premium materials, crafted with
-                        care ​and precision. Embrace the artistry of European, Korean, and Turkish fabrics that ​define
-                        luxury. Your window to elegance awaits.
+                    <h1 class="text-center text-uppercase">{{ $producthome->name }}</h1>
+                    <p class="text-center">{{ $producthome->content }}
                     </p>
                     <div class="shop-now">
                         <a class="text-white bg-dark border border-dark" href="#">LEARN​MORE</a>
@@ -401,27 +399,15 @@
                     </div>
                     <div class="col-12 content">
                         <div class="row text-center">
-                            <div class="col-md-4 col-12">
-                                <img class="w-100"
-                                    src="{{ URL::asset('view/style/images/8dd485f67923754359fc09a804fd2eef.jpg') }}"
-                                    alt="">
-                                <a href="">Al​bert & Freya</a>
-                                <p>A Residential in Seattle</p>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <img class="w-100"
-                                    src="{{ URL::asset('view/style/images/71998795ea2bfbb8d15943390cf27ff5.jpg') }}"
-                                    alt="">
-                                <a href="">THE Pla​ce</a>
-                                <p>Design for a boutique hotel</p>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <img class="w-100"
-                                    src="{{ URL::asset('view/style/images/d3dca3a1de3cf228332f65a68aeefbc5.jpg') }}"
-                                    alt="">
-                                <a href="">Frucinni</a>
-                                <p>Design for a restaurant and bar</p>
-                            </div>
+                            @foreach ($clientTestimonials as $value)
+                                <div class="col-md-4 col-12">
+                                    <img class="w-100" src="{{ route('storages.image', ['url' => $value->pic]) }}"
+                                        alt="">
+                                    <a href="">{{ $value->title }}</a>
+                                    <p>{{ $value->description }}</p>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>

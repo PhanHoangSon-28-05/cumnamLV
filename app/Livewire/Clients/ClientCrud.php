@@ -20,7 +20,7 @@ class ClientCrud extends Component
     public $stt;
 
     public $title, $description;
-    public $clientRepo;
+    protected $clientRepo;
 
     public function modalSetup($id)
     {
@@ -44,9 +44,13 @@ class ClientCrud extends Component
         if ($this->client) {
             $this->stt = $this->client->stt;
             $this->pic = $this->client->pic;
+            $this->title = $this->client->title;
+            $this->description = $this->client->description;
         } else {
             $this->stt = '';
             $this->pic = '';
+            $this->title = '';
+            $this->description = '';
         }
 
         $this->resetErrorBag();
@@ -85,16 +89,15 @@ class ClientCrud extends Component
     }
     public function render()
     {
-        // if ($this->pic) {
-        //     if (gettype($this->pic) == 'string') {
-        //         $cover_img = route('storages.image', ['url' => $this->pic]);
-        //     } else {
-        //         $cover_img = $this->pic->temporaryUrl();
-        //     }
-        // } else {
-        //     $cover_img = 'images/placeholder/placeholder.png';
-        // }
-        $cover_img = 'images/placeholder/placeholder.png';
+        if ($this->pic) {
+            if (gettype($this->pic) == 'string') {
+                $cover_img = route('storages.image', ['url' => $this->pic]);
+            } else {
+                $cover_img = $this->pic->temporaryUrl();
+            }
+        } else {
+            $cover_img = 'images/placeholder/placeholder.png';
+        }
 
         return view('admins.client.livewire.client-crud', [
             'cover_img' => $cover_img,

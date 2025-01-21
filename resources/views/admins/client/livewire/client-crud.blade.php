@@ -53,7 +53,8 @@
                         @if ($action == 'delete')
                             <div class="container-fluid">
                                 <div class="row">
-                                    <span>Bạn có muốn xóa client "{{ $stt }}"?</span>
+                                    <span>
+                                        Do you want to delete client "{{ $stt }}"?</span>
                                 </div>
                             </div>
                         @else
@@ -70,9 +71,9 @@
                                 <div class="row">
                                     <label class="crud-label p-0 mt-2 mb-0">Title:</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control crud-input" wire:model.lazy="name">
+                                        <input type="text" class="form-control crud-input" wire:model.lazy="title">
                                     </div>
-                                    @error('name')
+                                    @error('title')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

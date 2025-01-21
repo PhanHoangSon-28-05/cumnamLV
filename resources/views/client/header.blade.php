@@ -145,9 +145,14 @@
                         ])
                     </ul>
                 </div>
+
                 <div class="content">
-                    <img src="{{ URL::asset('storage/' . $cate->image) }}"
-                        alt="A modern living room with a white couch and a large painting on the wall">
+                    @if ($cate->image)
+                        <img src="{{ route('storages.image', ['url' => $cate->image]) }}"
+                            alt="{{ $cate->description }}">
+                    @else
+                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Erro">
+                    @endif
                     <p>{{ $cate->content }}</p>
                     {{-- <a href="#">SHOP THE NEW COLLECTION</a> --}}
                 </div>

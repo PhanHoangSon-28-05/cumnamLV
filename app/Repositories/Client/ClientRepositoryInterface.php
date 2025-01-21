@@ -11,4 +11,5 @@ interface ClientRepositoryInterface extends RepositoryInterface
     public function createClient($stt, $title, $description, $pic);
     public function updateClient($clientModel, $stt, $title, $description, $pic);
     public function deleteClient($clientModel);
+    public function getClientGet3();
 }

@@ -153,6 +153,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('producthome.index') }}" class="nav-link">
+                                <i class="fa-solid fa-heading"></i>
+                                <span>
+                                    Product Home
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route(\App\Models\ClientTestimonials::INDEX) }}" class="nav-link">
                                 <i class="fa-solid fa-users"></i>
                                 <span>Client Testimonials</span>

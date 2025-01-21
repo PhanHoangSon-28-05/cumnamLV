@@ -55,6 +55,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Client\ClientRepositoryInterface::class,
             \App\Repositories\Client\ClientRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\ProductHome\ProductHomeRepositoryInterface::class,
+            \App\Repositories\ProductHome\ProductHomeRepository::class
+        );
     }
 
     /**

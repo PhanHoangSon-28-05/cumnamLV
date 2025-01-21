@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ClientTestimonialsController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\HeaderController;
+use App\Http\Controllers\Admin\HomeProductController;
 use App\Http\Controllers\Admin\LogoController;
 use App\Http\Controllers\Admin\OrderItemController;
 use App\Http\Controllers\Admin\ProductController;
@@ -51,6 +52,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('colors', [ColorController::class, 'index'])->name(Color::INDEX);
     Route::get('orders', [OrderItemController::class, 'index'])->name(OrderItem::INDEX);
     Route::get('headers', [HeaderController::class, 'index'])->name('headers.index');
+    Route::get('producthome', [HomeProductController::class, 'index'])->name('producthome.index');
     Route::get('footers', [FooterController::class, 'index'])->name('footers.index');
     Route::get('sliders', [SliderController::class, 'index'])->name(Slider::INDEX);
     Route::get('clients', [ClientTestimonialsController::class, 'index'])->name(ClientTestimonials::INDEX);

@@ -16,7 +16,8 @@
                             <div id="{{ 'selectedText' . $value->id }}" class="text-show text-muted flex-grow-1">
                             </div>
                             <div class="">
-                                <img id="{{ 'selectedImage' . $value->id }}" src="" alt="Selected Image"
+                                <img id="{{ 'selectedImage' . $value->id }}"
+                                    src="{{ route('storages.image', ['url' => $value->pic]) }}" alt="Selected Image"
                                     class="img-show img-fluid ml-1">
                             </div>
                         </div>
