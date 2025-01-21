@@ -51,6 +51,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Logos\LogooRepositoryInterface::class,
             \App\Repositories\Logos\LogoRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\Client\ClientRepositoryInterface::class,
+            \App\Repositories\Client\ClientRepository::class
+        );
     }
 
     /**

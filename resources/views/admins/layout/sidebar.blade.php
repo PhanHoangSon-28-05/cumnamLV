@@ -132,6 +132,34 @@
                         </a>
                     </li>
                 @endif
+
+                <li class="nav-item nav-item-submenu">
+                    <a href="#" class="nav-link"><i class="icon-color-sampler"></i> <span>Home</span></a>
+                    <ul class="nav nav-group-sub" data-submenu-title="Home">
+                        <li class="nav-item">
+                            <a href="{{ route(\App\Models\Logo::INDEX) }}" class="nav-link">
+                                <i class="fa-brands fa-slack"></i>
+                                <span>
+                                    Logo
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route(\App\Models\Slider::INDEX) }}" class="nav-link">
+                                <i class="fa-solid fa-image"></i>
+                                <span>
+                                    Slider
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route(\App\Models\ClientTestimonials::INDEX) }}" class="nav-link">
+                                <i class="fa-solid fa-users"></i>
+                                <span>Client Testimonials</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="{{ route('headers.index') }}" class="nav-link">
                         <i class="fa-solid fa-heading"></i>
@@ -145,22 +173,6 @@
                         <i class="fa-solid fa-font-awesome"></i>
                         <span>
                             Footer
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route(\App\Models\Slider::INDEX) }}" class="nav-link">
-                        <i class="fa-solid fa-image"></i>
-                        <span>
-                            Slider
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route(\App\Models\Logo::INDEX) }}" class="nav-link">
-                        <i class="fa-brands fa-slack"></i>
-                        <span>
-                            Logo
                         </span>
                     </a>
                 </li>

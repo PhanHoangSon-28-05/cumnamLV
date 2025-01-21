@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ClientTestimonialsController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\HeaderController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\ViewController;
 use App\Models\Category;
+use App\Models\ClientTestimonials;
 use App\Models\Color;
 use App\Models\Logo;
 use App\Models\OrderItem;
@@ -51,6 +53,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('headers', [HeaderController::class, 'index'])->name('headers.index');
     Route::get('footers', [FooterController::class, 'index'])->name('footers.index');
     Route::get('sliders', [SliderController::class, 'index'])->name(Slider::INDEX);
+    Route::get('clients', [ClientTestimonialsController::class, 'index'])->name(ClientTestimonials::INDEX);
     Route::get('logos', [LogoController::class, 'index'])->name(Logo::INDEX);
 
     Route::prefix('products')->controller(ProductController::class)->name('products.')->group(function () {
@@ -63,7 +66,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/{coupon}/item', 'item')->name('item');
         Route::get('/{coupon}', 'destroy')->name('destroy');
     });
-    
+
     Route::prefix('posts')->controller(PostController::class)->name('posts.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
