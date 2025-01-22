@@ -68,8 +68,10 @@
         <section class="container-fluid my-md-5 mt-0 products" style="background-color: #EFEFEF;">
             <div class="container-product">
                 <div class="px-md-5 px-sm-0">
-                    <h1 class="text-center text-uppercase">{{ $producthome->name }}</h1>
-                    <p class="text-center">{{ $producthome->content }}
+                    @if ($producthome)
+                        <h1 class="text-center text-uppercase">{{ $producthome->name }}</h1>
+                        <p class="text-center">{{ $producthome->content }}
+                    @endif
                     </p>
                     <div class="shop-now">
                         <a class="text-white bg-dark border border-dark" href="#">LEARN​MORE</a>
