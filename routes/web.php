@@ -1,26 +1,28 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ClientTestimonialsController;
+use App\Models\Logo;
+use App\Models\Color;
+use App\Models\Slider;
+use App\Models\Category;
+use App\Models\Checkout;
+use App\Models\OrderItem;
+use App\Models\ClientTestimonials;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ViewController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\Admin\LogoController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\HeaderController;
-use App\Http\Controllers\Admin\HomeProductController;
-use App\Http\Controllers\Admin\LogoController;
-use App\Http\Controllers\Admin\OrderItemController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\ViewController;
-use App\Models\Category;
-use App\Models\ClientTestimonials;
-use App\Models\Color;
-use App\Models\Logo;
-use App\Models\OrderItem;
-use App\Models\Slider;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CheckoutController;
+use App\Http\Controllers\Admin\OrderItemController;
+use App\Http\Controllers\Admin\HomeProductController;
+use App\Http\Controllers\Admin\ClientTestimonialsController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -30,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ViewController::class, 'home'])->name('home');
 Route::get('/shopping-cart', [ViewController::class, 'shoppingCart'])->name('shopping-cart');
 Route::get('/shopping-cart/remove', [ViewController::class, 'removeCartItem'])->name('shopping-cart.remove');
+Route::post('/checkout', [ViewController::class, 'checkout'])->name('checkout');
 Route::get('category-product/{slug}', [ViewController::class, 'categories'])->name('home.category');
 Route::get('category-post/{slug}', [ViewController::class, 'categoriespost'])->name('home.category-post');
 Route::get('category-post/{slug}/{post}', [ViewController::class, 'post'])->name('home.post');
@@ -51,6 +54,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('categories', [CategoryController::class, 'index'])->name(Category::INDEX);
     Route::get('colors', [ColorController::class, 'index'])->name(Color::INDEX);
     Route::get('orders', [OrderItemController::class, 'index'])->name(OrderItem::INDEX);
+    Route::get('checkouts', [CheckoutController::class, 'index'])->name(Checkout::INDEX);
     Route::get('headers', [HeaderController::class, 'index'])->name('headers.index');
     Route::get('producthome', [HomeProductController::class, 'index'])->name('producthome.index');
     Route::get('footers', [FooterController::class, 'index'])->name('footers.index');

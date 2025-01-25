@@ -629,6 +629,97 @@ ul {
 
 /* End appointment */
 
+/* Checkout modal */
+#checkoutModal {
+    font-family: YACkoA9eHeY-0;
+}
+
+#checkoutModal h3,
+#checkoutModal p {
+    width: 550px;
+}
+
+#checkoutModal img {
+    width: 100%;
+    height: 600px;
+}
+
+#checkoutModal .input label {
+    font-size: 20px;
+    display: block;
+}
+
+#checkoutModal .input input,
+#checkoutModal .input select {
+    width: 100%;
+    height: 50px;
+    border-color: #000000;
+    border-radius: 40px;
+    padding: 10px;
+    -moz-appearance: textfield;
+}
+
+#checkoutModal .input input[type=radio] {
+    width: 30px;
+    height: 30px;
+}
+
+#checkoutModal .input .message {
+    width: 550px;
+    height: 200px;
+    border-color: #000000;
+    border-radius: 40px;
+    padding: 10px;
+}
+
+#checkoutModal .btn {
+    background-color: #8A8911;
+    color: white;
+    width: 200px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+}
+
+#checkoutModal .send {
+    width: 550px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+@media (max-width: 576px) {
+
+    #checkoutModal h3,
+    #checkoutModal p {
+        width: auto;
+    }
+
+    #checkoutModal img {
+        height: auto;
+    }
+
+    #checkoutModal .input input {
+        width: 345px;
+        height: 50px;
+    }
+
+    #checkoutModal .send {
+        width: auto;
+    }
+
+    #checkoutModal .btn {
+        width: auto;
+        margin-top: 20px;
+    }
+
+}
+
+/* End checkout modal */
+
 /* Client */
 #client {
     font-family: YACkoA9eHeY-0;

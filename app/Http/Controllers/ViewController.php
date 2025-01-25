@@ -9,14 +9,17 @@ use App\Models\OrderItem;
 use App\Mail\MailCunamhouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Repositories\Post\PostRepositoryInterface;
+use App\Repositories\Logos\LogooRepositoryInterface;
+use App\Repositories\Client\ClientRepositoryInterface;
 use App\Repositories\ItemOrder\ItemRepositoryInterface;
+use App\Repositories\Sliders\SliderRepositoryInterface;
 use App\Repositories\Product\ProductRepositoryInterface;
 use App\Repositories\Category\CategoryRepositoryInterface;
-use App\Repositories\Client\ClientRepositoryInterface;
-use App\Repositories\Logos\LogooRepositoryInterface;
-use App\Repositories\Post\PostRepositoryInterface;
+use App\Repositories\Checkouts\CheckoutRepositoryInterface;
 use App\Repositories\ProductHome\ProductHomeRepositoryInterface;
-use App\Repositories\Sliders\SliderRepositoryInterface;
+use App\Repositories\CheckoutProducts\CheckoutProductRepositoryInterface;
+use App\Repositories\CheckoutProductItems\CheckoutProductItemRepositoryInterface;
 
 class ViewController extends Controller
 {
@@ -28,6 +31,9 @@ class ViewController extends Controller
     protected $postRepo;
     protected $clientRepo;
     protected $producthomeRepo;
+    protected $checkoutRepo;
+    protected $checkoutProductRepo;
+    protected $checkoutProductItemRepo;
 
     public function __construct(
         CategoryRepositoryInterface $cateRepo,
@@ -38,6 +44,9 @@ class ViewController extends Controller
         PostRepositoryInterface $postRepo,
         ClientRepositoryInterface $clientRepo,
         ProductHomeRepositoryInterface $producthomeRepo,
+        CheckoutRepositoryInterface $checkoutRepo,
+        CheckoutProductRepositoryInterface $checkoutProductRepo,
+        CheckoutProductItemRepositoryInterface $checkoutProductItemRepo,
     ) {
         $this->cateRepo = $cateRepo;
         $this->productRepo = $productRepo;
@@ -47,6 +56,9 @@ class ViewController extends Controller
         $this->postRepo = $postRepo;
         $this->clientRepo = $clientRepo;
         $this->producthomeRepo = $producthomeRepo;
+        $this->checkoutRepo = $checkoutRepo;
+        $this->checkoutProductRepo = $checkoutProductRepo;
+        $this->checkoutProductItemRepo = $checkoutProductItemRepo;
     }
 
     public function get()
@@ -199,6 +211,45 @@ class ViewController extends Controller
     {
         $index = $request->input('index');
         Session::forget('shopping-cart.' . $index);
+        return redirect()->route('shopping-cart');
+    }
+
+    public function checkout(Request $request)
+    {
+        $params = $request->input();
+        unset($params['_method']);
+        unset($params['_token']);
+
+        $checkout = $this->checkoutRepo->create($params);
+
+        $cart_items = Session::get('shopping-cart');
+        $checkout_total_price = 0;
+        foreach ($cart_items as $key => $product) {
+            $checkout_total_price += $product['price'] * $product['amount'];
+
+            $checkout_product = $this->checkoutProductRepo->create([
+                'checkout_id' => $checkout->id,
+                'product_id' => $product['product_id'],
+                'width' => $product['width'],
+                'height' => $product['height'],
+                'price' => $product['price'],
+                'amount' => $product['amount'],
+                'total_price' => $product['price'] * $product['amount'],
+            ]);
+
+            foreach ($product['product_item_ids'] as $key => $item_id) {
+                $checkout_product_item = $this->checkoutProductItemRepo->create([
+                    'checkout_product_id' => $checkout_product->id,
+                    'product_item_id' => $item_id,
+                    'fabric' => $product['fabric'] ?? null,
+                ]);
+            }
+        }
+
+        $checkout->update(['total_price' => $checkout_total_price]);
+
+        Session::forget('shopping-cart');
+
         return redirect()->route('shopping-cart');
     }
 }

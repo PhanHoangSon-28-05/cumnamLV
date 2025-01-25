@@ -124,6 +124,14 @@
                         </span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('checkout.index') }}" class="nav-link">
+                        <i class="fa-solid fa-cash-register"></i>
+                        <span>
+                            Checkout
+                        </span>
+                    </a>
+                </li>
                 @if (Route::has('posts.index'))
                     <li class="nav-item">
                         <a href="{{ route('posts.index') }}" class="nav-link">

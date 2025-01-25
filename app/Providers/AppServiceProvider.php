@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -59,6 +61,18 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\ProductHome\ProductHomeRepositoryInterface::class,
             \App\Repositories\ProductHome\ProductHomeRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\Checkouts\CheckoutRepositoryInterface::class,
+            \App\Repositories\Checkouts\CheckoutRepository::class
+        );
+        $this->app->singleton(
+            \App\Repositories\CheckoutProducts\CheckoutProductRepositoryInterface::class,
+            \App\Repositories\CheckoutProducts\CheckoutProductRepository::class
+        );
+        $this->app->singleton(
+            \App\Repositories\CheckoutProductItems\CheckoutProductItemRepositoryInterface::class,
+            \App\Repositories\CheckoutProductItems\CheckoutProductItemRepository::class
+        );
     }
 
     /**
@@ -67,5 +81,20 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // \URL::forceScheme('https');
+
+        Collection::macro('paginate', function($perPage, $total = null, $page = null, $pageName = 'page'): LengthAwarePaginator {
+            $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
+
+            return new LengthAwarePaginator(
+                $this->forPage($page, $perPage)->values(),
+                $total ?: $this->count(),
+                $perPage,
+                $page,
+                [
+                    'path' => LengthAwarePaginator::resolveCurrentPath(),
+                    'pageName' => $pageName,
+                ]
+            );
+        });
     }
 }
