@@ -10,12 +10,12 @@
                     <div class="window-size">
                         <label>Window Width (Inch):</label>
                         <div class="size-select">
-                            <select class="mb-2" name="width1" wire:model.blur="width1">
+                            <select class="mb-2" name="width1" wire:model.live="width1">
                                 @for ($i = 0; $i <= 100; $i += 1)
                                     <option value="{{ $i }}">{{ $i }}</option>
                                 @endfor
                             </select>
-                            <select class="mb-2" name="width2" wire:model.blur="width2">
+                            <select class="mb-2" name="width2" wire:model.live="width2">
                                 <option value="0">0</option>
                                 <option value="0.125">1/8</option>
                                 <option value="0.25">1/4</option>
@@ -24,12 +24,12 @@
                         </div>
                         <label>Window Height (Inch):</label>
                         <div class="size-select">
-                            <select name="height1" wire:model.blur="height1">
+                            <select name="height1" wire:model.live="height1">
                                 @for ($i = 0; $i <= 100; $i += 1)
                                     <option value="{{ $i }}">{{ $i }}</option>
                                 @endfor
                             </select>
-                            <select name="height2" wire:model.blur="height2">
+                            <select name="height2" wire:model.live="height2">
                                 <option value="0">0</option>
                                 <option value="0.25">1/4</option>
                                 <option value="0.5">1/2</option>
@@ -71,7 +71,7 @@
                                         <label for="{{ 'option' . $value->id }}" class="radio-img-label">
                                             <img src="{{ asset('storage/' . $value->fabriccolor) }}"
                                                 alt="{{ $value->name }}">
-                                            <span class="text-dark">{{ $value->name }}</span> </br>
+                                            <span class="text-dark">{{ $value->name ?? $value->color->name }}</span> </br>
                                             @if ($value->priceNew == 0)
                                             @else
                                                 <span class="text-dark"
@@ -100,20 +100,27 @@
                 Total Price:</p>
         </div>
         <div class="col-4">
-            <p class="mb-0 h2"><span id="total">{{ $totalPrice }}</span>$</p>
+            <p class="mb-0 h2"><span id="total">{{ $totalPrice * $amount }}</span>$</p>
         </div>
     </div>
     <div class="row mx-3">
         <div class="col-3 px-0 mx-0 size-select">
-            <select class="w-100">
+            <select class="w-100" wire:model.live="amount">
                 @for ($i = 1; $i <= 100; $i++)
-                    <option>{{ $i }}</option>
+                <option value="{{ $i }}">{{ $i }}</option>
                 @endfor
             </select>
         </div>
         <div class="col-9 pr-0">
-            <a id="customizeBuyButton" class="btn w-100 p-2" wire:click="add">Add
-                to bag</a>
+            @if ((($width1 + $width2) * ($height1 + $height2)) > 0)
+            <a id="customizeBuyButton" class="btn w-100 p-2" wire:click.prevent="add">
+                Add to bag
+            </a>
+            @else
+            <a id="customizeBuyButton" class="btn w-100 p-2" disabled>
+                Add to bag
+            </a>
+            @endif
         </div>
     </div>
 </div>

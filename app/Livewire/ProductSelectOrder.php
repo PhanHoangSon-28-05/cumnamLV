@@ -12,6 +12,7 @@ class ProductSelectOrder extends Component
 
     public $width1, $width2;
     public $height1, $height2;
+    public $amount = 1;
 
     public $selectedValues = [];
 
@@ -60,6 +61,9 @@ class ProductSelectOrder extends Component
             'width' => $this->width1 + $this->width2,
             'height' => $this->height1 + $this->height2,
             'image' => $this->product->pic,
+            'amount' => $this->amount,
+            'product_id' => $this->product->id,
+            'product_item_ids' => $this->selectedValues,
         ];
         $total_price = 0;
         foreach ($this->selectedValues as $value) {
@@ -74,13 +78,14 @@ class ProductSelectOrder extends Component
             // $this->listItem[] = ["id" => $item->id, "name" => $item->name, "priceNew" => $item->priceNew, "image" => $item->image];
 
             if ($item->id_color > 0) {
-                $cart_item['fabric'] = $item->name;
+                $cart_item['fabric'] = $item->name ?? $item->color->name;
             } else {
                 $cart_item['orders'][$item->order->name] = $item->name;
             }
             $total_price += $item->priceNew;
         }
-        $cart_item['price'] = $total_price;
+        // $cart_item['price'] = $total_price;
+        $cart_item['price'] = $this->totalPrice;
 
         // Session::forget('shopping-cart');
         Session::push('shopping-cart', $cart_item);
