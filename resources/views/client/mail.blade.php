@@ -23,7 +23,7 @@
                         <textarea class="message" type="text" name="message" required></textarea>
                     </div>
                     <div class="send text-center">
-                        <button type="submit" class="btn btn-primary rounded-pill mt-md-0 mt-2">
+                        <button type="submit" class="btn btn-primary rounded-pill mt-md-0 mt-2 text-white bg-dark border border-dark">
                             SEND
                         </button>
                     </div>

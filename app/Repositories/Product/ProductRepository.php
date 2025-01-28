@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Product;
 
+use App\Models\Category;
 use App\Models\ImageProducts;
 use App\Repositories\BaseRepository;
 use App\Repositories\Product\ProductRepositoryInterface;
@@ -76,5 +77,36 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         $product = $this->model->where('slug', $slug)->first();
         return $product;
+    }
+
+    public function getProRecommend($slug)
+    {
+        $product = $this->model->where('slug', $slug)->first();
+        if (!$product) {
+            return [];
+        }
+        $idCate = $product->cate;
+        if (!$idCate) {
+            return [];
+        }
+
+        // $cateParent = Category::where('id', $idCate->parent_id)->get()->first();
+        // if (!$cateParent) {
+        //     return [];
+        // }
+        // $cateChirlds = Category::where('parent_id', $cateParent->id)->get();
+        // $attributes = [];
+        // foreach ($cateChirlds as $cateChirld) {
+        //     $products = $cateChirld->products;
+        //     $attributes = array_merge($attributes, $products->toArray());
+        // }
+
+        $cateParentId = $idCate->parent_id;
+        $attributes = $this->model->whereHas('cate', function ($query) use ($cateParentId) {
+            $query->where('parent_id', $cateParentId);
+        })->get()->toArray();
+
+        $attributes = array_values($attributes);
+        return $attributes;
     }
 }

@@ -2,6 +2,7 @@
 @section('title', $product->name)
 
 @section('style')
+    <link rel="stylesheet" href="{{ URL::asset('view/style/css/slider-product-recommend.css') }}">
     <style>
         .mySlides,
         .demo {
@@ -118,7 +119,8 @@
                             </div>
                         </div>
                         <div class="text-md-left">
-                            <button id="customizeBuyButton" type="submit" class="btn text-uppercase rounded-pill">Customize
+                            <button id="customizeBuyButton" type="submit"
+                                class="btn text-uppercase text-white bg-dark border border-dark">Customize
                                 &
                                 Buy</button>
                         </div>
@@ -239,8 +241,8 @@
 
                     <!-- Tab Shipping & Received -->
                     <div class="tab-pane fade bg-white border-0" id="shipping" role="tabpanel"
-                        aria-labelledby="shipping-tab">
-                        <p>Shipping and received content goes here...</p>
+                        aria-labelledby="shipping-tab">shipping_received
+                        <p>{{ $product->shipping_received }}</p>
                     </div>
                 </div>
             </div>
@@ -250,71 +252,162 @@
             </div>
         </section>
 
-        <section id="recommended-product" class="container-fluid my-5">
+        {{-- <section id="recommended-product" class="container-fluid my-5">
             <div class="container">
                 <h2 class="text-center mt-5 mb-4">RECOMMENDED PRODUCTS</h2>
-
-                <div class="row">
-                    <div class="col-md-3 col-12 mb-2">
-                        <div class="card product-container">
-                            <img src="{{ URL::asset('view/style/images/Zebra/Artboard 120@4x.jpg') }}"
-                                class="card-img-top product-image" alt="Wood Blind">
-                            <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
-                                id="logo" class="logo">
-                            <div class="card-body">
-                                <h5 class="card-title text-uppercase">3" Vane</h5>
-                                <p class="card-text font-weight-bolder">WOOD BLIND</p>
-                                <p class="card-text"><small class="text-muted">Starting <del>$150</del> $110 </small>
-                                </p>
+                <button class="pre-btn"><img src="{{ asset('view/style/images/arrow.png') }}" alt=""></button>
+                <button class="nxt-btn"><img src="{{ asset('view/style/images/arrow.png') }}" alt=""></button>
+                <div class="product-container">
+                    <div class="row">
+                        <div class="col-md-3 col-12 mb-2 product-card">
+                            <div class="card">
+                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 120@4x.jpg') }}"
+                                    class="card-img-top product-image" alt="Wood Blind">
+                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
+                                    id="logo" class="logo">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase">3" Vane</h5>
+                                    <p class="card-text font-weight-bolder">WOOD BLIND</p>
+                                    <p class="card-text"><small class="text-muted">Starting <del>$150</del> $110 </small>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-3 col-12 mb-2">
-                        <div class="card">
-                            <img src="{{ URL::asset('view/style/images/Zebra/Artboard 13@4x.jpg') }}"
-                                class="card-img-top" alt="Zebra Roman">
-                            <div class="card-body">
-                                <h5 class="card-title text-uppercase">3" VANE-2" SHEER</h5>
-                                <p class="card-text font-weight-bolder">THE ZEBRA ROMAN</p>
-                                <p class="card-text"><small class="text-muted">Starting <del>$110</del> $150 </small>
-                                </p>
+                        <div class="col-md-3 col-12 mb-2 product-card">
+                            <div class="card">
+                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 120@4x.jpg') }}"
+                                    class="card-img-top product-image" alt="Wood Blind">
+                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
+                                    id="logo" class="logo">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase">3" Vane</h5>
+                                    <p class="card-text font-weight-bolder">WOOD BLIND</p>
+                                    <p class="card-text"><small class="text-muted">Starting <del>$150</del> $110 </small>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-3 col-12 mb-2">
-                        <div class="card">
-                            <img src="{{ URL::asset('view/style/images/Zebra/Artboard 13@4x.jpg') }}"
-                                class="card-img-top" alt="Vertical Sheer">
-                            <div class="card-body">
-                                <h5 class="card-title text-uppercase">MAY 2025</h5>
-                                <p class="card-text font-weight-bolder">THE VERTICAL SHEER</p>
-                                <p class="card-text"><small class="text-muted">Starting <del>$110</del> $150 </small>
-                                </p>
+                        <div class="col-md-3 col-12 mb-2 product-card">
+                            <div class="card">
+                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 13@4x.jpg') }}"
+                                    class="card-img-top" alt="Zebra Roman">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase">3" VANE-2" SHEER</h5>
+                                    <p class="card-text font-weight-bolder">THE ZEBRA ROMAN</p>
+                                    <p class="card-text"><small class="text-muted">Starting <del>$110</del> $150 </small>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-3 col-12 mb-2">
-                        <div class="card">
-                            <img src="{{ URL::asset('view/style/images/Zebra/Artboard 169@4x.jpg') }}"
-                                class="card-img-top" alt="Wood Blind">
-                            <div class="card-body">
-                                <h5 class="card-title text-uppercase">3" Vane</h5>
-                                <p class="card-text font-weight-bolder">WOOD BLIND</p>
-                                <p class="card-text"><small class="text-muted">Starting <del>$150</del> $110 </small>
-                                </p>
+                        <div class="col-md-3 col-12 mb-2 product-card">
+                            <div class="card">
+                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 120@4x.jpg') }}"
+                                    class="card-img-top product-image" alt="Wood Blind">
+                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
+                                    id="logo" class="logo">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase">3" Vane</h5>
+                                    <p class="card-text font-weight-bolder">WOOD BLIND</p>
+                                    <p class="card-text"><small class="text-muted">Starting <del>$150</del> $110 </small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12 mb-2 product-card">
+                            <div class="card">
+                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 13@4x.jpg') }}"
+                                    class="card-img-top" alt="Vertical Sheer">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase">MAY 2025</h5>
+                                    <p class="card-text font-weight-bolder">THE VERTICAL SHEER</p>
+                                    <p class="card-text"><small class="text-muted">Starting <del>$110</del> $150 </small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12 mb-2 product-card">
+                            <div class="card">
+                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 120@4x.jpg') }}"
+                                    class="card-img-top product-image" alt="Wood Blind">
+                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
+                                    id="logo" class="logo">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase">3" Vane</h5>
+                                    <p class="card-text font-weight-bolder">WOOD BLIND</p>
+                                    <p class="card-text"><small class="text-muted">Starting <del>$150</del> $110 </small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12 mb-2 product-card">
+                            <div class="card">
+                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 169@4x.jpg') }}"
+                                    class="card-img-top" alt="Wood Blind">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase">3" Vane</h5>
+                                    <p class="card-text font-weight-bolder">WOOD BLIND</p>
+                                    <p class="card-text"><small class="text-muted">Starting <del>$150</del> $110 </small>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section> --}}
+
+        <section id="recommended-product">
+            <h2 class="product-category text-center">RECOMMENDED PRODUCTS</h2>
+            <button class="pre-btn"><img src="{{ asset('view/style/images/arrow.png') }}" alt=""></button>
+            <button class="nxt-btn"><img src="{{ asset('view/style/images/arrow.png') }}" alt=""></button>
+            <div class="product-containers">
+                @foreach ($proRecommend as $proValue)
+                    <div class="product-card">
+                        <div class="product-image">
+                            @if ($proValue['pic'])
+                                <img src="{{ route('storages.image', ['url' => $proValue['pic']]) }}"
+                                    class="card-img-top product-image roduct-thumb" alt="">
+                            @else
+                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" id="logo"
+                                    class="logo">
+                            @endif
+
+                            @if ($logo)
+                                <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" alt="Logo"
+                                    id="logo" class="logo">
+                            @else
+                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
+                                    id="logo" class="logo">
+                            @endif
+
+                            <button class="card-btn text-white bg-dark border border-dark">come see</button>
+                        </div>
+                        <div class="product-info">
+                            <p class="product-short-description font-weight-bolder card-title text-uppercase">
+                            </p>
+                            <h2 class="product-brand card-text font-weight-bolder">{{ $proValue['name'] }}</h2>
+                            <h5 class=""></h5>
+                            @if ($proValue['fromOLD'])
+                                <small class="text-muted">Starting
+                                    <span class="font-weight-bolder text-danger">${{ $proValue['from'] }}</span>
+                                    <del>${{ $proValue['fromOLD'] }}</del>
+                                </small>
+                            @else
+                                <small class="text-muted">From
+                                    <span class="font-weight-bolder text-muted text-black">${{ $proValue['from'] }}</span>
+                                </small>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </section>
+        <script src="{{ URL::asset('view/style/js/slider-product-recommend.js') }}"></script>
     </main>
 @endsection
 
 @section('script')
+
     <script>
         function openCity(evt, cityName) {
             // Ẩn tất cả các tab nội dung

@@ -167,9 +167,11 @@ class ViewController extends Controller
     {
         $product = $this->productRepo->getProductSlug($slug);
         $colorPros = $this->itemRepo->getColorProduct($product->id);
+        $proRecommend = $this->productRepo->getProRecommend($slug);
         $attributes = [
             'product' => $product,
             'colorPros' => $colorPros,
+            'proRecommend' => $proRecommend,
         ];
 
         $result = array_merge($attributes, $this->get());

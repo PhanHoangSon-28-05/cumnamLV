@@ -13,4 +13,5 @@ interface ProductRepositoryInterface extends RepositoryInterface
     public function selectProduct($idPro, $image);
     public function getProduct();
     public function getProductSlug($slug);
+    public function getProRecommend($slug);
 }

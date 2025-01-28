@@ -12,7 +12,7 @@
                         </div>
                     @endforeach
                 </div>
-                <button class="get-started-btn">Get Started</button>
+                <button class="get-started-btn text-white bg-dark border border-dark">Get Started</button>
             </div>
             {{-- <div class="row">
                 <div class="col-6 pr-0 pr-md-2 image-left">
@@ -74,7 +74,7 @@
                     @endif
                     </p>
                     <div class="shop-now">
-                        <a class="text-white bg-dark border border-dark" href="#">LEARN​MORE</a>
+                        <a class="text-white bg-dark border border-dark" href="#">LEARN ​MORE</a>
                     </div>
                 </div>
                 <div class=" d-none d-sm-block">
@@ -360,7 +360,8 @@
                                 unlike ​any other.
                                 Inspired by the clean lines, cozy ​feel, and monochromatic palette of a ​modern
                                 minimalist home, we ensure every​single piece makes to last</p>
-                            <a class="btn btn-primary rounded-pill d-none d-md-inline">FR​EE SWATCHES</a>
+                            <a class="btn rounded-pill d-none d-md-inline text-white bg-dark border border-dark">FR​EE
+                                SWATCHES</a>
                         </div>
                         <div class="col-md-8 col-6">
                             {{-- <img class="image"
@@ -381,7 +382,8 @@
                         </div> --}}
                         <div class="col-12
                                     text-center d-sm-inline d-md-none mt-4">
-                            <a class="btn btn-primary rounded-pill">FR​EE SWATCHES</a>
+                            <a class="btn btn-primary rounded-pill text-white bg-dark border border-dark">FR​EE
+                                SWATCHES</a>
                         </div>
                     </div>
                 </div>
@@ -391,21 +393,23 @@
         @include('client.mail')
 
         <section id="client">
-            <div class="container-fluid my-md-5 my-2">
-                <div class="row">
-                    <div class="col-12">
+            <div class="container my-md-5 my-2">
+                <div class="row ">
+                    <div class="col-12 container">
                         <p class="display-4 d-none d-md-inline">Client </br>
                             Testimonials</p>
                         <p class="h2 font-weight-bold d-sm-inline d-md-none">Client
                             Testimonials</p>
                     </div>
-                    <div class="col-12 content">
+                </div>
+                <div class="row">
+                    <div class="col-12 content container-fluid">
                         <div class="row text-center">
                             @foreach ($clientTestimonials as $value)
                                 <div class="col-md-4 col-12">
                                     <img class="w-100" src="{{ route('storages.image', ['url' => $value->pic]) }}"
                                         alt="">
-                                    <a href="">{{ $value->title }}</a>
+                                    <a class="" href="">{{ $value->title }}</a>
                                     <p>{{ $value->description }}</p>
                                 </div>
                             @endforeach

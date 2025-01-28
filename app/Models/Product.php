@@ -23,6 +23,7 @@ class Product extends Model
         'about',
         'details',
         'materials_care',
+        'shipping_received',
         'pic'
     ];
 

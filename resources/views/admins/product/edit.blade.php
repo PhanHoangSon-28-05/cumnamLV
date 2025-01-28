@@ -132,6 +132,15 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class="row px-3">
+                            <label class="crud-label p-0 mt-2 mb-0">Shipping & Received</label>
+                            <div class="col-12 p-0">
+                                <textarea name="shipping_received" value="" id="editor-full3" rows="4" cols="4">{{ $product->shipping_received }}</textarea>
+                            </div>
+                            @error('shipping_received')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="footer px-3 mt-2">

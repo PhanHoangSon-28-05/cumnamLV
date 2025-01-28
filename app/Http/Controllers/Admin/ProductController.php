@@ -45,6 +45,7 @@ class ProductController extends Controller
             'about' => 'required',
             'details' => 'required|string',
             'materials_care' => 'required|string',
+            'shipping_received' => 'required|string',
         ]);
         $attributes = $request->all();
         // dd($attributes);
@@ -74,6 +75,7 @@ class ProductController extends Controller
                 'about' => 'required',
                 'details' => 'required|string',
                 'materials_care' => 'required|string',
+                'shipping_received' => 'required|string',
             ]);
             $attributes = $request->all();
             // dd($attributes);

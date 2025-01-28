@@ -113,11 +113,11 @@
         </div>
         <div class="col-9 pr-0">
             @if ((($width1 + $width2) * ($height1 + $height2)) > 0)
-            <a id="customizeBuyButton" class="btn w-100 p-2" wire:click.prevent="add">
+            <a id="customizeBuyButton" class="btn w-100 p-2 text-white bg-dark border border-dark" wire:click.prevent="add">
                 Add to bag
             </a>
             @else
-            <a id="customizeBuyButton" class="btn w-100 p-2" disabled>
+            <a id="customizeBuyButton" class="btn w-100 p-2 text-white bg-dark border border-dark" disabled>
                 Add to bag
             </a>
             @endif

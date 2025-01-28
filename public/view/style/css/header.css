@@ -54,8 +54,9 @@
 }
 
 .display .content img {
-    max-width: 100px;
+    width: 100%;
     height: auto;
+    max-height: 300px;
 }
 
 .display .content p {
