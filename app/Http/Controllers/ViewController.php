@@ -70,6 +70,7 @@ class ViewController extends Controller
         $cate = $this->cateRepo->getParent();
         $cateChilds = $this->cateRepo->getremoveParent();
         $products = $this->productRepo->getAll();
+        $post = $this->postRepo->getAll();
 
         return [
             //Header
@@ -79,6 +80,7 @@ class ViewController extends Controller
             'cates' => $cate,
             'cateChilds' => $cateChilds,
             'products' => $products,
+            'posts' => $post,
             // /Header
 
             'footer' => $footer,

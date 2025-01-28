@@ -19,20 +19,30 @@
             <div class="modal-body" id="modalBody" style="display: none;"> <!-- Hidden by default -->
                 <ul id="myUL">
                     @foreach ($cateChilds as $cateChild)
-                        <li
-                            class="text-left text-uppercase mb-1 border-bottom border-dark pb-1">
+                        <li class="text-left text-uppercase mb-1 border-bottom border-dark pb-1">
                             <a href="{{ URL::route('home.category', $cateChild->slug) }}"
                                 class="text-body">{{ $cateChild->name }}</a>
                         </li>
                     @endforeach
                     @foreach ($products as $product)
-                        <li
-                            class="custom-list-item text-left text-uppercase mb-1 border-bottom border-dark pb-1">
-                            <a href="{{ URL::route('home.products', $product->slug) }}"
-                                class="text-body text-truncate"
+                        <li class="custom-list-item text-left text-uppercase mb-1 border-bottom border-dark pb-1">
+                            <a href="{{ URL::route('home.products', $product->slug) }}" class="text-body text-truncate"
                                 style="max-width: 250px;">{{ $product->name }}</a>
                             @if ($product->pic != 'null')
                                 <img src="{{ route('storages.image', ['url' => $product->pic]) }}" class="ml-auto"
+                                    style="width: 100px; height: auto;">
+                            @else
+                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" class="ml-auto"
+                                    style="width: 150px; height: auto;">
+                            @endif
+                        </li>
+                    @endforeach
+                    @foreach ($posts as $post)
+                        <li class="custom-list-item text-left text-uppercase mb-1 border-bottom border-dark pb-1">
+                            <a href="{{ URL::route('home.post', ['slug' => $post->category->slug, 'post' => $post->slug]) }}"
+                                class="text-body text-truncate" style="max-width: 250px;">{{ $post->name }}</a>
+                            @if ($post->pic != 'null')
+                                <img src="{{ route('storages.image', ['url' => $post->pic]) }}" class="ml-auto"
                                     style="width: 100px; height: auto;">
                             @else
                                 <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" class="ml-auto"
