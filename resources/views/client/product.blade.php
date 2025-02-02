@@ -50,71 +50,39 @@
                 </div>
                 <div class="col-md-4 col-12">
                     <form method="get" action="{{ route('home.order', ['slug' => $product->slug]) }}">
-                        <div class="accordion mb-4" id="accordionExample">
-                            <div class="">
-                                <div class="product-info">
-                                    <!-- Tên sản phẩm và đánh giá -->
-                                    <h2 class="product-title">Zebra 5 inch</h2>
-                                    <div class="rating-reviews">
-                                        <span class="stars">★★★★☆</span>
-                                        <span class="reviews">4.0 (11 reviews)</span>
-                                    </div>
-
-                                    <div class="price">
-                                        <h3>$ 80</h3>
-                                    </div>
-
-                                    <div class="color-selection">
+                        <div class="accordion mb-4 " id="accordionExample">
+                            <div class="product-info">
+                                <h2 class="product-title">Zebra 5 inch</h2>
+                                <div class="rating-reviews">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="reviews">4.0 (11 reviews)</span>
+                                </div>
+                                <div class="price">
+                                    <h3>$ 80</h3>
+                                </div>
+                                <div class="color-selection">
+                                    @if ($colorPros && $colorPros->isNotEmpty())
                                         <p class="mb-0">Color:</p>
                                         <div class="">
                                             <ul class="d-flex flex-row bd-highlight mb-3" id="myUL">
-                                                @if ($colorPros && $colorPros->isNotEmpty())
-                                                    @foreach ($colorPros as $value)
-                                                        <li class="color-option text-center tablinks"
-                                                            onmouseover="openCity(event, '{{ $value->id }}')">
-                                                            <label for="option{{ $loop->index }}" class="radio-img-label">
-                                                                <img src="{{ route('storages.image', ['url' => $value->fabriccolor]) }}"
-                                                                    alt="Option {{ $loop->index }}"
-                                                                    id="option{{ $loop->index }}">
-                                                            </label>
-                                                        </li>
-                                                    @endforeach
-                                                @else
-                                                    <p>No colors available for this product.</p>
-                                                @endif
-
+                                                @foreach ($colorPros as $value)
+                                                    <li class="color-option text-center tablinks"
+                                                        onmouseover="openCity(event, '{{ $value->id }}')">
+                                                        <label for="option{{ $loop->index }}" class="radio-img-label">
+                                                            <img src="{{ route('storages.image', ['url' => $value->fabriccolor]) }}"
+                                                                alt="Option {{ $loop->index }}"
+                                                                id="option{{ $loop->index }}">
+                                                        </label>
+                                                    </li>
+                                                @endforeach
                                             </ul>
+                                            {{-- @if ($colorPros && $colorPros->isNotEmpty()) @else
+                                                <p>No colors available for this product.</p>
+                                                @endif --}}
                                         </div>
-                                    </div>
-                                    {{-- <div class="window-size">
-                                        <label>Window Width (Inch):</label>
-                                        <div class="size-select">
-                                            <select class="mb-2" name="width1">
-                                                <option>40</option>
-                                                <option>50</option>
-                                                <option>60</option>
-                                            </select>
-                                            <select class="mb-2" name="width2">
-                                                <option>1/8</option>
-                                                <option>1/4</option>
-                                                <option>1/2</option>
-                                            </select>
-                                        </div>
-
-                                        <label>Window Height (Inch):</label>
-                                        <div class="size-select">
-                                            <select name="height1">
-                                                <option>50</option>
-                                                <option>60</option>
-                                                <option>70</option>
-                                            </select>
-                                            <select name="height2">
-                                                <option>1/4</option>
-                                                <option>1/2</option>
-                                                <option>3/4</option>
-                                            </select>
-                                        </div>
-                                    </div> --}}
+                                    @else
+                                        <p>No colors available for this product.</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>

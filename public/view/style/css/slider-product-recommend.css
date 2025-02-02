@@ -5,7 +5,7 @@
     padding: 20px;
 }
 
-.product-category {
+#recommended-product .product-category {
     padding: 0 10vw;
     font-size: 30px;
     font-weight: 500;
@@ -13,37 +13,37 @@
     text-transform: capitalize;
 }
 
-.product-containers {
+#recommended-product .product-containers {
     padding: 0 10vw;
     display: flex;
     overflow-x: auto;
 }
 
-.product-containers::-webkit-scrollbar {
+#recommended-product .product-containers::-webkit-scrollbar {
     display: none;
 }
 
-.product-card {
+#recommended-product .product-card {
     flex: 0 0 auto;
     width: 250px;
     height: 500px;
     margin-right: 40px;
 }
 
-.product-image {
+#recommended-product .product-image {
     position: relative;
     width: 100%;
     height: 350px;
     overflow: hidden;
 }
 
-.product-thumb {
+#recommended-product .product-thumb {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.discount-tag {
+#recommended-product .discount-tag {
     position: absolute;
     background-color: #fff;
     color: #333;
@@ -54,7 +54,7 @@
     text-transform: capitalize;
 }
 
-.card-btn {
+#recommended-product .card-btn {
     position: absolute;
     bottom: 10px;
     left: 50%;
@@ -71,31 +71,31 @@
     opacity: 0;
 }
 
-.product-card:hover .card-btn {
+#recommended-product .product-card:hover .card-btn {
     opacity: 1;
 }
 
-.card-btn:hover {
+#recommended-product .card-btn:hover {
     background-color: #ddd;
     color: black;
 }
 
-.product-info {
+#recommended-product .product-info {
     width: 100%;
     height: 100px;
     padding-top: 10px;
 }
 
-.product-info .card-title {
+#recommended-product .product-info .card-title {
     font-size: 1rem;
 }
 
-.product-brand {
+#recommended-product .product-brand {
     font-size: 1.2rem;
     text-transform: uppercase;
 }
 
-.product-short-description {
+#recommended-product .product-short-description {
     width: 100%;
     height: 20px;
     line-height: 20px;
@@ -105,12 +105,12 @@
     margin: 5px 0;
 }
 
-.price {
+#recommended-product .price {
     font-weight: 900;
     font-size: 20px;
 }
 
-.actual-price {
+#recommended-product .actual-price {
     margin-left: 20px;
     opacity: 0.5;
     text-decoration: line-through;
