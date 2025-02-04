@@ -18,7 +18,7 @@ class ClientRepository extends BaseRepository implements ClientRepositoryInterfa
         return $this->model->orderBy('created_at', 'DESC')->take(7)->get();
     }
 
-    public function createClient($stt, $title, $description, $pic)
+    public function createClient($stt, $title, $description, $pic, $link)
     {
         $extension = $pic->getClientOriginalName();
         $filename = time() . '_' . $extension;
@@ -30,11 +30,12 @@ class ClientRepository extends BaseRepository implements ClientRepositoryInterfa
             'title' => trim($title),
             'description' => trim($description),
             'pic' => trim($path),
+            'link' => trim($link),
         ]);
         return $client;
     }
 
-    public function updateClient($clientModel, $stt, $title, $description, $pic)
+    public function updateClient($clientModel, $stt, $title, $description, $pic, $link)
     {
         if ($pic != $clientModel->pic) {
             try {
@@ -55,6 +56,7 @@ class ClientRepository extends BaseRepository implements ClientRepositoryInterfa
             'title' => trim($title),
             'description' => trim($description),
             'pic' => trim($path),
+            'link' => trim($link),
         ]);
 
         return $client;

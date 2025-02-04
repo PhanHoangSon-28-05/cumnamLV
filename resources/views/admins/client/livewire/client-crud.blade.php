@@ -88,6 +88,15 @@
                                     @enderror
                                 </div>
                                 <div class="row">
+                                    <label class="crud-label p-0 mt-2 mb-0">Link instagram:</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control crud-input" wire:model.lazy="link">
+                                    </div>
+                                    @error('link')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="row">
                                     <label class="crud-label p-0 mt-2 mb-0">Cover Image:</label>
                                     <div class="input-group">
                                         <input type="file" wire:model="pic" hidden id="cover_img">

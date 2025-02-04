@@ -17,6 +17,7 @@ class ClientTestimonials extends Model
         'stt',
         'title',
         'description',
-        'pic'
+        'pic',
+        'link'
     ];
 }

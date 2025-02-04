@@ -410,12 +410,14 @@
                     <div class="col-12 content container-fluid">
                         <div class="row text-center">
                             @foreach ($clientTestimonials as $value)
-                                <div class="col-md-4 col-12">
-                                    <img class="w-100" src="{{ route('storages.image', ['url' => $value->pic]) }}"
-                                        alt="">
-                                    <a class="" href="">{{ $value->title }}</a>
-                                    <p>{{ $value->description }}</p>
-                                </div>
+                                <a href="{{ $value->link }}">
+                                    <div class="col-md-4 col-12">
+                                        <img class="w-100" src="{{ route('storages.image', ['url' => $value->pic]) }}"
+                                            alt="">
+                                        <a class="">{{ $value->title }}</a>
+                                        <p>{{ $value->description }}</p>
+                                    </div>
+                                </a>
                             @endforeach
 
                         </div>

@@ -14,7 +14,8 @@ class ClientCrud extends Component
     use WithFileUploads;
     public $action,
         $client,
-        $pic;
+        $pic,
+        $link;
 
     #[Validate('required', message: 'No order number has been entered')]
     public $stt;
@@ -46,11 +47,13 @@ class ClientCrud extends Component
             $this->pic = $this->client->pic;
             $this->title = $this->client->title;
             $this->description = $this->client->description;
+            $this->link = $this->client->link;
         } else {
             $this->stt = '';
             $this->pic = '';
             $this->title = '';
             $this->description = '';
+            $this->link = '';
         }
 
         $this->resetErrorBag();
@@ -64,7 +67,7 @@ class ClientCrud extends Component
     public function create()
     {
         $this->validate();
-        $client = $this->clientRepo->createClient($this->stt, $this->title, $this->description, $this->pic);
+        $client = $this->clientRepo->createClient($this->stt, $this->title, $this->description, $this->pic, $this->link);
 
         $this->dispatch('refreshList')->to('clients.client-list');
         $this->dispatch('closeCrudClient');
@@ -74,7 +77,7 @@ class ClientCrud extends Component
     {
         $this->validate();
 
-        $this->clientRepo->updateClient($this->client, $this->stt, $this->title, $this->description, $this->pic);
+        $this->clientRepo->updateClient($this->client, $this->stt, $this->title, $this->description, $this->pic, $this->link);
 
         $this->dispatch('refreshList')->to('clients.client-list');
         $this->dispatch('closeCrudClient');
