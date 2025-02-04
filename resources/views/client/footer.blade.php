@@ -19,7 +19,7 @@
             <p class="text-uppercase">{{ $footer->content31 }}</p>
             <div class="mt-md-5 mt-2">
                 <input type="text">
-                <a href="" class="btn text-uppercase text-white bg-dark border border-dark">Sing up</a>
+                <a href="" class="btn text-uppercase mt-1">Sing up</a>
             </div>
         </div>
     </div>

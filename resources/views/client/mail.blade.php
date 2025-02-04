@@ -1,5 +1,5 @@
 <section id="appointment">
-    <div class="container-fluid my-5">
+    <div class="container my-5">
         <div class="row">
             <div class="col-md-6 col-12">
                 <img src="{{ URL::asset('view/style/images/hinh-3.jpg') }}" alt="">
@@ -23,7 +23,10 @@
                         <textarea class="message" type="text" name="message" required></textarea>
                     </div>
                     <div class="send text-center">
-                        <button type="submit" class="btn btn-primary rounded-pill mt-md-0 mt-2 text-white bg-dark border border-dark">
+                        {{-- <button type="submit" class="btn btn-primary rounded-pill mt-md-0 mt-2 text-white bg-dark border border-dark">
+                            SEND
+                        </button> --}}
+                        <button type="submit" class="btn btn-primary rounded-pill mt-md-0 mt-2">
                             SEND
                         </button>
                     </div>

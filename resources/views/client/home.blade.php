@@ -12,7 +12,8 @@
                         </div>
                     @endforeach
                 </div>
-                <button class="get-started-btn text-white bg-dark border border-dark">Get Started</button>
+                {{-- <button class="get-started-btn text-white bg-dark border border-dark">Get Started</button> --}}
+                <button class="get-started-btn"><span class="font-weight-bold">Get Started</span></button>
             </div>
             {{-- <div class="row">
                 <div class="col-6 pr-0 pr-md-2 image-left">
@@ -29,9 +30,9 @@
         <section class="container my-md-5 mb-0 mt-3 process-work">
             <div class="row step-row">
                 <div class="col-4">
-                    <div class="card pl-1 mb-2 mb-md-5 border-0">
+                    <div class="card pl-1 mb-2 mb-md-5 border-0 text-center">
                         <img src="{{ URL::asset('view/style/images/32acce8ca1f734b86113d04540b96eb8.svg') }}" alt="Measure"
-                            class="step-icon rounded ">
+                            class="step-icon rounded mx-auto d-block">
                         <h5 class="step-title text-uppercase">BEST PRICING</h5>
                         <p class="text-truncate">"Meals with my family are always extra special because of the
                             beautiful
@@ -40,9 +41,9 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="card pl-1 mb-2 mb-md-5 border-0">
+                    <div class="card pl-1 mb-2 mb-md-5 border-0 text-center">
                         <img src="{{ URL::asset('view/style/images/03bd4576649ef1d56e4816d333f80cfc.svg') }}" alt="Order"
-                            class="step-icon rounded ">
+                            class="step-icon rounded mx-auto d-block">
                         <h5 class="step-title text-uppercase">PERFECT FIT</h5>
                         <p class="text-truncate">"Very pleased with my new sofa--the quality is great, it's
                             comfortable,
@@ -52,9 +53,9 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="card pl-1 mb-2 mb-md-5 border-0">
+                    <div class="card pl-1 mb-2 mb-md-5 border-0 text-center">
                         <img src="{{ URL::asset('view/style/images/7e38d417227a447a118273e451275720.svg') }}" alt="Install"
-                            class="step-icon rounded ">
+                            class="step-icon rounded mx-auto d-block">
                         <h5 class="step-title text-uppercase">SATISFACTIO​N GUARENTEE</h5>
                         <p class="text-truncate">"I love how timeless my decor are. I just need to move things around
                             to
@@ -74,7 +75,8 @@
                     @endif
                     </p>
                     <div class="shop-now">
-                        <a class="text-white bg-dark border border-dark" href="#">LEARN ​MORE</a>
+                        {{-- <a class="text-white bg-dark border border-dark" href="#">LEARN ​MORE</a> --}}
+                        <a class="get-learnmore-btn" href="#">LEARN ​MORE</a>
                     </div>
                 </div>
                 <div class=" d-none d-sm-block">
@@ -360,7 +362,9 @@
                                 unlike ​any other.
                                 Inspired by the clean lines, cozy ​feel, and monochromatic palette of a ​modern
                                 minimalist home, we ensure every​single piece makes to last</p>
-                            <a class="btn rounded-pill d-none d-md-inline text-white bg-dark border border-dark">FR​EE
+                            {{-- <a class="btn rounded-pill d-none d-md-inline text-white bg-dark border border-dark">FR​EE
+                                SWATCHES</a> --}}
+                            <a class="btn rounded-pill d-none d-md-inline">FR​EE
                                 SWATCHES</a>
                         </div>
                         <div class="col-md-8 col-6">

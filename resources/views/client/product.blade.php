@@ -329,45 +329,53 @@
             <button class="pre-btn"><img src="{{ asset('view/style/images/arrow.png') }}" alt=""></button>
             <button class="nxt-btn"><img src="{{ asset('view/style/images/arrow.png') }}" alt=""></button>
             <div class="product-containers">
-                @foreach ($proRecommend as $proValue)
-                    <div class="product-card">
-                        <div class="product-image">
-                            @if ($proValue['pic'])
-                                <img src="{{ route('storages.image', ['url' => $proValue['pic']]) }}"
-                                    class="card-img-top product-image roduct-thumb" alt="">
-                            @else
-                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" id="logo"
-                                    class="logo">
-                            @endif
+                @if ($proRecommend)
 
-                            @if ($logo)
-                                <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" alt="Logo"
-                                    id="logo" class="logo">
-                            @else
-                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
-                                    id="logo" class="logo">
-                            @endif
+                    @foreach ($proRecommend as $proValue)
+                        <div class="product-card">
+                            <div class="product-image">
+                                <a href="{{ URL::route('home.products', $proValue['slug']) }}" class="boder-0">
+                                    @if ($proValue['pic'])
+                                        <img src="{{ route('storages.image', ['url' => $proValue['pic']]) }}"
+                                            class="card-img-top product-image roduct-thumb" alt="">
+                                    @else
+                                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" id="logo"
+                                            class="logo">
+                                    @endif
 
-                            <button class="card-btn text-white bg-dark border border-dark">come see</button>
+                                    @if ($logo)
+                                        <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" alt="Logo"
+                                            id="logo" class="logo">
+                                    @else
+                                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
+                                            id="logo" class="logo">
+                                    @endif
+
+                                    <button class="card-btn text-white bg-dark border border-dark">come see</button>
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <p class="product-short-description font-weight-bolder card-title text-uppercase">
+                                </p>
+                                <h2 class="product-brand card-text font-weight-bolder">{{ $proValue['name'] }}</h2>
+                                <h5 class=""></h5>
+                                @if ($proValue['fromOLD'])
+                                    <small class="text-muted">Starting
+                                        <span class="font-weight-bolder text-danger">${{ $proValue['from'] }}</span>
+                                        <del>${{ $proValue['fromOLD'] }}</del>
+                                    </small>
+                                @else
+                                    <small class="text-muted">From
+                                        <span
+                                            class="font-weight-bolder text-muted text-black">${{ $proValue['from'] }}</span>
+                                    </small>
+                                @endif
+                            </div>
                         </div>
-                        <div class="product-info">
-                            <p class="product-short-description font-weight-bolder card-title text-uppercase">
-                            </p>
-                            <h2 class="product-brand card-text font-weight-bolder">{{ $proValue['name'] }}</h2>
-                            <h5 class=""></h5>
-                            @if ($proValue['fromOLD'])
-                                <small class="text-muted">Starting
-                                    <span class="font-weight-bolder text-danger">${{ $proValue['from'] }}</span>
-                                    <del>${{ $proValue['fromOLD'] }}</del>
-                                </small>
-                            @else
-                                <small class="text-muted">From
-                                    <span class="font-weight-bolder text-muted text-black">${{ $proValue['from'] }}</span>
-                                </small>
-                            @endif
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @else
+                    Updating !!!!!
+                @endif
             </div>
         </section>
         <script src="{{ URL::asset('view/style/js/slider-product-recommend.js') }}"></script>
