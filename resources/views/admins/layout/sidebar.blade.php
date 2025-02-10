@@ -141,6 +141,15 @@
                     </li>
                 @endif
 
+                <li class="nav-item">
+                    <a href="{{ route('mail-config.index') }}" class="nav-link">
+                        <i class="fa-solid fa-at"></i>
+                        <span>
+                            Mail
+                        </span>
+                    </a>
+                </li>
+
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link"><i class="icon-color-sampler"></i> <span>Home</span></a>
                     <ul class="nav nav-group-sub" data-submenu-title="Home">

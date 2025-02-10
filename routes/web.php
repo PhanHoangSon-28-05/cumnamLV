@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CheckoutController;
 use App\Http\Controllers\Admin\OrderItemController;
+use App\Http\Controllers\Admin\MailConfigController;
 use App\Http\Controllers\Admin\HomeProductController;
 use App\Http\Controllers\Admin\ClientTestimonialsController;
 
@@ -61,6 +62,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('sliders', [SliderController::class, 'index'])->name(Slider::INDEX);
     Route::get('clients', [ClientTestimonialsController::class, 'index'])->name(ClientTestimonials::INDEX);
     Route::get('logos', [LogoController::class, 'index'])->name(Logo::INDEX);
+    Route::get('mail-config', [MailConfigController::class, 'index'])->name('mail-config.index');
 
     Route::prefix('products')->controller(ProductController::class)->name('products.')->group(function () {
         Route::get('/', 'index')->name('index');
