@@ -8,10 +8,12 @@ use App\Models\Category;
 use App\Models\OrderItem;
 use App\Mail\MailCunamhouse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Repositories\Post\PostRepositoryInterface;
 use App\Repositories\Logos\LogooRepositoryInterface;
 use App\Repositories\Client\ClientRepositoryInterface;
+use App\Repositories\Review\ReviewRepositoryInterface;
 use App\Repositories\ItemOrder\ItemRepositoryInterface;
 use App\Repositories\Sliders\SliderRepositoryInterface;
 use App\Repositories\Product\ProductRepositoryInterface;
@@ -20,7 +22,6 @@ use App\Repositories\Checkouts\CheckoutRepositoryInterface;
 use App\Repositories\ProductHome\ProductHomeRepositoryInterface;
 use App\Repositories\CheckoutProducts\CheckoutProductRepositoryInterface;
 use App\Repositories\CheckoutProductItems\CheckoutProductItemRepositoryInterface;
-use App\Repositories\Review\ReviewRepositoryInterface;
 
 class ViewController extends Controller
 {
@@ -122,7 +123,11 @@ class ViewController extends Controller
         ];
         $attributes = $request->all();
 
-        \Mail::to('hoangson28052002@gmail.com')->send(new MailCunamhouse($mailData));
+        $mail_config = DB::table('mail_configs')->first();
+        $username = $mail_config->username;
+        // $username = 'hoangson28052002@gmail.com';
+
+        \Mail::to($username)->send(new MailCunamhouse($mailData));
         return redirect()->route('home')->with('success', 'Your message has been sent successfully!');
     }
 
