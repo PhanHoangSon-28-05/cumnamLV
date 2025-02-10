@@ -27,6 +27,8 @@
 
     <!-- <link rel="stylesheet" href="style/slider/line/line.css"> -->
     @yield('style')
+    @livewireStyles
+    @stack('style')
 </head>
 
 <body>
@@ -49,7 +51,8 @@
     <script src="{{ URL::asset('view/style/js/slider.js') }}"></script>
 
     @yield('script')
-
+    @livewireScripts
+    @stack('script')
 </body>
 
 </html>

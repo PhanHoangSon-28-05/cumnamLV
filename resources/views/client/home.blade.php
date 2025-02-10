@@ -145,11 +145,24 @@
                                                 </div>
                                                 <h5 class="card-title">
                                                     <span class="float-left">{{ $value->name }}</span>
-                                                    @if ($value->promotion)
+                                                    @if ($value->fromOLD)
+                                                        <span
+                                                            class="badge badge-discount float-right text-uppercase">{{ ($value->from / $value->fromOLD) * 100 }}%
+                                                            OFF</span>
+                                                    @else
+                                                        {{-- <p class="card-text card-price">
+                                                            <small class="text-muted">From
+                                                                <span
+                                                                    class="font-weight-bolder h5 text-black">${{ $value->from }}</span>
+                                                            </small>
+                                                        </p> --}}
+                                                    @endif
+
+                                                    {{-- @if ($value->promotion)
                                                         <span
                                                             class="badge badge-discount float-right text-uppercase">{{ $value->promotion }}%
                                                             OFF</span>
-                                                    @endif
+                                                    @endif --}}
                                                 </h5>
                                                 <br>
                                                 <p class="card-text">{{ $value->description }}</p>

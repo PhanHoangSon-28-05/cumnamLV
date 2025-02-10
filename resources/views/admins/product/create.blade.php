@@ -65,7 +65,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="col-2 p-0">
+                            {{-- <div class="col-2 p-0">
                                 <label class="crud-label mx-1 p-0">Promotion ($):</label>
                                 <div class="p-0 input-group">
                                     <input type="text" class="form-control crud-input" name="promotion" value="0">
@@ -73,7 +73,7 @@
                                 @error('promotion')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="row px-3">

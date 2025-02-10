@@ -30,11 +30,11 @@
                 <div class="modal-header">
                     <h5 class="modal-title" wire:loading.remove wire:target="modalSetup">
                         @if ($action == 'create')
-                            Thêm mới logo
+                           Create Logo
                         @elseif ($action == 'update')
-                            Chỉnh sửa logo
+                            Update Logo
                         @elseif ($action == 'delete')
-                            Xác nhận logo
+                            Delete Logo
                         @endif
                     </h5>
                     {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -47,7 +47,7 @@
                         <div class="spinner-border spinner-border-sm" role="status">
                             <span class="sr-only">Loading...</span>
                         </div>
-                        <span class="ml-2">Vui lòng đợi</span>
+                        <span class="ml-2">Loading...</span>
                     </div>
                 </div>
 

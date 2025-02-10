@@ -148,42 +148,47 @@
                                 <div class="rating-row">
                                     <span>5 stars</span>
                                     <div class="progress">
-                                        <div class="progress-bar bg-dark" role="progressbar" style="width: 70%;"
+                                        <div class="progress-bar bg-dark" role="progressbar"
+                                            style="width: {{ ($showStars['star_5'] / $showStars['count']) * 100 }}%;"
                                             aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <span>4369</span>
+                                    <span>{{ $showStars['star_5'] }}</span>
                                 </div>
                                 <div class="rating-row">
                                     <span>4 stars</span>
                                     <div class="progress">
-                                        <div class="progress-bar bg-dark" role="progressbar" style="width: 10%;"
+                                        <div class="progress-bar bg-dark" role="progressbar"
+                                            style="width:  {{ ($showStars['star_4'] / $showStars['count']) * 100 }}%;"
                                             aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <span>517</span>
+                                    <span>{{ $showStars['star_4'] }}</span>
                                 </div>
                                 <div class="rating-row">
                                     <span>3 stars</span>
                                     <div class="progress">
-                                        <div class="progress-bar bg-dark" role="progressbar" style="width: 15%;"
+                                        <div class="progress-bar bg-dark" role="progressbar"
+                                            style="width:  {{ ($showStars['star_3'] / $showStars['count']) * 100 }}%;"
                                             aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <span>606</span>
+                                    <span>{{ $showStars['star_3'] }}</span>
                                 </div>
                                 <div class="rating-row">
                                     <span>2 stars</span>
                                     <div class="progress">
-                                        <div class="progress-bar bg-dark" role="progressbar" style="width: 12%;"
+                                        <div class="progress-bar bg-dark" role="progressbar"
+                                            style="width:  {{ ($showStars['star_2'] / $showStars['count']) * 100 }}%;"
                                             aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <span>699</span>
+                                    <span>{{ $showStars['star_2'] }}</span>
                                 </div>
                                 <div class="rating-row">
                                     <span>1 star</span>
                                     <div class="progress">
-                                        <div class="progress-bar bg-dark" role="progressbar" style="width: 20%;"
+                                        <div class="progress-bar bg-dark" role="progressbar"
+                                            style="width:  {{ ($showStars['star_1'] / $showStars['count']) * 100 }}%;"
                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <span>875</span>
+                                    <span>{{ $showStars['star_1'] }}</span>
                                 </div>
                             </div>
 
@@ -191,16 +196,39 @@
                             <div class="col-md-6 text-center">
                                 <h5>Overall Rating</h5>
                                 <div class="overall-rating">
-                                    <h1>4.0</h1>
-                                    <p class="stars">
-                                        ★★★★☆
+                                    <h1>{{ $showStars['sum'] }}</h1>
+                                    <p class="stars comment-stars" data-rating="{{ $showStars['sum'] }}">
                                     </p>
-                                    <p>7066 Reviews</p>
+                                    <p>{{ $showStars['count'] }} Reviews</p>
                                 </div>
                             </div>
                         </div>
+                        <div class="row text-center mt-2">
+                            <div class="col-4"></div>
+                            <div class="col-4 ">
+                                {{-- <a href="" class=""><span class="">
+                                        <i class="fa-regular fa-paste"></i> Write a
+                                        review</span>
+                                </a> --}}
+                                <div class=" text-center">
+                                    <a type="button" class="btn d-block" data-toggle="modal"
+                                        data-target="#reviewcontent">
+                                        <i class="fa-solid fa-angles-down"></i>
+                                        <span class="d-block">View ALL</span>
+                                    </a>
+                                </div>
+                                <div class="">
+                                    <button type="button" class="text-capitalize review" data-toggle="modal"
+                                        data-target="#imageProductReview" title="List Image">
+                                        <i class="fa-regular fa-images"></i> Write a review
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
+                        <livewire:client.review product_id="{{ $product->id }}" />
+                        <livewire:client.reviewcontent product_id="{{ $product->id }}" />
                     </div>
-
                     <!-- Tab Materials + Care -->
                     <div class="tab-pane fade bg-white border-0" id="materials" role="tabpanel"
                         aria-labelledby="materials-tab">
@@ -405,6 +433,28 @@
                 document.getElementById(firstColorName).style.display = "block";
                 document.querySelector(".color-option img").style.border = "double black";
             @endif
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".comment-stars").forEach(function(starContainer) {
+                let rating = parseFloat(starContainer.getAttribute("data-rating"));
+                let fullStars = Math.floor(rating); // Số sao đầy
+                let halfStar = rating % 1 !== 0; // Kiểm tra có sao nửa không
+                let emptyStars = 5 - fullStars - (halfStar ? 1 : 0); // Số sao rỗng còn lại
+
+                let starsHtml = "";
+                for (let i = 0; i < fullStars; i++) {
+                    starsHtml += '<i class="fa fa-star"></i>';
+                }
+                if (halfStar) {
+                    starsHtml += '<i class="fa fa-star-half-alt"></i>';
+                }
+                for (let i = 0; i < emptyStars; i++) {
+                    starsHtml += '<i class="fa-regular fa-star"></i>';
+                }
+                starContainer.innerHTML = starsHtml;
+            });
         });
     </script>
 @endsection

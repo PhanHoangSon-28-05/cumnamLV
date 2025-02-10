@@ -21,7 +21,7 @@
                     <div class="spinner-border spinner-border-sm" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
-                    <span class="ml-2">Vui lòng đợi</span>
+                    <span class="ml-2">Loading...</span>
                 </div>
             </div>
             <form wire:submit.prevent="{{ $action }}">

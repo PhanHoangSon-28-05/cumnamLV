@@ -25,9 +25,10 @@
                         <div class="col-md-8 col-12 mt-2 mt-md-0">
                             <h5 class="font-weight-bold">{{ $cart_item['name'] }}
                                 <span class="float-right">
-                                    <select class="rounded-pill" wire:model.live="cart_items.{{ $key }}.amount">
+                                    <select class="rounded-pill"
+                                        wire:model.live="cart_items.{{ $key }}.amount">
                                         @for ($i = 1; $i <= 100; $i++)
-                                        <option value="{{ $i }}">{{ $i }}</option>
+                                            <option value="{{ $i }}">{{ $i }}</option>
                                         @endfor
                                     </select>
                                 </span>
@@ -50,7 +51,8 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <a href="#!" class="text-danger" wire:click.prevent="removeItem({{ $key }})">Remove</a>
+                            <a href="#!" class="text-danger"
+                                wire:click.prevent="removeItem({{ $key }})">Remove</a>
                             {{-- <a href="{{ route('shopping-cart.remove', ['index' => $key]) }}"
                                 class="text-danger">Remove</a> --}}
                         </div>
@@ -64,8 +66,7 @@
         <!-- Summary Section -->
         <div class="col-md-4 col-12">
             <div class="border-bottom pb-2">
-                <p class="mb-1"><strong>Subtotal</strong> <span
-                        class="float-right">${{ $total_price }}</span></p>
+                <p class="mb-1"><strong>Subtotal</strong> <span class="float-right">${{ $total_price }}</span></p>
                 <p class="mb-1"><strong>Shipping</strong> <span class="float-right">Shipping &amp; taxes
                         calculated at checkout</span></p>
             </div>
@@ -77,8 +78,8 @@
                     <a href="#" class="text-decoration-none">Check your purchasing power</a>
                 </p>
             </div>
-            <button class="btn btn-dark btn-block" data-toggle="modal" data-target="#checkoutModal" 
-            @disabled($cart_items == null || count($cart_items) <= 0)>
+            <button class="btn btn-dark btn-block" data-toggle="modal" data-target="#checkoutModal"
+                @disabled($cart_items == null || count($cart_items) <= 0)>
                 CHECKOUT
             </button>
         </div>

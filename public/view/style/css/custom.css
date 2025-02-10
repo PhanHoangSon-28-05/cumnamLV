@@ -50,7 +50,7 @@ ul {
 }
 
 #header .name-logo .logo {
-    width: 100%;
+    width: 310px;
     height: 100px;
     object-fit: cover;
     object-position: 50% 50%;
@@ -986,8 +986,6 @@ footer .btn:hover {
     display: none;
 }
 
-
-
 #product-features {
     font-family: YACkoA9eHeY-0;
 }
@@ -1045,6 +1043,23 @@ footer .btn:hover {
 
 #product-features .overall-rating p {
     margin: 0;
+}
+
+#product-features .review {
+    background-color: #000000;
+    color: #ffffff;
+    width: 200px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 1.0rem;
+    opacity: 0.7;
+    font-weight: bold;
+}
+
+#product-features .review:hover {
+    background-color: #ffffff;
+    color: black;
+    opacity: unset;
 }
 
 /* #recommended-product {

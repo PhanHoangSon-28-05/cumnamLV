@@ -71,7 +71,8 @@
                                         <label for="{{ 'option' . $value->id }}" class="radio-img-label">
                                             <img src="{{ asset('storage/' . $value->fabriccolor) }}"
                                                 alt="{{ $value->name }}">
-                                            <span class="text-dark">{{ $value->name ?? $value->color->name }}</span> </br>
+                                            <span class="text-dark">{{ $value->name ?? $value->color->name }}</span>
+                                            </br>
                                             @if ($value->priceNew == 0)
                                             @else
                                                 <span class="text-dark"
@@ -107,19 +108,20 @@
         <div class="col-3 px-0 mx-0 size-select">
             <select class="w-100" wire:model.live="amount">
                 @for ($i = 1; $i <= 100; $i++)
-                <option value="{{ $i }}">{{ $i }}</option>
+                    <option value="{{ $i }}">{{ $i }}</option>
                 @endfor
             </select>
         </div>
         <div class="col-9 pr-0">
-            @if ((($width1 + $width2) * ($height1 + $height2)) > 0)
-            <a id="customizeBuyButton" class="btn w-100 p-2 text-white bg-dark border border-dark" wire:click.prevent="add">
-                Add to bag
-            </a>
+            @if (($width1 + $width2) * ($height1 + $height2) > 0)
+                <a id="customizeBuyButton" class="btn w-100 p-2 text-white bg-dark border border-dark"
+                    wire:click.prevent="add">
+                    Add to bag
+                </a>
             @else
-            <a id="customizeBuyButton" class="btn w-100 p-2 text-white bg-dark border border-dark" disabled>
-                Add to bag
-            </a>
+                <a id="customizeBuyButton" class="btn w-100 p-2 text-white bg-dark border border-dark" disabled>
+                    Add to bag
+                </a>
             @endif
         </div>
     </div>

@@ -20,6 +20,7 @@ use App\Repositories\Checkouts\CheckoutRepositoryInterface;
 use App\Repositories\ProductHome\ProductHomeRepositoryInterface;
 use App\Repositories\CheckoutProducts\CheckoutProductRepositoryInterface;
 use App\Repositories\CheckoutProductItems\CheckoutProductItemRepositoryInterface;
+use App\Repositories\Review\ReviewRepositoryInterface;
 
 class ViewController extends Controller
 {
@@ -34,6 +35,7 @@ class ViewController extends Controller
     protected $checkoutRepo;
     protected $checkoutProductRepo;
     protected $checkoutProductItemRepo;
+    protected $reviewRepo;
 
     public function __construct(
         CategoryRepositoryInterface $cateRepo,
@@ -47,6 +49,7 @@ class ViewController extends Controller
         CheckoutRepositoryInterface $checkoutRepo,
         CheckoutProductRepositoryInterface $checkoutProductRepo,
         CheckoutProductItemRepositoryInterface $checkoutProductItemRepo,
+        ReviewRepositoryInterface $reviewRepo,
     ) {
         $this->cateRepo = $cateRepo;
         $this->productRepo = $productRepo;
@@ -59,6 +62,7 @@ class ViewController extends Controller
         $this->checkoutRepo = $checkoutRepo;
         $this->checkoutProductRepo = $checkoutProductRepo;
         $this->checkoutProductItemRepo = $checkoutProductItemRepo;
+        $this->reviewRepo = $reviewRepo;
     }
 
     public function get()
@@ -170,10 +174,13 @@ class ViewController extends Controller
         $product = $this->productRepo->getProductSlug($slug);
         $colorPros = $this->itemRepo->getColorProduct($product->id);
         $proRecommend = $this->productRepo->getProRecommend($slug);
+        $showStars = $this->reviewRepo->showStar($product->id);
+        // dd($showStars);
         $attributes = [
             'product' => $product,
             'colorPros' => $colorPros,
             'proRecommend' => $proRecommend,
+            'showStars' => $showStars,
         ];
 
         $result = array_merge($attributes, $this->get());

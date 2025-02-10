@@ -73,6 +73,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\CheckoutProductItems\CheckoutProductItemRepositoryInterface::class,
             \App\Repositories\CheckoutProductItems\CheckoutProductItemRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\Review\ReviewRepositoryInterface::class,
+            \App\Repositories\Review\ReviewRepository::class
+        );
     }
 
     /**

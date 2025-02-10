@@ -79,7 +79,12 @@
                                     <tr class="odd">
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="sorting_1">{{ $value->name }}</td>
-                                        <td>{{ $value->cate->name }}</td>
+                                        @if ($value->cate->name)
+                                            <td>{{ $value->cate->name }}</td>
+                                        @else
+                                            <td>There are no categories!!!</td>
+                                        @endif
+
                                         <td scope="row" class="text-center">
                                             <button type="button" class="btn btn-sm rounded-0 btn-success text-uppercase"
                                                 data-toggle="modal" data-target="#imageProduct"
