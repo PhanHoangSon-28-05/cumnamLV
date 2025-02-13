@@ -76,7 +76,6 @@ class ViewController extends Controller
         $cateChilds = $this->cateRepo->getremoveParent();
         $products = $this->productRepo->getAll();
         $post = $this->postRepo->getAll();
-
         return [
             //Header
             'header' => $header,
@@ -267,5 +266,12 @@ class ViewController extends Controller
         Session::forget('shopping-cart');
 
         return redirect()->route('shopping-cart');
+    }
+
+    public function aboutus()
+    {
+        $attributes = [];
+        $result = array_merge($attributes, $this->get());
+        return view('client.catergory-about-us', $result);
     }
 }

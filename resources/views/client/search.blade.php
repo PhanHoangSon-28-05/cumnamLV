@@ -38,24 +38,25 @@
                         </li>
                     @endforeach
                     @foreach ($posts as $post)
-                        <li class="custom-list-item text-left text-uppercase mb-1 border-bottom border-dark pb-1">
-                            <a href="{{ URL::route('home.post', ['slug' => $post->category->slug, 'post' => $post->slug]) }}"
-                                class="text-body text-truncate" style="max-width: 250px;">{{ $post->name }}</a>
-                            @if ($post->pic != 'null')
-                                <img src="{{ route('storages.image', ['url' => $post->pic]) }}" class="ml-auto"
-                                    style="width: 100px; height: auto;">
-                            @else
-                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" class="ml-auto"
-                                    style="width: 150px; height: auto;">
-                            @endif
-                        </li>
+                        @if ($post->category)
+                            <li class="custom-list-item text-left text-uppercase mb-1 border-bottom border-dark pb-1">
+                                <a href="{{ URL::route('home.post', ['slug' => $post->category->slug, 'post' => $post->slug]) }}"
+                                    class="text-body text-truncate" style="max-width: 250px;">{{ $post->name }}</a>
+                                @if ($post->pic != 'null')
+                                    <img src="{{ route('storages.image', ['url' => $post->pic]) }}" class="ml-auto"
+                                        style="width: 100px; height: auto;">
+                                @else
+                                    <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" class="ml-auto"
+                                        style="width: 150px; height: auto;">
+                                @endif
+                            </li>
+                        @endif
                     @endforeach
                 </ul>
             </div>
         </div>
     </div>
 </div>
-
 <script>
     function myFunction() {
         // Declare variables

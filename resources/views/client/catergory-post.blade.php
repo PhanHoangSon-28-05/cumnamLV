@@ -32,7 +32,6 @@
                                 @if ($cate->description)
                                     {{ $cate->description }}
                                     </br>
-                                    Comes standard with Metal Valance.
                                 @else
                                     The content is being updated.
                                 @endif

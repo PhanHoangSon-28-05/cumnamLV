@@ -1357,3 +1357,33 @@ footer .btn:hover {
     text-decoration: none;
     color: #007bff;
 }
+
+#about-us {
+    font-family: YACkoA9eHeY-0;
+}
+
+#about-us .image-content-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+#about-us .image-content-container img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+}
+
+#about-us .overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* padding: 20px; */
+    border-radius: 8px;
+    text-align: center;
+    max-width: 80%;
+    color: white;
+}

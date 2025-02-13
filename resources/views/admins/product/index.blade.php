@@ -79,7 +79,7 @@
                                     <tr class="odd">
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="sorting_1">{{ $value->name }}</td>
-                                        @if ($value->cate->name)
+                                        @if ($value->cate)
                                             <td>{{ $value->cate->name }}</td>
                                         @else
                                             <td>There are no categories!!!</td>

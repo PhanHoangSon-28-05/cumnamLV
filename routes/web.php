@@ -40,6 +40,7 @@ Route::get('category-post/{slug}/{post}', [ViewController::class, 'post'])->name
 Route::get('/product/{slug}', [ViewController::class, 'products'])->name('home.products');
 Route::get('/product/{slug}/order-item', [ViewController::class, 'productCustomizeBuy'])->name('home.order');
 Route::post('send-mail', [ViewController::class, 'sendmail'])->name('send-email');
+Route::get('/about-us', [ViewController::class, 'aboutus']);
 
 Route::get('/show/image', [ImageController::class, 'getImage'])->name('storages.image');
 
