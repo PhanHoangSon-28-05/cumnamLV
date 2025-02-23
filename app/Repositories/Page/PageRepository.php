@@ -15,6 +15,12 @@ class PageRepository extends BaseRepository implements PageRepositoryInterface
         return \App\Models\Page::class;
     }
 
+    public function getId()
+    {
+        $id = $this->model->pluck('id_cate')->toArray();
+        return $id;
+    }
+
     public function createPage($attributes = [])
     {
         foreach ($attributes as $value) {

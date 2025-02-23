@@ -27,10 +27,14 @@ class PageCrud extends Component
 
     public function render()
     {
+        $pages = $this->pageRepo->getId();
         $categories = Category::all();
         return view(
             'admins.page.livewire.page-crud',
-            ['categories' => $categories]
+            [
+                'categories' => $categories,
+                'pages' => $pages,
+            ]
         );
     }
 }

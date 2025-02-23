@@ -24,11 +24,13 @@
                     <div class="container">
                         <div class="row">
                             @foreach ($categories as $category)
-                                <div class="form-check form-check-inline col-4 pr-0 mr-0">
-                                    <input class="form-check-input" type="checkbox" value="{{ $category->id }}"
-                                        wire:model="listcategories">
-                                    <label class="form-check-label h5 text-capitalize">{{ $category->name }}</label>
-                                </div>
+                                @if (!in_array($category->id, $pages))
+                                    <div class="form-check form-check-inline col-4 pr-0 mr-0">
+                                        <input class="form-check-input" type="checkbox" value="{{ $category->id }}"
+                                            wire:model="listcategories">
+                                        <label class="form-check-label h5 text-capitalize">{{ $category->name }}</label>
+                                    </div>
+                                @endif
                             @endforeach
                         </div>
                         @error('listcategories')
