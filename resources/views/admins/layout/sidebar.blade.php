@@ -140,6 +140,14 @@
                         </a>
                     </li>
                 @endif
+                @if (Route::has(\App\Models\Page::INDEX))
+                    <li class="nav-item">
+                        <a href="{{ route(\App\Models\Page::INDEX) }}" class="nav-link">
+                            <i class="fa-solid fa-pager"></i>
+                            <span>Page</span>
+                        </a>
+                    </li>
+                @endif
 
                 <li class="nav-item">
                     <a href="{{ route('mail-config.index') }}" class="nav-link">

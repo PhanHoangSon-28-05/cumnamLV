@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\OrderItemController;
 use App\Http\Controllers\Admin\MailConfigController;
 use App\Http\Controllers\Admin\HomeProductController;
 use App\Http\Controllers\Admin\ClientTestimonialsController;
+use App\Http\Controllers\Admin\PageController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -69,7 +70,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
         Route::post('/', 'store')->name('store');
-        // Route::get('/{coupon}', 'show')->name('show');
         Route::get('/{coupon}/edit', 'edit')->name('edit');
         Route::put('/{coupon}', 'update')->name('update');
         Route::get('/{coupon}/item', 'item')->name('item');
@@ -80,7 +80,16 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
         Route::post('/', 'store')->name('store');
-        // Route::get('/{coupon}', 'show')->name('show');
+        Route::get('/{coupon}/edit', 'edit')->name('edit');
+        Route::put('/{coupon}', 'update')->name('update');
+        Route::get('/{coupon}/item', 'item')->name('item');
+        Route::get('/{coupon}', 'destroy')->name('destroy');
+    });
+
+    Route::prefix('pages')->controller(PageController::class)->name('pages.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        // Route::get('/create', 'create')->name('create');
+        // Route::post('/', 'store')->name('store');
         Route::get('/{coupon}/edit', 'edit')->name('edit');
         Route::put('/{coupon}', 'update')->name('update');
         Route::get('/{coupon}/item', 'item')->name('item');

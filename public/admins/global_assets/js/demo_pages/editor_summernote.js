@@ -10,7 +10,7 @@
 // Setup module
 // ------------------------------
 
-var Summernote = function() {
+var Summernote = function () {
 
 
     //
@@ -18,7 +18,7 @@ var Summernote = function() {
     //
 
     // Summernote
-    var _componentSummernote = function() {
+    var _componentSummernote = function () {
         if (!$().summernote) {
             console.warn('Warning - summernote.min.js is not loaded.');
             return;
@@ -29,7 +29,11 @@ var Summernote = function() {
 
         // Default initialization
         $('.summernote').summernote();
+        $('#editor-full').summernote();
         $('#editor-full1').summernote();
+        $('#editor-full2').summernote();
+        $('#editor-full3').summernote();
+        $('#editor-full4').summernote();
 
         // Control editor height
         $('.summernote-height').summernote({
@@ -46,12 +50,12 @@ var Summernote = function() {
         // ------------------------------
 
         // Edit
-        $('#edit').on('click', function() {
-            $('.click2edit').summernote({focus: true});
+        $('#edit').on('click', function () {
+            $('.click2edit').summernote({ focus: true });
         })
 
         // Save
-        $('#save').on('click', function() {
+        $('#save').on('click', function () {
             var aHTML = $('.click2edit').summernote('code');
             $('.click2edit').summernote('destroy');
         });
@@ -63,7 +67,7 @@ var Summernote = function() {
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentSummernote();
         }
     }
@@ -73,6 +77,6 @@ var Summernote = function() {
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     Summernote.init();
 });

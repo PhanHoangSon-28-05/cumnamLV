@@ -77,6 +77,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Review\ReviewRepositoryInterface::class,
             \App\Repositories\Review\ReviewRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\Page\PageRepositoryInterface::class,
+            \App\Repositories\Page\PageRepository::class
+        );
     }
 
     /**
@@ -86,7 +90,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // \URL::forceScheme('https');
 
-        Collection::macro('paginate', function($perPage, $total = null, $page = null, $pageName = 'page'): LengthAwarePaginator {
+        Collection::macro('paginate', function ($perPage, $total = null, $page = null, $pageName = 'page'): LengthAwarePaginator {
             $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
 
             return new LengthAwarePaginator(

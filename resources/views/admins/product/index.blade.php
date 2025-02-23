@@ -46,7 +46,7 @@
             </div>
 
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
-                <div class="datatable-header">
+                {{-- <div class="datatable-header">
                     <div id="DataTables_Table_0_filter" class="dataTables_filter"><label><span>Filter:</span> <input
                                 type="search" class="" placeholder="Type to filter..."
                                 aria-controls="DataTables_Table_0"></label></div>
@@ -57,7 +57,7 @@
                                 <option value="50">50</option>
                                 <option value="100">100</option>
                             </select></label></div>
-                </div>
+                </div> --}}
                 <div class="datatable-scroll">
                     <table class="table table-striped" id="DataTables_Table_0" role="grid"
                         aria-describedby="DataTables_Table_0_info">
