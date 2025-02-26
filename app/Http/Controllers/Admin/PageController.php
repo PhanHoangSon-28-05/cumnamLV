@@ -26,18 +26,15 @@ class PageController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $request->validate([
-                'description' => 'string',
-                'paragraph1' => 'string',
-                'paragraph2' => 'string',
-                'paragraph3' => 'string',
+            $validatedData = $request->validate([
+                'description' => 'nullable|string',
+                'content' => 'nullable',
             ]);
-            $attributes = $request->all();
-            $page = $this->pageRepo->updatePage($id, $attributes);
+            $page = $this->pageRepo->updatePage($id, $validatedData);
 
-            return redirect()->route('pages.index')->with('success', 'Page Update Successfully');
+            return response()->json(['success' => true]);
         } catch (\Throwable $th) {
-            return redirect()->route('pages.index')->with('fail' . $th->getMessage());
+            return response()->json(['success' => false, 'message' => $th->getMessage()]);
         }
     }
 

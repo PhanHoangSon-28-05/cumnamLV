@@ -17,9 +17,8 @@ class Page extends Model
     protected $fillable = [
         'id_cate',
         'description',
-        'paragraph1',
-        'paragraph2',
-        'paragraph3',
+        'content',
+        'image',
     ];
 
     public function cate(): BelongsTo

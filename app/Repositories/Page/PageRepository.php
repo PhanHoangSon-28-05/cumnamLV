@@ -63,10 +63,16 @@ class PageRepository extends BaseRepository implements PageRepositoryInterface
         return false;
     }
 
-    // public function selectPage($id, $image)
-    // {
-    //     $pageModel = $this->model->find($id);
-    //     $pageModel->update(['pic' => $image]);
-    //     return $pageModel;
-    // }
+    public function selectImagePage($id, $image)
+    {
+        $pageModel = $this->model->find($id);
+        $pageModel->update(['image' => $image]);
+        return $pageModel;
+    }
+
+    public function getSlug($id)
+    {
+        $page = $this->model->where('id_cate', $id)->first();
+        return $page;
+    }
 }

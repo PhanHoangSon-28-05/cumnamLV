@@ -21,6 +21,12 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return $this->model->select('Category_name')->take(5)->get();
     }
 
+    public function getSlug($slug)
+    {
+        $cate = $this->model->where('slug', $slug)->first();
+        return $cate;
+    }
+
     public function createCate($stt, $parent_id, $name, $description, $content, $image)
     {
         $stt = $stt ?? 0;

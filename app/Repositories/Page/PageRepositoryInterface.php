@@ -11,5 +11,7 @@ interface PageRepositoryInterface extends RepositoryInterface
     public function createPage($attributes = []);
     public function updatePage($id, $attributes = []);
     public function UploadImagePage($id, $images);
-    // public function selectPage($id, $image);
+    public function selectImagePage($id, $image);
+
+    public function getSlug($id);
 }

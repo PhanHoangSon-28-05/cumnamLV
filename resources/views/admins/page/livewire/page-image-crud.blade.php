@@ -46,7 +46,7 @@
                                                     <img src="{{ route('storages.image', ['url' => $image->image]) }}"
                                                         alt="" width="100px">
                                                     <div class="d-flex flex-row bd-highlight">
-                                                        @if ($image->image != $page->pic)
+                                                        @if ($image->image != $page->image)
                                                             <button type="button"
                                                                 class="btn btn-sm btn-success bd-highlight"
                                                                 wire:click="selectImage({{ $image->id }})">

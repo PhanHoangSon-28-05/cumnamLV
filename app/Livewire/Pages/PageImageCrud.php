@@ -49,15 +49,15 @@ class PageImageCrud extends Component
         $this->imagesData = ImagePage::where('page_id', $this->page_id)->get();
     }
 
-    // public function selectImage($id)
-    // {
-    //     $img = ImagePage::find($id)->image;
-    //     $pageImage = $this->pageRepo->selectPage($this->page_id, $img);
+    public function selectImage($id)
+    {
+        $img = ImagePage::find($id)->image;
+        $pageImage = $this->pageRepo->selectImagePage($this->page_id, $img);
 
-    //     $this->imagesData = ImagePage::where('page_id', $this->page_id)->get();
+        $this->imagesData = ImagePage::where('page_id', $this->page_id)->get();
 
-    //     $this->page = $this->pageRepo->find($this->page_id);
-    // }
+        $this->page = $this->pageRepo->find($this->page_id);
+    }
 
 
     public function deleteImage($id)

@@ -22,6 +22,7 @@ use App\Repositories\Checkouts\CheckoutRepositoryInterface;
 use App\Repositories\ProductHome\ProductHomeRepositoryInterface;
 use App\Repositories\CheckoutProducts\CheckoutProductRepositoryInterface;
 use App\Repositories\CheckoutProductItems\CheckoutProductItemRepositoryInterface;
+use App\Repositories\Page\PageRepositoryInterface;
 
 class ViewController extends Controller
 {
@@ -37,6 +38,7 @@ class ViewController extends Controller
     protected $checkoutProductRepo;
     protected $checkoutProductItemRepo;
     protected $reviewRepo;
+    protected $pageRepo;
 
     public function __construct(
         CategoryRepositoryInterface $cateRepo,
@@ -51,6 +53,7 @@ class ViewController extends Controller
         CheckoutProductRepositoryInterface $checkoutProductRepo,
         CheckoutProductItemRepositoryInterface $checkoutProductItemRepo,
         ReviewRepositoryInterface $reviewRepo,
+        PageRepositoryInterface $pageRepo,
     ) {
         $this->cateRepo = $cateRepo;
         $this->productRepo = $productRepo;
@@ -64,6 +67,7 @@ class ViewController extends Controller
         $this->checkoutProductRepo = $checkoutProductRepo;
         $this->checkoutProductItemRepo = $checkoutProductItemRepo;
         $this->reviewRepo = $reviewRepo;
+        $this->pageRepo = $pageRepo;
     }
 
     public function get()
@@ -76,6 +80,8 @@ class ViewController extends Controller
         $cateChilds = $this->cateRepo->getremoveParent();
         $products = $this->productRepo->getAll();
         $post = $this->postRepo->getAll();
+        $page = $this->pageRepo->getId();
+
         return [
             //Header
             'header' => $header,
@@ -85,6 +91,7 @@ class ViewController extends Controller
             'cateChilds' => $cateChilds,
             'products' => $products,
             'posts' => $post,
+            'pages' => $page,
             // /Header
 
             'footer' => $footer,
@@ -268,10 +275,15 @@ class ViewController extends Controller
         return redirect()->route('shopping-cart');
     }
 
-    public function aboutus()
+    public function pages($slug)
     {
         $attributes = [];
+        $cate = $this->cateRepo->getSlug($slug);
+        $page = $this->pageRepo->getSlug($cate->id);
+        $attributes = [
+            'page' => $page,
+        ];
         $result = array_merge($attributes, $this->get());
-        return view('client.catergory-about-us', $result);
+        return view('client.catergory-page', $result);
     }
 }

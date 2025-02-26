@@ -16,34 +16,36 @@
                     <!-- Container riêng cho hình ảnh và nội dung -->
                     <div class="image-content-container position-relative">
                         <!-- Hình ảnh -->
-                        {{-- @if ($cate->image != null)
-                            <img src="{{ URL::route('storages.image', ['url' => $cate->image]) }}"alt="Category Image"
+                        @if ($page->image != null)
+                            <img src="{{ URL::route('storages.image', ['url' => $page->image]) }}"alt="Category Image"
                                 class="img-fluid w-100 rounded">
                         @else
                             <img src="{{ URL::asset('images/placeholder/600x400.png') }}" alt="Category Image"
                                 class="img-fluid w-100 rounded">
-                        @endif --}}
+                        @endif
 
-                        <img src="{{ URL::asset('images/placeholder/600x400.png') }}" alt="Category Image"
-                            class="img-fluid w-100 rounded">
+                        {{-- <img src="{{ URL::asset('images/placeholder/600x400.png') }}" alt="Category Image"
+                            class="img-fluid w-100 rounded"> --}}
                         <!-- Nội dung chữ nằm đè lên ảnh -->
                         <div class="overlay-content text-body py-5">
-                            {{-- <p class="font-weight-bolder h3">{{ $cate->name }}</p> --}}
-                            <p class="font-weight-bolder h3"> Comes standard with Metal Valance.</p>
-                            {{-- <p class="">
-                                @if ($cate->description)
-                                    {{ $cate->description }}
+                            <p class="font-weight-bolder h3">{{ $page->name }}</p>
+                            {{-- <p class="font-weight-bolder h3"> Comes standard with Metal Valance.</p> --}}
+                            <p class="">
+                                @if ($page->description)
+                                    {{ $page->description }}
                                     </br>
-                                    Comes standard with Metal Valance.
                                 @else
                                     The content is being updated.
                                 @endif
-                            </p> --}}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="container">
+                {!! $page->content !!}
+            </div>
 
         </section>
     </main>

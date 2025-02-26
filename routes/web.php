@@ -41,7 +41,7 @@ Route::get('category-post/{slug}/{post}', [ViewController::class, 'post'])->name
 Route::get('/product/{slug}', [ViewController::class, 'products'])->name('home.products');
 Route::get('/product/{slug}/order-item', [ViewController::class, 'productCustomizeBuy'])->name('home.order');
 Route::post('send-mail', [ViewController::class, 'sendmail'])->name('send-email');
-Route::get('/about-us', [ViewController::class, 'aboutus']);
+Route::get('/pages/{slug}', [ViewController::class, 'pages'])->name('home.pages');
 
 Route::get('/show/image', [ImageController::class, 'getImage'])->name('storages.image');
 
@@ -91,7 +91,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         // Route::get('/create', 'create')->name('create');
         // Route::post('/', 'store')->name('store');
         Route::get('/{coupon}/edit', 'edit')->name('edit');
-        Route::put('/{coupon}', 'update')->name('update');
+        Route::put('{id}/save-page', 'update')->name('update');
+        // Route::put('/{coupon}', 'update')->name('update');
         Route::get('/{coupon}/item', 'item')->name('item');
         Route::get('/{coupon}', 'destroy')->name('destroy');
     });

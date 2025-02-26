@@ -60,7 +60,8 @@
                     <ul class="navbar-nav">
                         @foreach ($cates as $cate)
                             <li class="nav-item dropdown" id="menu-{{ $cate->slug }}">
-                                <a class="nav-link dropdown-toggle text-uppercase text-body" href="#"
+                                <a class="nav-link dropdown-toggle text-uppercase text-body"
+                                    href="@if (in_array($cate->id, $pages)) {{ URL::route('home.pages', $cate->slug) }} @endif"
                                     role="button" data-toggle="dropdown" aria-expanded="false">
                                     {{ $cate->name }}
                                     @if ($cate->slug != 'how-to')
@@ -134,12 +135,19 @@
     </div>
 </div>
 
+
+{{-- Child Computer --}}
 @foreach ($cates as $cate)
     @if ($cate->slug != 'how-to')
         <div class="display menu-dropdown" id="{{ $cate->slug }}-content">
             <div class="containers" id="containers">
                 <div class="menu">
-                    <h2 class="text-uppercase">{{ $cate->name }}</h2>
+                    @if (in_array($cate->id, $pages))
+                        <h2 class="text-uppercase"><a class="text-black"
+                                href="{{ URL::route('home.pages', $cate->slug) }}">{{ $cate->name }}</a></h2>
+                    @else
+                        <h2 class="text-uppercase text-black">{{ $cate->name }}</h2>
+                    @endif
                     <ul>
                         @include('client.partials.catergoryChild', [
                             'parentId' => $cate->id,

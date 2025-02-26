@@ -8,6 +8,7 @@ interface CategoryRepositoryInterface extends RepositoryInterface
 {
     //ví dụ: lấy 5 sản phầm đầu tiên
     public function getCategory();
+    public function getSlug($slug);
     public function createCate($stt, $parent_id, $name, $description, $content, $image);
     public function updateCate($model, $stt, $parent_id, $name, $description, $content, $image);
     public function selectPost($id);
