@@ -1,6 +1,14 @@
 @extends('admins.layout.master')
 @section('title', 'Product')
 
+@push('style')
+<style>
+    .editor {
+        display: none;
+    }
+</style>
+@endpush
+
 @section('content')
     <!-- Page header -->
     <div class="page-header page-header-light">
@@ -23,7 +31,7 @@
         </div>
     </div>
     <div class="content">
-        <div class="card">
+        <div class="card pb-2">
             <form action="{{ route('products.update', $product->id) }}"method="POST">
                 @csrf
                 @method('PUT')
@@ -107,7 +115,7 @@
                         <div class="row px-3">
                             <label class="crud-label p-0 mt-2 mb-0">About:</label>
                             <div class="col-12 p-0">
-                                <textarea name="about" value="" id="editor-full" rows="4" cols="4">{{ $product->about }}
+                                <textarea name="about" value="" class="editor" rows="4" cols="4">{{ $product->about }}
 						            </textarea>
                             </div>
                             @error('about')
@@ -117,7 +125,7 @@
                         <div class="row px-3" wire:ignore>
                             <label class="crud-label p-0 mt-2 mb-0">Details</label>
                             <div class="col-12 p-0">
-                                <textarea name="details" value="" id="editor-full1" rows="4" cols="4">{{ $product->details }}</textarea>
+                                <textarea name="details" value="" class="editor" rows="4" cols="4">{{ $product->details }}</textarea>
                             </div>
                             @error('details')
                                 <span class="text-danger">{{ $message }}</span>
@@ -126,7 +134,7 @@
                         <div class="row px-3" wire:ignore>
                             <label class="crud-label p-0 mt-2 mb-0">Materials Care:</label>
                             <div class="col-12 p-0">
-                                <textarea name="materials_care" value="" id="editor-full2" rows="4" cols="4">{{ $product->materials_care }}</textarea>
+                                <textarea name="materials_care" value="" class="editor" rows="4" cols="4">{{ $product->materials_care }}</textarea>
                             </div>
                             @error('materials_care')
                                 <span class="text-danger">{{ $message }}</span>
@@ -135,7 +143,7 @@
                         <div class="row px-3">
                             <label class="crud-label p-0 mt-2 mb-0">Shipping & Received</label>
                             <div class="col-12 p-0">
-                                <textarea name="shipping_received" value="" id="editor-full3" rows="4" cols="4">{{ $product->shipping_received }}</textarea>
+                                <textarea name="shipping_received" value="" class="editor" rows="4" cols="4">{{ $product->shipping_received }}</textarea>
                             </div>
                             @error('shipping_received')
                                 <span class="text-danger">{{ $message }}</span>
@@ -152,3 +160,12 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+<script src="{{ asset('admins/assets/js/tinymce-options.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        tinymce.init(options);
+    });
+</script>
+@endpush

@@ -133,8 +133,12 @@ class ViewController extends Controller
         $username = $mail_config->username;
         // $username = 'hoangson28052002@gmail.com';
 
-        \Mail::to($username)->send(new MailCunamhouse($mailData));
-        return redirect()->route('home')->with('success', 'Your message has been sent successfully!');
+        try {
+            \Mail::to($username)->send(new MailCunamhouse($mailData));
+            return redirect()->route('home')->with('success', 'Your message has been sent successfully!');
+        } catch (\Throwable $th) {
+            return redirect()->route('home')->with('error', 'Error Occurred');
+        }
     }
 
     public function categories($slug)
@@ -182,6 +186,8 @@ class ViewController extends Controller
 
     public function products($slug)
     {
+        return redirect()->route('home.order', ['slug' => $slug]);
+
         $product = $this->productRepo->getProductSlug($slug);
         $colorPros = $this->itemRepo->getColorProduct($product->id);
         $proRecommend = $this->productRepo->getProRecommend($slug);
@@ -199,6 +205,11 @@ class ViewController extends Controller
     }
     public function productCustomizeBuy(Request $request, $slug)
     {
+        $product = $this->productRepo->getProductSlug($slug);
+        $colorPros = $this->itemRepo->getColorProduct($product->id);
+        $proRecommend = $this->productRepo->getProRecommend($slug);
+        $showStars = $this->reviewRepo->showStar($product->id);
+
         $width1 = $request->input('width1');
         $height1 = $request->input('height1');
         $width2 = $request->input('width2');
@@ -217,6 +228,8 @@ class ViewController extends Controller
             'product' => $product,
             'colorPros' => $colorPros,
             'orders' => $orders,
+            'proRecommend' => $proRecommend,
+            'showStars' => $showStars,
         ];
 
         $result = array_merge($attributes, $this->get());

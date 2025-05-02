@@ -16,4 +16,13 @@ class ImageController extends Controller
         $path = 'app/public/' . $url;
         return response()->file(storage_path($path));
     }
+
+    public function uploadImage(Request $request)
+    {
+        $file = $request->file('file');
+        $filename = $file->getClientOriginalName();
+        $new_name = time().'-'.$filename;
+        $imgpath = $file->storeAs('uploads', $new_name, 'public');
+        return response()->json(['location' => '/storage/'.$imgpath]);
+    }
 }

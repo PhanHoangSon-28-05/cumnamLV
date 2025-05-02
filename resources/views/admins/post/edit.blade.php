@@ -1,6 +1,14 @@
 @extends('admins.layout.master')
 @section('title', 'Post')
 
+@push('style')
+<style>
+    .editor {
+        display: none;
+    }
+</style>
+@endpush
+
 @section('content')
     <!-- Page header -->
     <div class="page-header page-header-light">
@@ -23,7 +31,7 @@
         </div>
     </div>
     <div class="content">
-        <div class="card">
+        <div class="card pb-2">
             <form action="{{ route('posts.update', $post->id) }}"method="POST">
                 @csrf
                 @method('PUT')
@@ -34,45 +42,52 @@
                 </div>
 
                 <div class="body">
-                    <div class="container-fluid">
-                        <div class="row px-3">
-                            <div class="col-10 pl-0 pr-3">
+                    <div class="container-fluid px-3">
+                        <div class="row">
+                            <div class="col-10">
                                 <div class="row">
-                                    <label class="crud-label mx-1 p-0">Name:</label>
-                                    <div class="p-0 input-group">
-                                        <input type="text" class="form-control crud-input" name="name"
-                                            value="{{ $post->name }}">
+                                    <div class="col">
+                                        <label class="crud-label">Name:</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control crud-input" name="name"
+                                                value="{{ $post->name }}">
+                                        </div>
+                                        @error('name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
-                                    @error('name')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </div>
                                 <div class="row">
-                                    <label class="crud-label p-0 mt-2 mb-0">Catergory:</label>
-                                    <div class="input-group">
-                                        <select class="form-control" name="category_id">
-                                            <option value="0">---</option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}"
-                                                    {{ $post->category_id == $category->id ? 'selected' : '' }}>
-                                                    {{ $category->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                    <div class="col">
+                                        <label class="crud-label">Catergory:</label>
+                                        <div class="input-group">
+                                            <select class="form-control" name="category_id">
+                                                <option value="0">---</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}"
+                                                        {{ $post->category_id == $category->id ? 'selected' : '' }}>
+                                                        {{ $category->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <label class="crud-label p-0 mt-2 mb-0">Description:</label>
-                                    <div class="input-group">
-                                        <textarea type="text" class="form-control crud-input" name="description">{{ $post->description }}</textarea>
+                                    <div class="col">
+                                        <label class="crud-label">Description:</label>
+                                        <div class="input-group">
+                                            <textarea type="text" class="form-control crud-input" 
+                                            name="description">{{ $post->description }}</textarea>
+                                        </div>
+                                        @error('description')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
-                                    @error('description')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </div>
                             </div>
-                            <div class="col-2 pl-0">
+                            <div class="col-2">
                                 <label class="crud-label p-0 mt-2 mb-0">Cover Image:</label>
                                 <div class="input-group">
                                     <input type="file" name="pic" hidden id="cover_img">
@@ -86,14 +101,14 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row px-3">
-                            <label class="crud-label p-0 mt-2 mb-0">Details</label>
-                            <div class="col-12 p-0">
-                                <textarea name="detail" value="" id="editor-full1" rows="4" cols="4">{{ $post->detail }}</textarea>
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="crud-label p-0 mt-2 mb-0">Details</label>
+                                <textarea name="detail" value="" class="editor" rows="4" cols="4">{{ $post->detail }}</textarea>
+                                @error('details')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                            @error('details')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
                         </div>
                         <div class="row px-3">
 
@@ -109,3 +124,12 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+<script src="{{ asset('admins/assets/js/tinymce-options.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        tinymce.init(options);
+    });
+</script>
+@endpush

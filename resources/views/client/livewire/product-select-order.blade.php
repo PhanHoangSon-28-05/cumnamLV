@@ -1,10 +1,24 @@
 <div class="col-md-6 col-12">
     <div class="accordion" id="accordionExample">
         <h2 class="product-title">{{ $product->name }}</h2>
-        <div class="text-center">
+        {{-- <div class="text-center">
             <p class="text-uppercase w-50 mx-auto">{{ $product->description }}</p>
+        </div> --}}
+        <div class="rating-reviews">
+            <span class="stars">
+                @for ($i = 1; $i <= 5; $i++)
+                @if ($i-1 < $showStars['sum'] && $showStars['sum'] < $i)
+                    ⯪
+                @elseif ($i <= $showStars['sum'])
+                    ★
+                @elseif ($i >= $showStars['sum'])
+                    ☆
+                @endif
+                @endfor
+            </span>
+            <span class="reviews ml-2">{{ $showStars['sum'] }} ({{ $showStars['count'] }} reviews)</span>
         </div>
-        <div class="mb-1">
+        <div class="mb-1 mt-4">
             <div class="card rounded border-0">
                 <div class="card-header bg-white border-dark" id="headingOne">
                     <div class="window-size">

@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
 
     <!-- Global stylesheets -->
@@ -29,23 +30,23 @@
     <script src="{{ URL::asset('admins/global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
     <script src="{{ URL::asset('admins/global_assets/js/plugins/ui/prism.min.js') }}"></script>
     {{-- <script src="{{ URL::asset('admins/global_assets/js/plugins/editors/ckeditor/ckeditor.js') }}"></script> --}}
-    <script src="{{ URL::asset('admins/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
+    {{-- <script src="{{ URL::asset('admins/global_assets/js/plugins/editors/summernote/summernote.min.js') }}"></script> --}}
     <script src="{{ URL::asset('admins/global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
-    <script src="{{ URL::asset('admins/global_assets/js/plugins/tables/datatables/extensions/key_table.min.js') }}">
-    </script>
+    <script src="{{ URL::asset('admins/global_assets/js/plugins/tables/datatables/extensions/key_table.min.js') }}"></script>
     <script src="{{ URL::asset('admins/global_assets/js/plugins/notifications/pnotify.min.js') }}"></script>
     <script src="{{ URL::asset('admins/global_assets/js/plugins/notifications/noty.min.js') }}"></script>
     <script src="{{ URL::asset('admins/global_assets/js/plugins/notifications/jgrowl.min.js') }}"></script>
-    <script src="{{ URL::asset('admins/global_assets/js/plugins/editors/ckeditor/ckeditor.js') }}"></script>
+    {{-- <script src="{{ URL::asset('admins/global_assets/js/plugins/editors/ckeditor/ckeditor.js') }}"></script> --}}
     <script src="{{ URL::asset('admins/global_assets/js/plugins/ui/dragula.min.js') }}"></script>
 
     <script src="{{ URL::asset('admins/assets/js/app.js') }}"></script>
-    <script src="{{ URL::asset('admins/global_assets/js/demo_pages/alpaca_advanced.js') }}"></script>
-    <script src="{{ URL::asset('admins/global_assets/js/demo_pages/datatables_extension_key_table.js') }}"></script>
+    <script src="{{ URL::asset('admins/assets/js/tinymce/js/tinymce/tinymce.min.js') }}"></script>
+    {{-- <script src="{{ URL::asset('admins/global_assets/js/demo_pages/alpaca_advanced.js') }}"></script> --}}
+    {{-- <script src="{{ URL::asset('admins/global_assets/js/demo_pages/datatables_extension_key_table.js') }}"></script> --}}
     {{-- <script src="{{ URL::asset('admins/global_assets/js/demo_pages/editor_ckeditor_material.js') }}"></script> --}}
-    <script src="{{ URL::asset('admins/global_assets/js/demo_pages/editor_summernote.js') }}"></script>
-    <script src="{{ URL::asset('admins/global_assets/js/demo_pages/colors_success.js') }}"></script>
-    <script src="{{ URL::asset('admins/global_assets/js/demo_pages/components_collapsible.js') }}"></script>
+    {{-- <script src="{{ URL::asset('admins/global_assets/js/demo_pages/editor_summernote.js') }}"></script> --}}
+    {{-- <script src="{{ URL::asset('admins/global_assets/js/demo_pages/colors_success.js') }}"></script> --}}
+    {{-- <script src="{{ URL::asset('admins/global_assets/js/demo_pages/components_collapsible.js') }}"></script> --}}
     <!-- /theme JS files -->
     @yield('style')
 
