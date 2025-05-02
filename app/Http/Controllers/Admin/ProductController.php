@@ -36,11 +36,12 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required|string',
             'from' => 'required|integer',
             'fromOLD' => 'required|integer',
-            'promotion' => 'required|integer',
+            // 'promotion' => 'required|integer',
             'description' => 'required',
             'about' => 'required',
             'details' => 'required|string',
@@ -70,7 +71,7 @@ class ProductController extends Controller
                 'name' => 'required|string',
                 'from' => 'required|integer',
                 'fromOLD' => 'required|integer',
-                'promotion' => 'required|integer',
+                // 'promotion' => 'required|integer',
                 'description' => 'required',
                 'about' => 'required',
                 'details' => 'required|string',

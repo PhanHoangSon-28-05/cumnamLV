@@ -44,6 +44,7 @@ Route::post('send-mail', [ViewController::class, 'sendmail'])->name('send-email'
 Route::get('/pages/{slug}', [ViewController::class, 'pages'])->name('home.pages');
 
 Route::get('/show/image', [ImageController::class, 'getImage'])->name('storages.image');
+Route::post('/upload', [ImageController::class, 'uploadImage'])->name('upload.image');
 
 // Admin
 Route::get('admin/register', [UserController::class, 'showRegistrationForm']);

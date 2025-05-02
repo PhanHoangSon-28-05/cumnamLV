@@ -9,6 +9,7 @@ use App\Repositories\ItemOrder\ItemRepositoryInterface;
 class ProductSelectOrder extends Component
 {
     public $product, $colorPros, $orders, $totalPrice = 0;
+    public $showStars;
 
     public $width1, $width2;
     public $height1, $height2;
@@ -18,15 +19,18 @@ class ProductSelectOrder extends Component
 
     public $listItem = [];
     protected  $itemRepo;
-    public function boot(ItemRepositoryInterface $itemRepo)
+    public function boot(
+        ItemRepositoryInterface $itemRepo
+    )
     {
         $this->itemRepo = $itemRepo;
     }
-    public function mount($product, $colorPros, $orders)
+    public function mount($product, $colorPros, $orders, $showStars)
     {
         $this->product = $product;
         $this->colorPros = $colorPros;
         $this->orders = $orders;
+        $this->showStars = $showStars;
 
         // $this->getData();
     }

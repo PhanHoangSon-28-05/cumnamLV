@@ -120,13 +120,20 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
             }
             $star_sum += $value->star;
         }
+
+        $count = count($reviews);
         $attributes['star_1'] = $star_1;
         $attributes['star_2'] = $star_2;
         $attributes['star_3'] = $star_3;
         $attributes['star_4'] = $star_4;
         $attributes['star_5'] = $star_5;
-        $attributes['count'] = count($reviews);
-        $attributes['sum'] = ($star_sum / count($reviews));
+        $attributes['count'] = $count;
+        $attributes['sum'] = $count > 0 ? $star_sum / $count : 0;
+        $attributes['star_1_avg'] = $count > 0 ? $star_1 / $count : 0;
+        $attributes['star_2_avg'] = $count > 0 ? $star_2 / $count : 0;
+        $attributes['star_3_avg'] = $count > 0 ? $star_3 / $count : 0;
+        $attributes['star_4_avg'] = $count > 0 ? $star_4 / $count : 0;
+        $attributes['star_5_avg'] = $count > 0 ? $star_5 / $count : 0;
         return $attributes;
     }
 }

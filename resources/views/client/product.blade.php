@@ -149,7 +149,7 @@
                                     <span>5 stars</span>
                                     <div class="progress">
                                         <div class="progress-bar bg-dark" role="progressbar"
-                                            style="width: {{ ($showStars['star_5'] / $showStars['count']) * 100 }}%;"
+                                            style="width: {{ ($showStars['star_5_avg']) * 100 }}%;"
                                             aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <span>{{ $showStars['star_5'] }}</span>
@@ -158,7 +158,7 @@
                                     <span>4 stars</span>
                                     <div class="progress">
                                         <div class="progress-bar bg-dark" role="progressbar"
-                                            style="width:  {{ ($showStars['star_4'] / $showStars['count']) * 100 }}%;"
+                                            style="width:  {{ ($showStars['star_4_avg']) * 100 }}%;"
                                             aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <span>{{ $showStars['star_4'] }}</span>
@@ -167,7 +167,7 @@
                                     <span>3 stars</span>
                                     <div class="progress">
                                         <div class="progress-bar bg-dark" role="progressbar"
-                                            style="width:  {{ ($showStars['star_3'] / $showStars['count']) * 100 }}%;"
+                                            style="width:  {{ ($showStars['star_3_avg']) * 100 }}%;"
                                             aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <span>{{ $showStars['star_3'] }}</span>
@@ -176,7 +176,7 @@
                                     <span>2 stars</span>
                                     <div class="progress">
                                         <div class="progress-bar bg-dark" role="progressbar"
-                                            style="width:  {{ ($showStars['star_2'] / $showStars['count']) * 100 }}%;"
+                                            style="width:  {{ ($showStars['star_2_avg']) * 100 }}%;"
                                             aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <span>{{ $showStars['star_2'] }}</span>
@@ -185,7 +185,7 @@
                                     <span>1 star</span>
                                     <div class="progress">
                                         <div class="progress-bar bg-dark" role="progressbar"
-                                            style="width:  {{ ($showStars['star_1'] / $showStars['count']) * 100 }}%;"
+                                            style="width:  {{ ($showStars['star_1_avg']) * 100 }}%;"
                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <span>{{ $showStars['star_1'] }}</span>
@@ -232,13 +232,13 @@
                     <!-- Tab Materials + Care -->
                     <div class="tab-pane fade bg-white border-0" id="materials" role="tabpanel"
                         aria-labelledby="materials-tab">
-                        <p>{{ $product->tabpanel }}</p>
+                        <p>{!! $product->materials_care !!}</p>
                     </div>
 
                     <!-- Tab Shipping & Received -->
                     <div class="tab-pane fade bg-white border-0" id="shipping" role="tabpanel"
-                        aria-labelledby="shipping-tab">shipping_received
-                        <p>{{ $product->shipping_received }}</p>
+                        aria-labelledby="shipping-tab">
+                        <p>{!! $product->shipping_received !!}</p>
                     </div>
                 </div>
             </div>
@@ -384,6 +384,7 @@
                             </div>
                             <div class="product-info">
                                 <p class="product-short-description font-weight-bolder card-title text-uppercase">
+                                    {{ $product->description }}
                                 </p>
                                 <h2 class="product-brand card-text font-weight-bolder">{{ $proValue['name'] }}</h2>
                                 <h5 class=""></h5>
