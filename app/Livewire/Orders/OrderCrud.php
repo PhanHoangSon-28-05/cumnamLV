@@ -56,6 +56,7 @@ class OrderCrud extends Component
         $request = $this->validate();
         $this->orderRepos->createOrder($request, $this->image);
 
+        $this->dispatch('refresh')->to(OrderList::class);
         $this->dispatch('closeCrudOrder');
     }
     public function update()
@@ -64,12 +65,14 @@ class OrderCrud extends Component
 
         $this->orderRepos->updateOrder($this->order_id, $request, $this->image);
 
+        $this->dispatch('refresh')->to(OrderList::class);
         $this->dispatch('closeCrudOrder');
     }
     public function delete()
     {
         $this->orderRepos->deleteOrder(abs($this->order_id));
 
+        $this->dispatch('refresh')->to(OrderList::class);
         $this->dispatch('closeCrudOrder');
     }
 

@@ -115,7 +115,7 @@
                 Total Price:</p>
         </div>
         <div class="col-4">
-            <p class="mb-0 h2"><span id="total">{{ $totalPrice * $amount }}</span>$</p>
+            <p class="mb-0 h2"><span id="total">{{ $totalPrice }}</span>$</p>
         </div>
     </div>
     <div class="row mx-3">
