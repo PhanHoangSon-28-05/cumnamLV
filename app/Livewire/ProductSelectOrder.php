@@ -39,14 +39,14 @@ class ProductSelectOrder extends Component
     {
         // dd($this->product);
         $this->totalPrice = 0;
-        $acreage = ($this->width1 + $this->width2) * ($this->height1 + $this->height2);
+        $acreage = ($this->width1 + $this->width2) * ($this->height1 + $this->height2) / 144;
         // dd($this->product);
         if ($this->product->from != 0) {
             # code...
-            $this->totalPrice += $acreage * $this->product->from;
+            $this->totalPrice += $acreage * $amount * $this->product->from;
             // dd($this->product->from);
         } else {
-            $this->totalPrice += $acreage * $this->product->fromOLD;
+            $this->totalPrice += $acreage * $amount * $this->product->fromOLD;
         }
 
         foreach ($this->selectedValues as $value) {

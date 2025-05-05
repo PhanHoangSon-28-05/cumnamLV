@@ -7,6 +7,8 @@ use Livewire\Component;
 
 class OrderList extends Component
 {
+    protected $listeners = ['refresh' => '$refresh'];
+
     public function render()
     {
         $orders = OrderItem::all();

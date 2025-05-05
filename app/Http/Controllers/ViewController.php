@@ -210,10 +210,10 @@ class ViewController extends Controller
         $proRecommend = $this->productRepo->getProRecommend($slug);
         $showStars = $this->reviewRepo->showStar($product->id);
 
-        $width1 = $request->input('width1');
-        $height1 = $request->input('height1');
-        $width2 = $request->input('width2');
-        $height2 = $request->input('height2');
+        // $width1 = $request->input('width1');
+        // $height1 = $request->input('height1');
+        // $width2 = $request->input('width2');
+        // $height2 = $request->input('height2');
 
         $orders = OrderItem::all();
 
@@ -221,10 +221,10 @@ class ViewController extends Controller
         $colorPros = $this->itemRepo->getColorProduct($product->id);
 
         $attributes = [
-            'width1' => $width1,
-            'height1' => $height1,
-            'width2' => $width2,
-            'height2' => $height2,
+            // 'width1' => $width1,
+            // 'height1' => $height1,
+            // 'width2' => $width2,
+            // 'height2' => $height2,
             'product' => $product,
             'colorPros' => $colorPros,
             'orders' => $orders,

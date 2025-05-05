@@ -52,7 +52,7 @@
                             <div class="row">
                                 <label class="crud-label p-0 mb-0">Sample photo:</label>
                                 <div class="input-group">
-                                    <input type="file" wire:model.lazy="image" hidden id="cover_img">
+                                    <input type="file" wire:model.lazy="image" hidden id="cover_img" accept="image/*">
                                     <label for="cover_img" class="w-100 border shadow mt-2">
                                         <img src="{{ asset($cover_img) }}" alt="" class="w-100"
                                             id="image-preview">

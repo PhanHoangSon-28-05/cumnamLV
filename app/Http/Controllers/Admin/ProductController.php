@@ -42,6 +42,7 @@ class ProductController extends Controller
             'from' => 'required|integer',
             'fromOLD' => 'required|integer',
             // 'promotion' => 'required|integer',
+            'promotion' => 'nullable|integer',
             'description' => 'required',
             'about' => 'required',
             'details' => 'required|string',
@@ -66,18 +67,20 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|string',
+            'from' => 'required|integer',
+            'fromOLD' => 'required|integer',
+            // 'promotion' => 'required|integer',
+            'promotion' => 'nullable|integer',
+            'description' => 'required',
+            'about' => 'required',
+            'details' => 'required|string',
+            'materials_care' => 'required|string',
+            'shipping_received' => 'required|string',
+        ]);
+
         try {
-            $request->validate([
-                'name' => 'required|string',
-                'from' => 'required|integer',
-                'fromOLD' => 'required|integer',
-                // 'promotion' => 'required|integer',
-                'description' => 'required',
-                'about' => 'required',
-                'details' => 'required|string',
-                'materials_care' => 'required|string',
-                'shipping_received' => 'required|string',
-            ]);
             $attributes = $request->all();
             // dd($attributes);
             // $product = $this->productRepo->createProduct($attributes);

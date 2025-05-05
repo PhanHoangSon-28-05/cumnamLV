@@ -21,7 +21,7 @@
                             <option value="100">100</option>
                         </select></label></div>
             </div>
-            <div class="datatable-scroll" wire:poll.keep-alive.1s>
+            <div class="datatable-scroll">
                 <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid"
                     aria-describedby="DataTables_Table_0_info">
                     <thead class="thead-dark">
