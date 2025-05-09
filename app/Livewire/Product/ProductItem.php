@@ -12,6 +12,7 @@ use Livewire\WithFileUploads;
 class ProductItem extends Component
 {
     use WithFileUploads;
+
     public $id_product,
         $id_color,
         $id_item,
@@ -28,6 +29,8 @@ class ProductItem extends Component
         $NewpriceOld;
 
     protected  $itemRepo;
+
+    protected $listeners = ['refresh' => '$refresh'];
 
     public function boot(ItemRepositoryInterface $itemRepo)
     {
@@ -133,6 +136,7 @@ class ProductItem extends Component
         $colorPros = $this->itemRepo->getColorProduct($this->id_product);
         $colors = Color::all();
         $product = Product::find($this->id_product);
+        $product_items = $product->product_items;
         $name_pro = $product ? $product->name : 'Product Not Found';
 
         return view('admins.product.livewire.product-item', [
@@ -142,6 +146,7 @@ class ProductItem extends Component
             'name_pro' => $name_pro,
             'cover_img' => $cover_img,
             'cover_fabriccolor' => $cover_fabriccolor,
+            'product_items' => $product_items,
         ]);
     }
 }

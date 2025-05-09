@@ -81,6 +81,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Page\PageRepositoryInterface::class,
             \App\Repositories\Page\PageRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\ClientAccounts\ClientAccountRepositoryInterface::class,
+            \App\Repositories\ClientAccounts\ClientAccountRepository::class
+        );
     }
 
     /**

@@ -14,7 +14,13 @@ class ImageController extends Controller
     {
         $url = $request->url;
         $path = 'app/public/' . $url;
-        return response()->file(storage_path($path));
+
+        $file = storage_path($path);
+        if (!file_exists(storage_path($path))) {
+            $file = public_path('images/placeholder/placeholder.png');
+        }
+
+        return response()->file($file);
     }
 
     public function uploadImage(Request $request)

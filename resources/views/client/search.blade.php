@@ -5,11 +5,12 @@
             <div class="modal-header p-0" style="">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i
-                                class="fa-solid fa-magnifying-glass"></i></span>
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
                     </div>
                     <input type="text" id="myInput" class="form-control" aria-label="Username"
-                        aria-describedby="basic-addon1" onkeyup="myFunction()" placeholder="Search for names..">
+                    aria-describedby="basic-addon1" onkeyup="myFunction()" placeholder="Search for names..">
                 </div>
 
                 {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -19,15 +20,18 @@
             <div class="modal-body" id="modalBody" style="display: none;"> <!-- Hidden by default -->
                 <ul id="myUL">
                     @foreach ($cateChilds as $cateChild)
-                        <li class="text-left text-uppercase mb-1 border-bottom border-dark pb-1">
-                            <a href="{{ URL::route('home.category', $cateChild->slug) }}"
-                                class="text-body">{{ $cateChild->name }}</a>
-                        </li>
+                    <li class="text-left text-uppercase mb-1 border-bottom border-dark pb-1">
+                        <a href="{{ URL::route('home.category', $cateChild->slug) }}" class="text-body">
+                            {{ $cateChild->name }}
+                        </a>
+                    </li>
                     @endforeach
                     @foreach ($products as $product)
                         <li class="custom-list-item text-left text-uppercase mb-1 border-bottom border-dark pb-1">
-                            <a href="{{ URL::route('home.products', $product->slug) }}" class="text-body text-truncate"
-                                style="max-width: 250px;">{{ $product->name }}</a>
+                            <a href="{{ URL::route('home.products', $product->slug) }}" 
+                                class="text-body text-truncate" style="max-width: 250px;">
+                                {{ $product->name }}
+                            </a>
                             @if ($product->pic != 'null')
                                 <img src="{{ route('storages.image', ['url' => $product->pic]) }}" class="ml-auto"
                                     style="width: 100px; height: auto;">
@@ -57,6 +61,8 @@
         </div>
     </div>
 </div>
+
+@push('script')
 <script>
     function myFunction() {
         // Declare variables
@@ -91,3 +97,4 @@
         document.getElementById('modalBody').style.display = "none";
     });
 </script>
+@endpush

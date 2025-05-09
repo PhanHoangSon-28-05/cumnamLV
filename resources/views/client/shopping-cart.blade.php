@@ -10,8 +10,9 @@
         </section>
     </main>
 
+    @auth('web')
     <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content">
                 {{-- <div class="modal-header">
                     <h5 class="modal-title"></h5>
@@ -20,12 +21,20 @@
                     </button>
                 </div> --}}
                 <div class="modal-body">
-                    <h3 class="font-weight-bold text-center w-100 mb-3">Enter your informations down below</h3>
-                    {{-- <p class="text-center">Enter your informations down below</p> --}}
-                    <form action="{{ route('checkout') }}" method="POST">
+                    {{-- <h3 class="font-weight-bold text-center w-100 mb-3">Enter your informations down below</h3> --}}
+                    <h3 class="font-weight-bold text-center w-100 mb-3">Choose your payment method</h3>
+                    <form action="{{ route('checkout') }}" method="POST" class="modal-form">
                         @method("post")
                         @csrf
-                        <div class="row">
+
+                        @php($account = auth()->guard('web')->user())
+                        <input type="hidden" name="account_id" value="{{ $account->id }}">
+                        <input type="hidden" name="fullname" value="{{ $account->fullname }}">
+                        <input type="hidden" name="email" value="{{ $account->email }}">
+                        <input type="hidden" name="phone" value="{{ $account->phone }}">
+                        <input type="hidden" name="address" value="{{ $account->address }}">
+
+                        {{-- <div class="row">
                             <div class="input col-md-6 col-12 mb-3">
                                 <label for="">Fullname</label>
                                 <input type="text" name="fullname" required>
@@ -42,10 +51,11 @@
                                 <label for="">Address</label>
                                 <input type="text" name="address" required>
                             </div>
-                        </div>
+                        </div> --}}
+
                         <div class="row form-group input mb-3">
-                            <label for="" class="col-4 col-form-label">Payment method:</label>
-                            <div class="col-8">
+                            {{-- <label for="" class="col-4 col-form-label">Payment method:</label> --}}
+                            <div class="col text-center">
                                 <div class="form-check form-check-inline h-100">
                                     <input class="form-check-input" type="radio" name="payment_method" id="method1" value="cash" checked>
                                     <label class="form-check-label" for="method1">Cash</label>
@@ -57,8 +67,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col send text-center">
-                                <button type="submit" class="btn btn-primary rounded-pill mt-md-0 mt-2">
+                            <div class="col send text-center mt-2">
+                                <button type="submit" class="btn btn-primary rounded-pill">
                                     CHECKOUT
                                 </button>
                             </div>
@@ -72,4 +82,5 @@
             </div>
         </div>
     </div>
+    @endauth
 @endsection

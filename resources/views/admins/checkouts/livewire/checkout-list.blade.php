@@ -9,14 +9,13 @@
                 <div id="DataTables_Table_0_filter" class="dataTables_filter">
                     <label>
                         <span>Filter:</span> 
-                        <input type="search" class="" placeholder="Type to filter..." aria-controls="DataTables_Table_0">
+                        <input type="search" class="" placeholder="Type to filter...">
                     </label>
                 </div>
                 <div class="dataTables_length" id="DataTables_Table_0_length">
                     <label>
                         <span>Show:</span> 
-                        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" 
-                        class="custom-select" wire:model.live="paginate">
+                        <select name="DataTables_Table_0_length" class="custom-select" wire:model.live="paginate">
                             <option value="10">10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
@@ -29,26 +28,12 @@
                 <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid"
                     aria-describedby="DataTables_Table_0_info">
                     <thead class="thead-dark">
-                        <tr role="row">
-                            <th class="sorting sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
-                                Fullname
-                            </th>
-                            <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                            colspan="1" aria-label="Datetime: activate to sort column ascending">
-                                Datetime
-                            </th>
-                            <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                            colspan="1" aria-label="Total price: activate to sort column ascending">
-                                Total price
-                            </th>
-                            <th class="sorting text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                            colspan="1" aria-label="Total price: activate to sort column ascending">
-                                Status
-                            </th>
-                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions">
-                                
-                            </th>
+                        <tr>
+                            <th scope="column" class="text-left">Fullname</th>
+                            <th scope="column" class="text-center">Datetime</th>
+                            <th scope="column" class="text-center">Total price</th>
+                            <th scope="column" class="text-center">Status</th>
+                            <th scope="column" class="text-center">Detail</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,7 +42,7 @@
                         <tr class="odd">
                             <td class="sorting_1">{{ $value->fullname }}</td>
                             <td class="text-center">{{ $value->created_at }}</td>
-                            <td class="text-center">${{ $value->total_price }}</td>
+                            <td class="text-center">${{ round($value->total_price, 2) }}</td>
                             <td class="text-center">
                                 @if ($value->status == 0)
                                 <span class="badge badge-warning">Pending</span>

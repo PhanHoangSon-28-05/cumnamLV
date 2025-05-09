@@ -9,7 +9,9 @@ use App\Models\OrderItem;
 use App\Mail\MailCunamhouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Repositories\Page\PageRepositoryInterface;
 use App\Repositories\Post\PostRepositoryInterface;
 use App\Repositories\Logos\LogooRepositoryInterface;
 use App\Repositories\Client\ClientRepositoryInterface;
@@ -20,9 +22,9 @@ use App\Repositories\Product\ProductRepositoryInterface;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Repositories\Checkouts\CheckoutRepositoryInterface;
 use App\Repositories\ProductHome\ProductHomeRepositoryInterface;
+use App\Repositories\ClientAccounts\ClientAccountRepositoryInterface;
 use App\Repositories\CheckoutProducts\CheckoutProductRepositoryInterface;
 use App\Repositories\CheckoutProductItems\CheckoutProductItemRepositoryInterface;
-use App\Repositories\Page\PageRepositoryInterface;
 
 class ViewController extends Controller
 {
@@ -39,6 +41,7 @@ class ViewController extends Controller
     protected $checkoutProductItemRepo;
     protected $reviewRepo;
     protected $pageRepo;
+    protected $clientAccountRepo;
 
     public function __construct(
         CategoryRepositoryInterface $cateRepo,
@@ -54,6 +57,7 @@ class ViewController extends Controller
         CheckoutProductItemRepositoryInterface $checkoutProductItemRepo,
         ReviewRepositoryInterface $reviewRepo,
         PageRepositoryInterface $pageRepo,
+        ClientAccountRepositoryInterface $clientAccountRepo,
     ) {
         $this->cateRepo = $cateRepo;
         $this->productRepo = $productRepo;
@@ -68,6 +72,7 @@ class ViewController extends Controller
         $this->checkoutProductItemRepo = $checkoutProductItemRepo;
         $this->reviewRepo = $reviewRepo;
         $this->pageRepo = $pageRepo;
+        $this->clientAccountRepo = $clientAccountRepo;
     }
 
     public function get()
@@ -123,21 +128,21 @@ class ViewController extends Controller
             'message' => 'required|string',
         ]);
 
-        $mailData = [
-            'fullname' => $request->fullname,
-            'message' => $request->message,
-        ];
-        $attributes = $request->all();
-
-        $mail_config = DB::table('mail_configs')->first();
-        $username = $mail_config->username;
-        // $username = 'hoangson28052002@gmail.com';
-
         try {
+            $mailData = [
+                'fullname' => $request->fullname,
+                'message' => $request->message,
+            ];
+            $attributes = $request->all();
+
+            $mail_config = DB::table('mail_configs')->first();
+            $username = $mail_config->username;
+            // $username = 'hoangson28052002@gmail.com';
+
             \Mail::to($username)->send(new MailCunamhouse($mailData));
             return redirect()->route('home')->with('success', 'Your message has been sent successfully!');
         } catch (\Throwable $th) {
-            return redirect()->route('home')->with('error', 'Error Occurred');
+            return redirect()->route('home')->with('error', 'Some Errors Occurred');
         }
     }
 
@@ -251,6 +256,8 @@ class ViewController extends Controller
 
     public function checkout(Request $request)
     {
+        if (!auth()->guard('web')->check()) return abort(403);
+
         $params = $request->input();
         unset($params['_method']);
         unset($params['_token']);
@@ -260,23 +267,42 @@ class ViewController extends Controller
         $cart_items = Session::get('shopping-cart');
         $checkout_total_price = 0;
         foreach ($cart_items as $key => $product) {
-            $checkout_total_price += $product['price'] * $product['amount'];
+            $product_total_price = $product['product_price'] * $product['amount'] + $product['option_price'];
+            $checkout_total_price += $product_total_price;
 
             $checkout_product = $this->checkoutProductRepo->create([
                 'checkout_id' => $checkout->id,
                 'product_id' => $product['product_id'],
                 'width' => $product['width'],
                 'height' => $product['height'],
-                'price' => $product['price'],
                 'amount' => $product['amount'],
-                'total_price' => $product['price'] * $product['amount'],
+                'price' => $product['product_price'],
+                'option_price' => $product['option_price'],
+                'total_price' => $product_total_price,
             ]);
 
-            foreach ($product['product_item_ids'] as $key => $item_id) {
+            // foreach ($product['product_item_ids'] as $key => $item_id) {
+            //     $checkout_product_item = $this->checkoutProductItemRepo->create([
+            //         'checkout_product_id' => $checkout_product->id,
+            //         'product_item_id' => $item_id,
+            //         'fabric' => $product['fabric'] ?? null,
+            //     ]);
+            // }
+
+            if (isset($product['fabric'])) {
                 $checkout_product_item = $this->checkoutProductItemRepo->create([
                     'checkout_product_id' => $checkout_product->id,
-                    'product_item_id' => $item_id,
-                    'fabric' => $product['fabric'] ?? null,
+                    'product_item_id' => $product['fabric']['id'],
+                    'fabric' => $product['fabric']['color'] ?? null,
+                    'price' => $product['fabric']['price'] ?? 0,
+                ]);
+            }
+
+            foreach ($product['orders'] as $key => $item) {
+                $checkout_product_item = $this->checkoutProductItemRepo->create([
+                    'checkout_product_id' => $checkout_product->id,
+                    'product_item_id' => $item['id'],
+                    'price' => $item['price'],
                 ]);
             }
         }
@@ -286,6 +312,16 @@ class ViewController extends Controller
         Session::forget('shopping-cart');
 
         return redirect()->route('shopping-cart');
+    }
+
+    public function myCheckouts() {
+        if (!auth()->guard('web')->check()) return abort(403);
+
+        $checkouts = auth()->guard('web')->user()->checkouts->sortByDesc('created_at');
+        $attributes['checkouts'] = $checkouts;
+
+        $result = array_merge($attributes, $this->get());
+        return view('client.my-checkouts')->with($result);
     }
 
     public function pages($slug)
@@ -298,5 +334,44 @@ class ViewController extends Controller
         ];
         $result = array_merge($attributes, $this->get());
         return view('client.catergory-page', $result);
+    }
+
+    public function register(Request $request) {
+        $params = $request->validate([
+            'fullname' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+
+        $account = $this->clientAccountRepo->getAll()->where('email', $params['email']);
+        if ($account->count() > 0) return back()->with('error', 'Email address already existed!')->with('open-modal', 'registerModal');
+
+        $params['password'] = bcrypt($params['password']);
+
+        $this->clientAccountRepo->create($params);
+
+        return back()->with('success', 'Create account success!')->with('open-modal', 'loginModal');
+    }
+
+    public function login(Request $request) {
+        $credentials = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $credentials['is_actived'] = true;
+
+        if (Auth::guard('web')->attempt($credentials)) {
+            return back()->with('success', 'Login success!');
+        }
+
+        return back()->with('error', 'Invalid credentials!')->with('open-modal', 'loginModal');
+    }
+
+    public function logout() {
+        Auth::guard('web')->logout();
+        return back();
     }
 }

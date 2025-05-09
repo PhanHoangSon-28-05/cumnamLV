@@ -23,7 +23,7 @@ class CheckoutList extends Component
 
     public function render()
     {
-        $checkouts = $this->checkoutRepo->getAll()->sortBy('status')->paginate($this->paginate);
+        $checkouts = $this->checkoutRepo->getAll()->sortBy('status')->sortByDesc('created_at')->paginate($this->paginate);
 
         return view('admins.checkouts.livewire.checkout-list')->with([
             'checkouts' => $checkouts,

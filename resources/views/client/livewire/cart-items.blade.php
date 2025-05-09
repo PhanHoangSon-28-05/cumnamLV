@@ -3,11 +3,11 @@
     <div class="row align-items-start">
         <!-- Combined Product Image and Details -->
         <div class="col-md-8 col-12 product border-bottom border-dark pb-2">
-            {{-- @php($cart_items = Session::get('shopping-cart')) --}}
             @php($total_price = 0)
             @if (isset($cart_items) && count($cart_items) > 0)
                 @foreach ($cart_items as $key => $cart_item)
-                    @php($total_price += $cart_item['price'] * $cart_item['amount'])
+                    @php($product_total_price = $cart_item['product_price'] * $cart_item['amount'] + $cart_item['option_price'])
+                    @php($total_price += $product_total_price)
                     <!-- Product Image -->
                     <div class="row border-bottom mb-3">
                         <div class="col-md-4 col-12 p-0 text-center">
@@ -32,29 +32,26 @@
                                         @endfor
                                     </select>
                                 </span>
-                                <span class="float-right mr-2">${{ $cart_item['price'] }}</span>
+                                <span class="float-right mr-2">${{ round($product_total_price, 2) }}</span>
                             </h5>
                             <div class="row m-0">
                                 <div class="col-6 px-0">
-                                    <p><strong>Fabric:</strong> {{ $cart_item['fabric'] ?? '-' }}</p>
+                                    <p><strong>Fabric:</strong> {{ $cart_item['fabric']['color'] ?? '-' }}</p>
                                     <p><strong>Width:</strong> {{ $cart_item['width'] ?? '-"' }}</p>
                                     <p><strong>Height:</strong> {{ $cart_item['height'] ?? '-"' }}</p>
                                     {{-- <p><strong>Depth:</strong> -" </p> --}}
                                 </div>
                                 <div class="col-6 px-0">
                                     {{-- <p><strong>Lining:</strong> No Lining</p>
-                        <p><strong>Mount Type:</strong> Outside</p>
-                        <p><strong>Control:</strong> Continuous Loop</p>
-                        <p><strong>Control-Position:</strong> Left</p> --}}
-                                    @foreach ($cart_item['orders'] ?? [] as $order_name => $item_name)
-                                        <p><strong>{{ $order_name }}:</strong> {{ $item_name }}</p>
+                                    <p><strong>Mount Type:</strong> Outside</p>
+                                    <p><strong>Control:</strong> Continuous Loop</p>
+                                    <p><strong>Control-Position:</strong> Left</p> --}}
+                                    @foreach ($cart_item['orders'] ?? [] as $order_name => $item)
+                                    <p><strong>{{ $order_name }}:</strong> {{ $item['name'] }}</p>
                                     @endforeach
                                 </div>
                             </div>
-                            <a href="#!" class="text-danger"
-                                wire:click.prevent="removeItem({{ $key }})">Remove</a>
-                            {{-- <a href="{{ route('shopping-cart.remove', ['index' => $key]) }}"
-                                class="text-danger">Remove</a> --}}
+                            <a href="#!" class="text-danger" wire:click.prevent="removeItem({{ $key }})">Remove</a>
                         </div>
                     </div>
                 @endforeach
@@ -66,22 +63,37 @@
         <!-- Summary Section -->
         <div class="col-md-4 col-12">
             <div class="border-bottom pb-2">
-                <p class="mb-1"><strong>Subtotal</strong> <span class="float-right">${{ $total_price }}</span></p>
-                <p class="mb-1"><strong>Shipping</strong> <span class="float-right">Shipping &amp; taxes
-                        calculated at checkout</span></p>
-            </div>
-            <div class="py-2 border-bottom">
-                <p class="font-weight-bold">Total <span class="float-right">${{ $total_price }}</span></p>
-            </div>
-            <div class="mt-3">
-                <p>Starting at $63/mo or 0% APR with <a href="#" class="text-decoration-none">Affirm</a>.
-                    <a href="#" class="text-decoration-none">Check your purchasing power</a>
+                <p class="mb-1">
+                    <strong>Subtotal</strong> 
+                    <span class="float-right">${{ round($total_price, 2) }}</span>
+                </p>
+                <p class="mb-1">
+                    <strong>Shipping</strong> 
+                    <span class="float-right">Shipping &amp; taxes calculated at checkout</span>
                 </p>
             </div>
+            <div class="py-2 border-bottom">
+                <p class="font-weight-bold">Total <span class="float-right">${{ round($total_price, 2) }}</span></p>
+            </div>
+            <div class="mt-3">
+                <p>
+                    Starting at $63/mo or 0% APR with 
+                    <a href="#!" class="text-decoration-none">Affirm</a>.
+                    <a href="#!" class="text-decoration-none">Check your purchasing power</a>
+                </p>
+            </div>
+            
+            @auth('web')
             <button class="btn btn-dark btn-block" data-toggle="modal" data-target="#checkoutModal"
                 @disabled($cart_items == null || count($cart_items) <= 0)>
                 CHECKOUT
             </button>
+            @else
+            <button class="btn btn-dark btn-block" data-toggle="modal" data-target="#loginModal"
+                @disabled($cart_items == null || count($cart_items) <= 0)>
+                CHECKOUT
+            </button>
+            @endauth
         </div>
     </div>
 </div>
