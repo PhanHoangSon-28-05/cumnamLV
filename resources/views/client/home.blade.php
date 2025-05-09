@@ -105,14 +105,14 @@
                                                     src="{{ URL::asset('images/placeholder/placeholder.png') }}"
                                                     class="card-img-top" alt="Oakley">
                                             @endif
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    @if (count($value->item) != 0)
-                                                        <?php
+                                            <div class="card-body product-info row flex-column">
+                                                <div class="col-auto">
+                                                    @if ($value->item && count($value->item) != 0)
+                                                        @php
                                                         $count = count($value->item);
                                                         $i = 1;
                                                         $moreShown = false;
-                                                        ?>
+                                                        @endphp
 
                                                         @if ($count <= 5)
                                                             @foreach ($value->item as $color)
@@ -131,57 +131,66 @@
                                                                             style="background-color: {{ $color->color->code_color }};"
                                                                             onmouseover="changeImage('{{ $value->slug }}', '{{ URL::asset('storage/' . $color->image) }}')">
                                                                         </div>
-                                                                        <?php $i++; ?>
+                                                                        @php($i++)
                                                                     @endif
                                                                 @elseif (!$moreShown)
                                                                     <p><a href="#"
                                                                             class="text-decoration-none text-dark">+
                                                                             {{ $count - $i }} more</a></p>
-                                                                    <?php $moreShown = true; ?>
+                                                                    @php($moreShown = true)
                                                                 @endif
                                                             @endforeach
                                                         @endif
                                                     @endif
                                                 </div>
-                                                <h5 class="card-title">
-                                                    <span class="float-left">{{ $value->name }}</span>
-                                                    @if ($value->fromOLD)
-                                                        <span
-                                                            class="badge badge-discount float-right text-uppercase">{{ ($value->from / $value->fromOLD) * 100 }}%
-                                                            OFF</span>
-                                                    @else
-                                                        {{-- <p class="card-text card-price">
-                                                            <small class="text-muted">From
-                                                                <span
-                                                                    class="font-weight-bolder h5 text-black">${{ $value->from }}</span>
-                                                            </small>
-                                                        </p> --}}
-                                                    @endif
-
-                                                    {{-- @if ($value->promotion)
-                                                        <span
-                                                            class="badge badge-discount float-right text-uppercase">{{ $value->promotion }}%
-                                                            OFF</span>
-                                                    @endif --}}
-                                                </h5>
-                                                <br>
-                                                <p class="card-text">{{ $value->description }}</p>
-                                                @if ($value->fromOLD)
-                                                    <p class="card-text card-price">
-                                                        <small class="text-muted">From
+                                                <div class="col-auto">
+                                                    <div class="card-title row">
+                                                        <div class="col">
+                                                            <h5 class="m-0">{{ $value->name }}</h5>
+                                                        </div>
+                                                        @if ($value->fromOLD)
+                                                        <div class="col-auto">
+                                                            <span class="badge badge-discount float-right text-uppercase">
+                                                                {{ round(($value->from / $value->fromOLD) * 100) }}%
+                                                                OFF
+                                                            </span>
+                                                        </div>
+                                                        @else
+                                                            {{-- <p class="card-text card-price">
+                                                                <small class="text-muted">From
+                                                                    <span
+                                                                        class="font-weight-bolder h5 text-black">${{ $value->from }}</span>
+                                                                </small>
+                                                            </p> --}}
+                                                        @endif
+    
+                                                        {{-- @if ($value->promotion)
                                                             <span
-                                                                class="font-weight-bolder h5 text-danger">${{ $value->from }}</span>
+                                                                class="badge badge-discount float-right text-uppercase">{{ $value->promotion }}%
+                                                                OFF</span>
+                                                        @endif --}}
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <p class="card-text description">{{ $value->description }}</p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <p class="card-text card-price">
+                                                        <small class="text-muted">
+                                                            From
+                                                            @if ($value->fromOLD)
+                                                            <span class="font-weight-bolder h5 text-danger">
+                                                                ${{ $value->from }}
+                                                            </span>
                                                             <del>${{ $value->fromOLD }}</del>
+                                                            @else
+                                                            <span class="font-weight-bolder h5 text-black">
+                                                                ${{ $value->from }}
+                                                            </span>
+                                                            @endif
                                                         </small>
                                                     </p>
-                                                @else
-                                                    <p class="card-text card-price">
-                                                        <small class="text-muted">From
-                                                            <span
-                                                                class="font-weight-bolder h5 text-black">${{ $value->from }}</span>
-                                                        </small>
-                                                    </p>
-                                                @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -205,7 +214,7 @@
                                                         class="card-img-top" alt="Oakley">
                                                     <div class="card-body">
                                                         <div class="d-flex">
-                                                            @if (count($value->item) != 0)
+                                                            @if ($value->item && count($value->item) != 0)
                                                                 <?php
                                                                 $count = count($value->item);
                                                                 $i = 1;
@@ -384,12 +393,12 @@
                             {{-- <img class="image"
                                 src="{{ URL::asset('view/style/images/49bff58e2403308511216c20edd05fdf.jpg') }}"
                                 alt=""> --}}
-                            <iframe class="w-100" height="100%"
+                            {{-- <iframe class="w-100" height="100%"
                                 src="{{ URL::asset('images/placeholder/Download.mp4') }}" title="YouTube video player"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>
-                            </iframe>
+                            </iframe> --}}
 
                         </div>
                         {{-- <div class="col-md-4 col-6">
@@ -423,14 +432,14 @@
                     <div class="col-12 content container-fluid">
                         <div class="row text-center">
                             @foreach ($clientTestimonials as $value)
+                            <div class="col-md-4 col-12">
                                 <a href="{{ $value->link }}">
-                                    <div class="col-md-4 col-12">
-                                        <img class="w-100" src="{{ route('storages.image', ['url' => $value->pic]) }}"
-                                            alt="">
-                                        <a class="">{{ $value->title }}</a>
-                                        <p>{{ $value->description }}</p>
-                                    </div>
+                                    <img class="img-fluid client-img" style="object-fit:cover;height:400px" 
+                                    src="{{ route('storages.image', ['url' => $value->pic]) }}" alt="">
                                 </a>
+                                <u>{{ $value->title }}</u>
+                                <p>{{ $value->description }}</p>
+                            </div>
                             @endforeach
 
                         </div>
@@ -450,7 +459,7 @@
     </script>
 
     <!-- Slider product -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> --}}
     <script src="https://unpkg.com/jquery.flipster@1.1.2/dist/jquery.flipster.min.js"></script>
     <!-- End slider pruduct -->
 
@@ -482,6 +491,20 @@
         $(document).on('click', '.flipster__nav__item', function() {
             var index = $(this).index();
             f.flipster('jump', index); // Nhảy đến hình ảnh tương ứng với dấu chấm
+        });
+    </script>
+
+    <script>
+        function setEqualHeight(elements) {
+            var heights = elements.map(function() {return $(this).height();}).get();
+            var max_height = Math.max.apply(null, heights);
+
+            elements.height(max_height);
+        }
+
+        $(document).ready(function() {
+            setEqualHeight($('.products .product-info'));
+            // setEqualHeight($('.client-img'));
         });
     </script>
 @endsection

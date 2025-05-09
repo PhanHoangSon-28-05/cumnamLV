@@ -42,20 +42,26 @@
                                     <td>{{ $logo->stt }}</td>
                                     <td class="w-50"><img src="{{ route('storages.image', ['url' => $logo->pic]) }}"
                                             class="w-25" alt=""></td>
-                                    <td>
+                                    <td class="text-center">
                                         @if ($logo->stt != '1')
-                                            <button type="button" class="btn btn-sm btn-success bd-highlight"
-                                                wire:click="selectImage({{ $logo->id }})">
-                                                <i class="fa-solid fa-check"></i>
-                                            </button>
+                                            <span type="button" wire:click="selectImage({{ $logo->id }})">
+                                                <i class="fa-regular fa-square fa-2xl text-primary"></i>
+                                            </span>
+                                        @else
+                                            <span>
+                                                <i class="fa-solid fa-square-check fa-2xl text-primary"></i>
+                                            </span>
                                         @endif
                                     </td>
                                     <td>
                                         @if ($logo->header != '1')
-                                            <button type="button" class="btn btn-sm btn-success bd-highlight"
-                                                wire:click="selectHeaderLogo({{ $logo->id }})">
-                                                <i class="fa-solid fa-check"></i>
-                                            </button>
+                                            <span type="button" wire:click="selectHeaderLogo({{ $logo->id }})">
+                                                <i class="fa-regular fa-square fa-2xl text-primary"></i>
+                                            </span>
+                                        @else
+                                            <span>
+                                                <i class="fa-solid fa-square-check fa-2xl text-primary"></i>
+                                            </span>
                                         @endif
                                     </td>
                                     <td>

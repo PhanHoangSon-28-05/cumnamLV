@@ -6,15 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CheckoutProduct extends Model
 {
-    protected $fillable = [
-        'checkout_id',
-        'product_id',
-        'width',
-        'height',
-        'price',
-        'amount',
-        'total_price',
-    ];
+    protected $guarded = ['id'];
 
     public function checkout() {
         return $this->belongsTo(Checkout::class, 'checkout_id');

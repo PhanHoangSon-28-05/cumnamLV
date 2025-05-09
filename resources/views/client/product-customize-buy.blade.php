@@ -105,6 +105,30 @@
         .demo:hover {
             opacity: 1;
         }
+
+        .carousel-control-image {
+            display: block;
+            position: relative;
+
+            &::after {
+                position: absolute;
+                top: 0;
+                display: block;
+                content: '';
+                width: 100%;
+                height: 100%;
+                background-color: white;
+                opacity: 0;
+                transition: 0.2s;
+            }
+        }
+
+        .carousel-control-image.active,
+        .carousel-control-image:hover {
+            &::after {
+                opacity: 0.5;
+            }
+        }
     </style>
 @endsection
 
@@ -112,7 +136,7 @@
     <main id="content-wrapper" class="main-v2">
         <section id="order-shutters" class="container-fluid my-5">
             <div class="row pt-2 px-2">
-                <div class="col-md-6 col-12 d-md-none d-block text-center pl-0">
+                {{-- <div class="col-md-6 col-12 d-md-none d-block text-center pl-0">
                     <div class="shutter-image bg-light d-flex justify-content-center align-items-center">
                         <img src="{{ URL::asset('view/style/images/Horizontal Sheer/Image 4-16-24 at 3.32 PM.JPG') }}"
                             id="Cream" class="tabcontent default" alt="Shutter Image" class="img-fluid">
@@ -120,59 +144,72 @@
                             id="Simply" class="tabcontent nodefault" alt="Shutter Image" class="img-fluid">
                         <img src="{{ URL::asset('view/style/images/Horizontal Sheer/Image 4-16-24 at 3.33 PM.JPG') }}"
                             id="Winter" class="tabcontent nodefault" alt="Shutter Image" class="img-fluid">
-                        {{-- <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo" id="logo"
-                            class="logo"> --}}
+                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo" id="logo"
+                            class="logo">
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="col-md-6 col-12 d-none d-sm-block text-center pl-0">
+                <div class="col-md-6 col-12 text-center pl-0">
                     @if (count($colorPros) != 0)
-                        <div class="">
+                    <div class="carousel slide mb-2" data-ride="carousel" id="productCarousel">
+                        <div class="carousel-inner border" >
                             @foreach ($colorPros as $value)
-                                <div class="mySlides product-container">
-                                    @if ($value->image != 'null')
-                                        <img class="product-image"src="{{ route('storages.image', ['url' => $value->image]) }}"
-                                            style="width:100%; heigth: 100px;">
-                                    @else
-                                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
-                                            id="logo" class="logo">
-                                    @endif
+                            <div class="carousel-item position-relative {{ $loop->first ? 'active' : '' }}" 
+                                data-carousel-index={{ $loop->index }}>
 
-                                    @if ($logo)
-                                        <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" alt="Logo"
-                                            id="logo" class="logo">
-                                    @else
-                                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
-                                            id="logo" class="logo">
-                                    @endif
-                                </div>
+                                @if ($value->image != 'null')
+                                <img src="{{ route('storages.image', ['url' => $value->image]) }}" 
+                                style="object-fit:cover" width="100%">
+                                @else
+                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}"
+                                style="object-fit:cover" width="100%">
+                                @endif
+        
+                                @if ($logo)
+                                <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" 
+                                class="position-absolute" width="50" height="50" style="top:0;left:0">
+                                @else
+                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" 
+                                class="position-absolute" width="50" height="50" style="top:0;left:0">
+                                @endif
+                            </div>
                             @endforeach
-                            <div class="caption-container">
-                                <p id="caption"></p>
-                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
 
-                            <div class="">
-                                <span class="d-none"></span> <?php $i = 1; ?>
-                                @foreach ($colorPros as $value)
-                                    <div class="column">
-                                        <img class="demo cursor"
-                                            src="{{ route('storages.image', ['url' => $value->fabriccolor]) }}"
-                                            style="width:100%" onclick="currentSlide({{ $i }})"
-                                            alt="{{ $value->name }}">
-                                    </div>
-                                    <span class="d-none"> {{ $i++ }}</span>
-                                @endforeach
-                            </div>
-                        </div>
-                    @else
-                        <div class="mySlides">
-                            @if ($product->pic)
-                                <img src="{{ route('storages.image', ['url' => $product->pic]) }}"
-                                    style="width:100%; heigth: 100px;">
+                    <ul class="d-flex flex-row pb-2" style="overflow-x:auto">
+                        @foreach ($colorPros as $value)
+                        <li data-target="#productCarousel" data-slide-to="{{ $loop->index }}" 
+                            class="border mr-2 carousel-control-image {{ $loop->first ? 'active' : '' }}" type="button">
+
+                            @if ($value->image != 'null')
+                            <img src="{{ route('storages.image', ['url' => $value->image]) }}" 
+                            style="object-fit:cover" width="120" height="100">
                             @else
-                                <p class="text-body">Updating product images</p>
+                            <img src="{{ URL::asset('images/placeholder/placeholder.png') }}"
+                            style="object-fit:cover" width="120" height="100">
                             @endif
-                        </div>
+                        </li>
+                        @endforeach
+                    </ul>
+
+                    @else
+
+                    <div>
+                        @if ($product->pic)
+                        <img src="{{ route('storages.image', ['url' => $product->pic]) }}" style="width:100%; heigth: 100px;">
+                        @else
+                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}">
+                        @endif
+                    </div>
                     @endif
                 </div>
 
@@ -346,47 +383,46 @@
                 @if ($proRecommend)
 
                     @foreach ($proRecommend as $proValue)
-                        <div class="product-card">
-                            <div class="product-image">
-                                <a href="{{ URL::route('home.products', $proValue['slug']) }}" class="boder-0">
-                                    @if ($proValue['pic'])
-                                        <img src="{{ route('storages.image', ['url' => $proValue['pic']]) }}"
-                                            class="card-img-top product-image roduct-thumb" alt="">
-                                    @else
-                                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" id="logo"
-                                            class="logo">
-                                    @endif
-
-                                    @if ($logo)
-                                        <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" alt="Logo"
-                                            id="logo" class="logo">
-                                    @else
-                                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
-                                            id="logo" class="logo">
-                                    @endif
-
-                                    <button class="card-btn text-white bg-dark border border-dark">come see</button>
-                                </a>
-                            </div>
-                            <div class="product-info">
-                                <p class="product-short-description font-weight-bolder card-title text-uppercase">
-                                    {{ $product->description }}
-                                </p>
-                                <h2 class="product-brand card-text font-weight-bolder">{{ $proValue['name'] }}</h2>
-                                <h5 class=""></h5>
-                                @if ($proValue['fromOLD'])
-                                    <small class="text-muted">Starting
-                                        <span class="font-weight-bolder text-danger">${{ $proValue['from'] }}</span>
-                                        <del>${{ $proValue['fromOLD'] }}</del>
-                                    </small>
+                    <div class="product-card">
+                        <div class="product-image border">
+                            <a href="{{ URL::route('home.products', $proValue['slug']) }}" class="boder-0">
+                                @if ($proValue['pic'])
+                                    <img src="{{ route('storages.image', ['url' => $proValue['pic']]) }}"
+                                        class="card-img-top product-image roduct-thumb" alt="">
                                 @else
-                                    <small class="text-muted">From
-                                        <span
-                                            class="font-weight-bolder text-muted text-black">${{ $proValue['from'] }}</span>
-                                    </small>
+                                    <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" id="logo"
+                                        class="logo">
                                 @endif
-                            </div>
+
+                                @if ($logo)
+                                    <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" alt="Logo"
+                                        id="logo" class="logo">
+                                @else
+                                    <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
+                                        id="logo" class="logo">
+                                @endif
+
+                                <button class="card-btn text-white bg-dark border border-dark">come see</button>
+                            </a>
                         </div>
+                        <div class="product-info">
+                            <p class="product-short-description font-weight-bolder card-title text-uppercase">
+                                {{ $proValue['description'] }}
+                            </p>
+                            <h2 class="product-brand card-text font-weight-bolder">{{ $proValue['name'] }}</h2>
+                            <h5 class=""></h5>
+                            @if ($proValue['fromOLD'])
+                                <small class="text-muted">Starting
+                                    <span class="font-weight-bolder text-danger">${{ $proValue['from'] }}</span>
+                                    <del>${{ $proValue['fromOLD'] }}</del>
+                                </small>
+                            @else
+                                <small class="text-muted">From
+                                    <span class="font-weight-bolder text-muted text-black">${{ $proValue['from'] }}</span>
+                                </small>
+                            @endif
+                        </div>
+                    </div>
                     @endforeach
                 @else
                     Updating !!!!!
@@ -400,7 +436,7 @@
     <script src="{{ URL::asset('view/style/js/slider-product-recommend.js') }}"></script>
     <script>
         let slideIndex = 1;
-        showSlides(slideIndex);
+        // showSlides(slideIndex);
 
         function plusSlides(n) {
             showSlides(slideIndex += n);
@@ -482,13 +518,13 @@
             evt.currentTarget.querySelector("img").style.border = "double black";
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            @if ($colorPros && $colorPros->isNotEmpty())
-                var firstColorName = @json($colorPros->first()->id);
-                document.getElementById(firstColorName).style.display = "block";
-                document.querySelector(".color-option img").style.border = "double black";
-            @endif
-        });
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     @if ($colorPros && $colorPros->isNotEmpty())
+        //         var firstColorName = @json($colorPros->first()->id);
+        //         document.getElementById(firstColorName).style.display = "block";
+        //         document.querySelector(".color-option img").style.border = "double black";
+        //     @endif
+        // });
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -509,6 +545,34 @@
                     starsHtml += '<i class="fa-regular fa-star"></i>';
                 }
                 starContainer.innerHTML = starsHtml;
+            });
+        });
+    </script>
+
+    <script>
+        function normalizeSlideHeights() {
+            $('.carousel').each(function(){
+            var items = $('.carousel-item', this);
+            // reset the height
+            items.css('min-height', 0);
+            // set the height
+            var maxHeight = Math.max.apply(null, 
+                items.map(function(){
+                    return $(this).outerHeight()}).get() );
+            items.css('min-height', maxHeight + 'px');
+            })
+        }
+
+        $(window).on('load resize orientationchange', normalizeSlideHeights);
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#productCarousel').on('slide.bs.carousel', function(e) {
+                var carousel_index = $(e.relatedTarget).attr('data-carousel-index') ?? 0;
+
+                $('.carousel-control-image[data-target="#productCarousel"].active').removeClass('active');
+                $(`.carousel-control-image[data-target="#productCarousel"][data-slide-to=${carousel_index}]`).addClass('active');
             });
         });
     </script>

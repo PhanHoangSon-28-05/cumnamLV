@@ -365,6 +365,14 @@ ul {
     margin: 0 5px;
 }
 
+.products .description {
+    overflow: hidden;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
 @media (max-width: 1023px) {
     .products .card img {
         height: 200px;
@@ -675,60 +683,67 @@ ul {
 
 /* End appointment */
 
-/* Checkout modal */
-#checkoutModal {
+/* Modal form */
+.modal-form {
     font-family: YACkoA9eHeY-0;
-}
 
-#checkoutModal h3,
-#checkoutModal p {
-    width: 550px;
-}
+    h3, p {
+        width: 550px;
+    }
 
-#checkoutModal img {
-    width: 100%;
-    height: 600px;
-}
+    img {
+        width: 100%;
+        height: 600px;
+    }
 
-#checkoutModal .input label {
-    font-size: 20px;
-    display: block;
-}
+    .input {
+        label {
+            font-size: 20px;
+            display: block;
+        }
 
-#checkoutModal .input input,
-#checkoutModal .input select {
-    width: 100%;
-    height: 50px;
-    border-color: #000000;
-    border-radius: 40px;
-    padding: 10px;
-    -moz-appearance: textfield;
-}
+        input, select {
+            width: 100%;
+            height: 50px;
+            border-color: #000000;
+            border-radius: 40px;
+            padding: 10px;
+            -moz-appearance: textfield;
+        }
 
-#checkoutModal .input input[type=radio] {
-    width: 30px;
-    height: 30px;
-}
+        input {
+            &.has-error {
+                border-color: red;
+                background-color: rgb(255, 140, 140);
+            }
 
-#checkoutModal .input .message {
-    width: 550px;
-    height: 200px;
-    border-color: #000000;
-    border-radius: 40px;
-    padding: 10px;
-}
+            &[type="radio"] {
+                width: 30px;
+                height: 30px;
+            } 
+        }
 
-#checkoutModal .btn {
-    background-color: #8A8911;
-    color: white;
-    width: 200px;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-}
+        .message {
+            width: 550px;
+            height: 200px;
+            border-color: #000000;
+            border-radius: 40px;
+            padding: 10px;
+        }
+    }
+    
+    .btn {
+        background-color: #8A8911;
+        color: white;
+        width: 200px;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+    }
 
-#checkoutModal .send {
-    width: 550px;
+    .send {
+        width: 550px;
+    }
 }
 
 input::-webkit-outer-spin-button,
@@ -739,32 +754,32 @@ input::-webkit-inner-spin-button {
 
 @media (max-width: 576px) {
 
-    #checkoutModal h3,
-    #checkoutModal p {
-        width: auto;
-    }
+    .modal-form {
+        h3, p {
+            width: auto;
+        }
 
-    #checkoutModal img {
-        height: auto;
-    }
+        img {
+            height: auto;
+        }
 
-    #checkoutModal .input input {
-        width: 345px;
-        height: 50px;
-    }
+        .input input {
+            width: 345px;
+            height: 50px;
+        }
 
-    #checkoutModal .send {
-        width: auto;
-    }
+        .send {
+            width: auto;
+        }
 
-    #checkoutModal .btn {
-        width: auto;
-        margin-top: 20px;
+        .btn {
+            width: auto;
+            margin-top: 20px;
+        }
     }
-
 }
 
-/* End checkout modal */
+/* End modal form */
 
 /* Client */
 #client {
@@ -896,9 +911,9 @@ footer .btn:hover {
 }
 
 #order-shutters .radio-img-label img {
-    width: 30px;
+    /* width: 30px;
     height: 60px;
-    display: block;
+    display: block; */
     border-color: #000;
 }
 

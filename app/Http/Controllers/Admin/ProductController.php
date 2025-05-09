@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Repositories\Category\CategoryRepositoryInterface;
-use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repositories\Product\ProductRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
 
 class ProductController extends Controller
 {
@@ -14,7 +14,7 @@ class ProductController extends Controller
 
     public function __construct(
         ProductRepositoryInterface $productRepo,
-        CategoryRepositoryInterface $cateRepo
+        CategoryRepositoryInterface $cateRepo,
     ) {
         $this->productRepo = $productRepo;
         $this->cateRepo = $cateRepo;
@@ -94,10 +94,9 @@ class ProductController extends Controller
 
     public function item($id)
     {
-        return view(
-            'admins.product.item',
-            ['id' => $id]
-        );
+        return view('admins.product.item', [
+            'id' => $id,
+        ]);
     }
     public function destroy($id)
     {

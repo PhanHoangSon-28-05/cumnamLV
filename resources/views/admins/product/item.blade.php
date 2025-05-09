@@ -23,5 +23,6 @@
     </div>
     {{-- @dd($id) --}}
     <livewire:product.product-item :id_product="$id" />
+    <livewire:product.product-item-crud :id_product="$id" />
     {{-- @livewire('product.product-item') --}}
 @endsection

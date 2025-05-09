@@ -58,9 +58,10 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">Product</th>
-                                    <th class="text-center">Detail</th>
+                                    <th class="text-center">Size</th>
                                     <th class="text-center">Price</th>
                                     <th class="text-center">Amount</th>
+                                    <th class="text-center">Detail</th>
                                     <th class="text-center">Total</th>
                                 </tr>
                             </thead>
@@ -71,25 +72,42 @@
                                 <tr>
                                     <td class="text-left">
                                         {{-- <img src="{{ route('storages.image', ['url' => $value->product->pic]) }}" 
-                                        alt="{{ $value->product->name }}" style="width: 3rem" class="float-left mr-2"> --}}
+                                        alt="{{ $value->product->name }}" class="float-left mr-2" width="100"> --}}
                                         {{ $value->product->name }}
                                     </td>
+                                    <td class="text-center">
+                                        <span class="text-nowrap">{{ $value->width }} x {{ $value->height }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <strong class="text-success">${{ round($value->price, 2) }}</strong>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="text-success">x{{ $value->amount }}</span></td>
                                     <td class="text-left">
-                                        @php($fabric = $value->product_items->where('id_color', '<>', null)->first())
-                                        Fabric: {{ $fabric->name ?? $fabric->color->name ?? '-' }} <br>
-                                        Width/Height: {{ $value->width }} x {{ $value->height }} <br>
-                                        @foreach ($value->product_items->where('id_item', '<>', null) ?? [] as $item)
-                                        {{ $item->order->name }}: {{ $item->name }} <br>
+                                        @php($fabric = $value->checkout_product_items->where('fabric', '<>', null)->first())
+                                        @if ($fabric)
+                                        <span class="text-nowrap">
+                                            Fabric: {{ $fabric->fabric }}
+                                            <strong class="text-success float-right">(+${{ $fabric->price }})</strong>
+                                        </span> <br>
+                                        @else
+                                        @endif
+
+                                        {{-- Width/Height: {{ $value->width }} x {{ $value->height }} <br> --}}
+
+                                        @foreach ($value->checkout_product_items->where('fabric', null) ?? [] as $item)
+                                        <span class="text-nowrap">
+                                            {{ $item->product_item->order->name ?? '???' }}: {{ $item->product_item->name }}
+                                            <strong class="text-success float-right">(+${{ $item->price }})</strong>
+                                        </span> <br>
                                         @endforeach
                                     </td>
-                                    <td class="text-center">${{ $value->price }}</td>
-                                    <td class="text-center">{{ $value->amount }}</td>
-                                    <td class="text-center">${{ $value->total_price }}</td>
+                                    <td class="text-center">${{ round($value->total_price, 2) }}</td>
                                 </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="4"></td>
-                                    <td class=text-center><strong>${{ $total_price }}</strong></td>
+                                    <td colspan="5"></td>
+                                    <td class=text-center><strong>${{ round($total_price, 2) }}</strong></td>
                                 </tr>
                             </tbody>
                         </table>

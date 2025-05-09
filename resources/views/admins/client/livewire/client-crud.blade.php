@@ -99,7 +99,7 @@
                                 <div class="row">
                                     <label class="crud-label p-0 mt-2 mb-0">Cover Image:</label>
                                     <div class="input-group">
-                                        <input type="file" wire:model="pic" hidden id="cover_img">
+                                        <input type="file" wire:model="pic" hidden id="cover_img" accept="image/*">
                                         <label for="cover_img" class="w-100 border shadow mt-2">
                                             <img src="{{ asset($cover_img) }}" alt="" class="w-100"
                                                 id="image-preview">

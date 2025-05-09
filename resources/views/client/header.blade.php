@@ -1,19 +1,21 @@
+@if (isset($header) && $header->title1 != '')
 <div class="line p-0 m-0">
     <div class="align-items-start">
         <div class="d-flex justify-content-between">
             <div class="col-12">
                 <div class="row ms-1">
                     <p class="mx-4 my-3 h6 text-uppercase desplay-3" style="font-family: YACkoA9eHeY-0;">
-                        <span id="" style="color:#ffffff; white-space:pre-wrap;">{{ $header->title1 }}</span><br>
+                        <span style="color:#ffffff; white-space:pre-wrap;">{{ $header->title1 }}</span><br>
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endif
 <div class="container-fluid">
     <div class="name-logo row">
-        <div class="logodiv col-12 p-0 text-center d-flex justify-content-center align-items-end">
+        <div class="logodiv col-12 p-0 text-center d-flex justify-content-center align-items-end position-relative">
             <a href="{{ URL::route('home') }}"
                 style="display: flex; align-items: center; text-decoration: none; color: black;">
                 {{-- @dd($logoHeader) --}}
@@ -37,13 +39,29 @@
             </a>
             {{-- <div class="rounded-circle">
             </div> --}}
-            <div class="icon">
-                <a class="h3 position-absolute " href="" style="right: 50px; top: 50px" data-toggle="modal"
-                    data-target="#exampleModal"><i class="fa-solid fa-magnifying-glass text-body"></i></a>
-                @include('client.search')
-                <a class="h3 position-absolute " href="{{ route('shopping-cart') }}" style="right: 10px; top: 50px">
+            <div class="icon position-absolute d-flex flex-row" style="right:10px; bottom:0;gap:1rem">
+                <a class="h3" href=""  data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa-solid fa-magnifying-glass text-body"></i>
+                </a>
+                <a class="h3" href="{{ route('shopping-cart') }}">
                     <i class="fa-solid fa-cart-shopping text-body"></i>
                 </a>
+                @auth('web')
+                <a class="h3" href="{{ route('my-checkouts') }}">
+                    <i class="fa-solid fa-file-invoice-dollar text-body"></i>
+                </a>
+                <a class="h3" href="javascript:void" onclick="document.getElementById('logoutForm').submit()">
+                    <i class="fa-solid fa-right-from-bracket text-body"></i>
+                </a>
+                <form action="{{ route('account.logout') }}" id="logoutForm" class="d-none" method="POST">
+                    @method('post')
+                    @csrf
+                </form>
+                @else
+                <a class="h3" href="" data-toggle="modal" data-target="#loginModal">
+                    <i class="fa-solid fa-circle-user text-body"></i>
+                </a>
+                @endauth
             </div>
         </div>
     </div>
@@ -158,7 +176,7 @@
                 <div class="content">
                     @if ($cate->image)
                         <img src="{{ route('storages.image', ['url' => $cate->image]) }}"
-                            alt="{{ $cate->description }}">
+                            alt="{{ $cate->description }}" style="height:140px;object-fit:cover">
                     @else
                         <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Erro">
                     @endif

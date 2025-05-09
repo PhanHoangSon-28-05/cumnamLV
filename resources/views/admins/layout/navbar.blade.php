@@ -12,8 +12,8 @@
 
     <div class="navbar-brand text-center text-lg-left">
         <a href="index.html" class="d-inline-block">
-            <img src="../../../../global_assets/images/logo_light.png" class="d-none d-sm-block" alt="">
-            <img src="../../../../global_assets/images/logo_icon_light.png" class="d-sm-none" alt="">
+            <img src="{{ asset('admins/global_assets/images/logo_light.png') }}" class="d-none d-sm-block" alt="">
+            <img src="{{ asset('admins/global_assets/images/logo_icon_light.png') }}" class="d-sm-none" alt="">
         </a>
     </div>
 

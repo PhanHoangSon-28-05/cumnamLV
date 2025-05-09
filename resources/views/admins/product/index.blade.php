@@ -62,10 +62,10 @@
                     <table class="table table-striped" id="DataTables_Table_0" role="grid"
                         aria-describedby="DataTables_Table_0_info">
                         <thead class="thead-dark">
-                            <tr role="row">
+                            <tr role="row" class="text-center">
                                 <th>S/N</th>
-                                <th class="sorting sorting_asc">Name</th>
-                                <th class="sorting">Catergory</th>
+                                <th class="sorting sorting_asc text-left">Name</th>
+                                <th class="sorting text-left">Catergory</th>
                                 <th class="sorting">Picture</th>
                                 <th class="sorting">Item</th>
                                 <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions">
@@ -77,7 +77,7 @@
                             @if (count($product_list) > 0)
                                 @foreach ($product_list as $value)
                                     <tr class="odd">
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td class="text-center">{{ $loop->iteration }}</td>
                                         <td class="sorting_1">{{ $value->name }}</td>
                                         @if ($value->cate)
                                             <td>{{ $value->cate->name }}</td>

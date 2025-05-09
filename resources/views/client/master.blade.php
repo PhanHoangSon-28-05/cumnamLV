@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{ URL::asset('view/style/css/header.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('view/style/css/custom.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('view/style/css/logo.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('view/noty-js/lib/noty.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('view/noty-js/lib/themes/nest.css') }}">
 
     <!-- Slider product -->
     <link rel="stylesheet" href="https://unpkg.com/jquery.flipster@1.1.2/dist/jquery.flipster.min.css">
@@ -42,13 +44,58 @@
         @include('client.footer')
     </footer>
 
+    @include('client.search')
+    @include('client.login')
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="{{ URL::asset('view/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ URL::asset('view/style/js/custom.js') }}"></script>
     <script src="{{ URL::asset('view/style/js/header.js') }}"></script>
-    <script src="{{ URL::asset('view/style/js/slider.js') }}"></script>
+    {{-- <script src="{{ URL::asset('view/style/js/slider.js') }}"></script> --}}
+    <script src="{{ URL::asset('view/noty-js/lib/noty.js') }}"></script>
+
+    <script>
+        Noty.overrideDefaults({
+            theme: 'nest',
+            layout: 'topRight',
+            type: 'alert',
+            timeout: 2500
+        });
+    </script>
+
+    @session('success')
+    <script>
+        new Noty({
+            type: 'success',
+            text: '{{ $value }}',
+        }).show();
+    </script>
+    @endsession()
+
+    @session('error')
+    <script>
+        new Noty({
+            type: 'error',
+            text: '{{ $value }}',
+        }).show();
+    </script>
+    @endsession()
+
+    @session('open-modal')
+    <script>
+        $('#{{ $value }}').modal('show');
+    </script>
+    @endif
+
+    <script>
+        $('.modal.fade').on('hidden.bs.modal', function() {
+            if ($('.modal.fade.show').length > 0) {
+                $('body').addClass('modal-open').css('padding-right', '15px');
+            }
+        });
+    </script>
 
     @yield('script')
     @livewireScripts

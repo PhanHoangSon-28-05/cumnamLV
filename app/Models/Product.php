@@ -42,8 +42,18 @@ class Product extends Model
         return $this->hasMany(ImageProducts::class, 'product_id');
     }
 
-    public function item(): HasMany
+    public function items(): BelongsToMany
     {
-        return $this->HasMany(ProductItems::class, 'id_product');
+        return $this->belongsToMany(OrderItem::class, 'product_items', 'id_product', 'id_item');
+    }
+
+    public function colors(): BelongsToMany
+    {
+        return $this->belongsToMany(Color::class, 'product_items', 'id_product', 'id_color');
+    }
+
+    public function product_items(): HasMany
+    {
+        return $this->hasMany(ProductItems::class, 'id_product');
     }
 }

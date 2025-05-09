@@ -33,8 +33,9 @@ use App\Http\Controllers\Admin\PageController;
 // Client
 Route::get('/', [ViewController::class, 'home'])->name('home');
 Route::get('/shopping-cart', [ViewController::class, 'shoppingCart'])->name('shopping-cart');
-Route::get('/shopping-cart/remove', [ViewController::class, 'removeCartItem'])->name('shopping-cart.remove');
+Route::post('/shopping-cart/remove', [ViewController::class, 'removeCartItem'])->name('shopping-cart.remove');
 Route::post('/checkout', [ViewController::class, 'checkout'])->name('checkout');
+Route::get('/my-checkouts', [ViewController::class, 'myCheckouts'])->name('my-checkouts');
 Route::get('category-product/{slug}', [ViewController::class, 'categories'])->name('home.category');
 Route::get('category-post/{slug}', [ViewController::class, 'categoriespost'])->name('home.category-post');
 Route::get('category-post/{slug}/{post}', [ViewController::class, 'post'])->name('home.post');
@@ -42,6 +43,10 @@ Route::get('/product/{slug}', [ViewController::class, 'products'])->name('home.p
 Route::get('/product/{slug}/order-item', [ViewController::class, 'productCustomizeBuy'])->name('home.order');
 Route::post('send-mail', [ViewController::class, 'sendmail'])->name('send-email');
 Route::get('/pages/{slug}', [ViewController::class, 'pages'])->name('home.pages');
+
+Route::post('register', [ViewController::class, 'register'])->name('account.register');
+Route::post('login', [ViewController::class, 'login'])->name('account.login');
+Route::post('logout', [ViewController::class, 'logout'])->name('account.logout');
 
 Route::get('/show/image', [ImageController::class, 'getImage'])->name('storages.image');
 Route::post('/upload', [ImageController::class, 'uploadImage'])->name('upload.image');
