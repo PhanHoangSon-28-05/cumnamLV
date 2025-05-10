@@ -23,42 +23,45 @@
             </div>
             <div class="product">
                 <div class="row">
-                    @if (count($products) == 0)
+                    @if (count($productcates) == 0)
                         <div class="col-12">
                             <p class="text-center">There are currently no products.</p>
                         </div>
                     @else
                         {{-- @dd($productcates) --}}
                         @foreach ($productcates as $product)
-                            <div class="col-md-4 col-12 mb-2">
-                                <div class="card">
-                                    <div class="position-relative">
-                                        @if ($product->pic != 'null')
-                                            <img src="{{ URL::asset('storage/' . $product->pic) }}"
-                                                class="card-img-top img-fluid product-image" alt="{{ $product->name }}">
-                                        @else
-                                            <img src="{{ URL::asset('images/placeholder/placeholder.png') }}"
-                                                class="w-100">
-                                        @endif
-                                        @if ($logo)
-                                            <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" alt="Logo"
-                                                id="logo" class="logo">
-                                        @else
-                                            <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
-                                                id="logo" class="logo">
-                                        @endif
-                                        <div class="price-tag position-absolute">
-                                            From ${{ $product->from }}
-                                        </div>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title font-weight-bold">{{ $product->name }}</h5>
-                                        <p class="card-text">{{ $product->description }}</p>
-                                        <a href="{{ URL::route('home.products', $product->slug) }}"
-                                            class="btn btn-dark">Customize Style</a>
+                        <div class="col-md-4 col-12 mb-2">
+                            <div class="card">
+                                <div class="position-relative">
+                                    @if ($product->pic != 'null')
+                                        <img src="{{ URL::asset('storage/' . $product->pic) }}" style="object-fit:cover"
+                                            alt="{{ $product->name }}" height="350" width="100%">
+                                    @else
+                                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}"
+                                            style="object-fit:cover" height="350" width="100%" style="object-fit:cover">
+                                    @endif
+                                    @if ($logo)
+                                        <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" alt="Logo"
+                                            id="logo" class="logo" style="object-fit:cover">
+                                    @else
+                                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
+                                            id="logo" class="logo" style="object-fit:cover">
+                                    @endif
+                                    <div class="price-tag position-absolute">
+                                        From ${{ $product->from }}
                                     </div>
                                 </div>
+                                <div class="card-body text-center product-info">
+                                    <h5 class="card-title font-weight-bold">{{ $product->name }}</h5>
+                                    <p class="card-text">{{ $product->description }}</p>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <a href="{{ URL::route('home.products', $product->slug) }}" class="btn btn-dark">
+                                        Customize Style
+                                    </a>
+                                </div>
                             </div>
+                        </div>
                         @endforeach
                     @endif
                     {{-- <div class="col-md-4 col-12 mb-2">
@@ -118,3 +121,18 @@
     </main>
 
 @endsection
+
+@push('script')
+    <script>
+        function setEqualHeight(elements) {
+            var heights = elements.map(function() {return $(this).height();}).get();
+            var max_height = Math.max.apply(null, heights);
+
+            elements.height(max_height);
+        }
+
+        $(document).ready(function() {
+            setEqualHeight($('.product .product-info'));
+        });
+    </script>
+@endpush

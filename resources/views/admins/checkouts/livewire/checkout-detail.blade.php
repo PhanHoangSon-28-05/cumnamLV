@@ -1,5 +1,5 @@
 <div wire:ignore.self id="checkoutDetailModal" class="modal fade" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Checkout Detail</h5>
@@ -86,20 +86,30 @@
                                     <td class="text-left">
                                         @php($fabric = $value->checkout_product_items->where('fabric', '<>', null)->first())
                                         @if ($fabric)
-                                        <span class="text-nowrap">
-                                            Fabric: {{ $fabric->fabric }}
-                                            <strong class="text-success float-right">(+${{ $fabric->price }})</strong>
-                                        </span> <br>
-                                        @else
+                                        <div class="text-nowrap row flex-nowrap">
+                                            <div class="col">
+                                                <span>Fabric: {{ $fabric->fabric }}</span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <strong class="text-success">(+${{ $fabric->price }})</strong>
+                                            </div>
+                                        </div>
                                         @endif
 
                                         {{-- Width/Height: {{ $value->width }} x {{ $value->height }} <br> --}}
 
                                         @foreach ($value->checkout_product_items->where('fabric', null) ?? [] as $item)
-                                        <span class="text-nowrap">
-                                            {{ $item->product_item->order->name ?? '???' }}: {{ $item->product_item->name }}
-                                            <strong class="text-success float-right">(+${{ $item->price }})</strong>
-                                        </span> <br>
+                                        <div class="text-nowrap row flex-nowrap">
+                                            <div class="col">
+                                                <span>
+                                                    {{ $item->product_item->order->name ?? '???' }}: 
+                                                    {{ $item->product_item->name }}
+                                                </span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <strong class="text-success float-right">(+${{ $item->price }})</strong>
+                                            </div>
+                                        </div>
                                         @endforeach
                                     </td>
                                     <td class="text-center">${{ round($value->total_price, 2) }}</td>
@@ -116,7 +126,7 @@
                 @endif
             </div>
 
-            <div class="modal-footer" wire:loading.remove wire:target="modalSetup">
+            <div class="modal-footer text-right" wire:loading.remove wire:target="modalSetup">
                 <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
                 @if (($checkout->status ?? 0) == 0)
                 <button type="button" class="btn btn-primary" wire:click.prevent="payment">

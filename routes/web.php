@@ -65,12 +65,12 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('orders', [OrderItemController::class, 'index'])->name(OrderItem::INDEX);
     Route::get('checkouts', [CheckoutController::class, 'index'])->name(Checkout::INDEX);
     Route::get('headers', [HeaderController::class, 'index'])->name('headers.index');
-    Route::get('producthome', [HomeProductController::class, 'index'])->name('producthome.index');
     Route::get('footers', [FooterController::class, 'index'])->name('footers.index');
-    Route::get('sliders', [SliderController::class, 'index'])->name(Slider::INDEX);
-    Route::get('clients', [ClientTestimonialsController::class, 'index'])->name(ClientTestimonials::INDEX);
-    Route::get('logos', [LogoController::class, 'index'])->name(Logo::INDEX);
     Route::get('mail-config', [MailConfigController::class, 'index'])->name('mail-config.index');
+    Route::get('home/logos', [LogoController::class, 'index'])->name(Logo::INDEX);
+    Route::get('home/sliders', [SliderController::class, 'index'])->name(Slider::INDEX);
+    Route::get('home/clients', [ClientTestimonialsController::class, 'index'])->name(ClientTestimonials::INDEX);
+    Route::get('home/producthome', [HomeProductController::class, 'index'])->name('producthome.index');
 
     Route::prefix('products')->controller(ProductController::class)->name('products.')->group(function () {
         Route::get('/', 'index')->name('index');
