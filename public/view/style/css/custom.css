@@ -52,7 +52,7 @@ ul {
 #header .name-logo .logo {
     width: 310px;
     height: 100px;
-    object-fit: contain;
+    object-fit: cover;
     object-position: 50% 50%;
 }
 

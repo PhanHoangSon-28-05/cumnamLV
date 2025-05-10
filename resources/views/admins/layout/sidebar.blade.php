@@ -89,11 +89,14 @@
 
                 <!-- Main -->
                 <li class="nav-item-header">
-                    <div class="text-uppercase font-size-xs line-height-xs mt-1">Main</div> <i class="icon-menu"
-                        title="Main"></i>
+                    <div class="text-uppercase font-size-xs line-height-xs mt-1">
+                        Main
+                    </div> 
+                    <i class="icon-menu" title="Main"></i>
                 </li>
-                <li class="nav-item sidebar-user-material-footer">
-                    <a href="{{ route(\App\Models\Category::INDEX) }}" class="nav-link">
+                <li class="nav-item">
+                    <a href="{{ route(\App\Models\Category::INDEX) }}" 
+                    class="nav-link {{ request()->is('admin/categories') ? 'active' : '' }}">
                         <i class="fa-solid fa-bars"></i>
                         <span>
                             Category
@@ -101,7 +104,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route(\App\Models\Color::INDEX) }}" class="nav-link">
+                    <a href="{{ route(\App\Models\Color::INDEX) }}" 
+                    class="nav-link {{ request()->is('admin/colors') ? 'active' : '' }}">
                         <i class="fa-solid fa-palette"></i>
                         <span>
                             Color
@@ -109,7 +113,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route(\App\Models\OrderItem::INDEX) }}" class="nav-link">
+                    <a href="{{ route(\App\Models\OrderItem::INDEX) }}" 
+                    class="nav-link {{ request()->is('admin/orders') ? 'active' : '' }}">
                         <i class="fa-solid fa-cart-plus"></i>
                         <span>
                             Item
@@ -117,7 +122,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('products.index') }}" class="nav-link">
+                    <a href="{{ route('products.index') }}" 
+                    class="nav-link {{ request()->is('admin/products*') ? 'active' : '' }}">
                         <i class="fa-solid fa-person-booth"></i>
                         <span>
                             Product
@@ -125,7 +131,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('checkout.index') }}" class="nav-link">
+                    <a href="{{ route('checkout.index') }}" 
+                    class="nav-link {{ request()->is('admin/checkouts') ? 'active' : '' }}">
                         <i class="fa-solid fa-cash-register"></i>
                         <span>
                             Checkout
@@ -133,24 +140,27 @@
                     </a>
                 </li>
                 @if (Route::has('posts.index'))
-                    <li class="nav-item">
-                        <a href="{{ route('posts.index') }}" class="nav-link">
-                            <i class="fa-solid fa-pencil"></i>
-                            <span>Post</span>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ route('posts.index') }}" 
+                    class="nav-link {{ request()->is('admin/posts*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-pencil"></i>
+                        <span>Post</span>
+                    </a>
+                </li>
                 @endif
                 @if (Route::has(\App\Models\Page::INDEX))
-                    <li class="nav-item">
-                        <a href="{{ route(\App\Models\Page::INDEX) }}" class="nav-link">
-                            <i class="fa-solid fa-pager"></i>
-                            <span>Page</span>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ route(\App\Models\Page::INDEX) }}" 
+                    class="nav-link {{ request()->is('admin/pages*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-pager"></i>
+                        <span>Page</span>
+                    </a>
+                </li>
                 @endif
 
                 <li class="nav-item">
-                    <a href="{{ route('mail-config.index') }}" class="nav-link">
+                    <a href="{{ route('mail-config.index') }}" 
+                    class="nav-link {{ request()->is('admin/mail-config') ? 'active' : '' }}">
                         <i class="fa-solid fa-at"></i>
                         <span>
                             Mail
@@ -158,11 +168,13 @@
                     </a>
                 </li>
 
-                <li class="nav-item nav-item-submenu">
+                <li class="nav-item nav-item-submenu {{ request()->is('admin/home/*') ? 'nav-item-open' : '' }}">
                     <a href="#" class="nav-link"><i class="icon-color-sampler"></i> <span>Home</span></a>
-                    <ul class="nav nav-group-sub" data-submenu-title="Home">
+                    <ul class="nav nav-group-sub" data-submenu-title="Home" 
+                    style="{{ request()->is('admin/home/*') ? 'display: block;' : '' }}">
                         <li class="nav-item">
-                            <a href="{{ route(\App\Models\Logo::INDEX) }}" class="nav-link">
+                            <a href="{{ route(\App\Models\Logo::INDEX) }}" 
+                            class="nav-link {{ request()->is('admin/home/logos') ? 'active' : '' }}">
                                 <i class="fa-brands fa-slack"></i>
                                 <span>
                                     Logo
@@ -170,7 +182,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route(\App\Models\Slider::INDEX) }}" class="nav-link">
+                            <a href="{{ route(\App\Models\Slider::INDEX) }}" 
+                            class="nav-link {{ request()->is('admin/home/sliders') ? 'active' : '' }}">
                                 <i class="fa-solid fa-image"></i>
                                 <span>
                                     Slider
@@ -178,7 +191,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('producthome.index') }}" class="nav-link">
+                            <a href="{{ route('producthome.index') }}" 
+                            class="nav-link {{ request()->is('admin/home/producthome') ? 'active' : '' }}">
                                 <i class="fa-solid fa-heading"></i>
                                 <span>
                                     Product Home
@@ -186,7 +200,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route(\App\Models\ClientTestimonials::INDEX) }}" class="nav-link">
+                            <a href="{{ route(\App\Models\ClientTestimonials::INDEX) }}" 
+                            class="nav-link {{ request()->is('admin/home/clients') ? 'active' : '' }}">
                                 <i class="fa-solid fa-users"></i>
                                 <span>Client Testimonials</span>
                             </a>
@@ -194,7 +209,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('headers.index') }}" class="nav-link">
+                    <a href="{{ route('headers.index') }}" 
+                    class="nav-link {{ request()->is('admin/headers') ? 'active' : '' }}">
                         <i class="fa-solid fa-heading"></i>
                         <span>
                             Header
@@ -202,7 +218,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('footers.index') }}" class="nav-link">
+                    <a href="{{ route('footers.index') }}" 
+                    class="nav-link {{ request()->is('admin/footers') ? 'active' : '' }}">
                         <i class="fa-solid fa-font-awesome"></i>
                         <span>
                             Footer

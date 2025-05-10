@@ -167,10 +167,10 @@
         
                                 @if ($logo)
                                 <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" 
-                                class="position-absolute" width="50" height="50" style="top:0;left:0">
+                                class="position-absolute" width="50" height="50" style="top:0;left:0;object-fit:cover">
                                 @else
                                 <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" 
-                                class="position-absolute" width="50" height="50" style="top:0;left:0">
+                                class="position-absolute" width="50" height="50" style="top:0;left:0;object-fit:cover">
                                 @endif
                             </div>
                             @endforeach
