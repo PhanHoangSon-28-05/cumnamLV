@@ -425,7 +425,9 @@
                     </div>
                     @endforeach
                 @else
-                    Updating !!!!!
+                <div class="w-100 text-center">
+                    <h3>Updating !!!!!</h3>
+                </div>
                 @endif
             </div>
         </section>
