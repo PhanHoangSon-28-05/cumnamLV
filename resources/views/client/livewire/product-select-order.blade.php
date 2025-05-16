@@ -6,11 +6,11 @@
                 <span class="stars">
                     @for ($i = 1; $i <= 5; $i++)
                     @if ($i-1 < $showStars['sum'] && $showStars['sum'] < $i)
-                        ⯪
+                        <i class="fa-solid fa-star-half-stroke"></i>
                     @elseif ($i <= $showStars['sum'])
-                        ★
+                        <i class="fa-solid fa-star"></i>
                     @elseif ($i >= $showStars['sum'])
-                        ☆
+                        <i class="fa-regular fa-star"></i>
                     @endif
                     @endfor
                 </span>
