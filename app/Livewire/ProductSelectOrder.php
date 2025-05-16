@@ -95,7 +95,7 @@ class ProductSelectOrder extends Component
         $cart_item['product_price'] = $this->productPrice;
         $cart_item['option_price'] = $this->optionPrice;
 
-        Session::forget('shopping-cart');
+        // Session::forget('shopping-cart');
         Session::push('shopping-cart', $cart_item);
         return redirect()->route('shopping-cart');
     }
