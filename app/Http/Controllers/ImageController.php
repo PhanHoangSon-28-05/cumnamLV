@@ -15,8 +15,9 @@ class ImageController extends Controller
         $url = $request->url;
         $path = 'app/public/' . $url;
 
-        $file = storage_path($path);
-        if (!file_exists(storage_path($path))) {
+        if (is_file(storage_path($path))) {
+            $file = storage_path($path);
+        } else {
             $file = public_path('images/placeholder/placeholder.png');
         }
 

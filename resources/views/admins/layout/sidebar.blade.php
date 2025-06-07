@@ -168,6 +168,16 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ route('site-config.index') }}" 
+                    class="nav-link {{ request()->is('admin/site-config') ? 'active' : '' }}">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>
+                            Setting
+                        </span>
+                    </a>
+                </li>
+
                 <li class="nav-item nav-item-submenu {{ request()->is('admin/home/*') ? 'nav-item-open' : '' }}">
                     <a href="#" class="nav-link"><i class="icon-color-sampler"></i> <span>Home</span></a>
                     <ul class="nav nav-group-sub" data-submenu-title="Home" 

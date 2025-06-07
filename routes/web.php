@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\Admin\LogoController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ColorController;
@@ -22,9 +23,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CheckoutController;
 use App\Http\Controllers\Admin\OrderItemController;
 use App\Http\Controllers\Admin\MailConfigController;
+use App\Http\Controllers\Admin\SiteConfigController;
 use App\Http\Controllers\Admin\HomeProductController;
 use App\Http\Controllers\Admin\ClientTestimonialsController;
-use App\Http\Controllers\Admin\PageController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -36,10 +37,10 @@ Route::get('/shopping-cart', [ViewController::class, 'shoppingCart'])->name('sho
 Route::post('/shopping-cart/remove', [ViewController::class, 'removeCartItem'])->name('shopping-cart.remove');
 Route::post('/checkout', [ViewController::class, 'checkout'])->name('checkout');
 Route::get('/my-checkouts', [ViewController::class, 'myCheckouts'])->name('my-checkouts');
-Route::get('category-product/{slug}', [ViewController::class, 'categories'])->name('home.category');
+Route::get('category-product/{slug?}', [ViewController::class, 'categories'])->name('home.category');
 Route::get('category-post/{slug}', [ViewController::class, 'categoriespost'])->name('home.category-post');
 Route::get('category-post/{slug}/{post}', [ViewController::class, 'post'])->name('home.post');
-Route::get('/product/{slug}', [ViewController::class, 'products'])->name('home.products');
+Route::get('/product/{slug?}', [ViewController::class, 'products'])->name('home.products');
 Route::get('/product/{slug}/order-item', [ViewController::class, 'productCustomizeBuy'])->name('home.order');
 Route::post('send-mail', [ViewController::class, 'sendmail'])->name('send-email');
 Route::get('/pages/{slug}', [ViewController::class, 'pages'])->name('home.pages');
@@ -67,6 +68,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('headers', [HeaderController::class, 'index'])->name('headers.index');
     Route::get('footers', [FooterController::class, 'index'])->name('footers.index');
     Route::get('mail-config', [MailConfigController::class, 'index'])->name('mail-config.index');
+    Route::get('site-config', [SiteConfigController::class, 'index'])->name('site-config.index');
     Route::get('home/logos', [LogoController::class, 'index'])->name(Logo::INDEX);
     Route::get('home/sliders', [SliderController::class, 'index'])->name(Slider::INDEX);
     Route::get('home/clients', [ClientTestimonialsController::class, 'index'])->name(ClientTestimonials::INDEX);

@@ -1,5 +1,5 @@
 @extends('client.master')
-@section('title', $cate->name)
+@section('title', $cate->name ?? 'Products')
 
 @section('content')
 
@@ -8,6 +8,7 @@
             <div class="row content py-5c mb-3">
                 <div class="col-md-3 col-12"></div>
                 <div class="col-md-6 col-12 text-center py-5">
+                    @isset($cate)
                     <p class="font-weight-bolder h3">{{ $cate->name }}</p>
                     <p class="">
                         @if ($cate->description)
@@ -17,6 +18,9 @@
                             The content is being updated.
                         @endif
                     </p>
+                    @else
+                    <p class="font-weight-bolder h3">Products</p>
+                    @endisset
 
                 </div>
                 <div class="col-md-3 col-12"></div>
@@ -30,23 +34,13 @@
                     @else
                         {{-- @dd($productcates) --}}
                         @foreach ($productcates as $product)
-                        <div class="col-md-4 col-12 mb-2">
+                        <div class="col-md-4 col-12 mb-4">
                             <div class="card">
                                 <div class="position-relative">
-                                    @if ($product->pic != 'null')
-                                        <img src="{{ URL::asset('storage/' . $product->pic) }}" style="object-fit:cover"
-                                            alt="{{ $product->name }}" height="350" width="100%">
-                                    @else
-                                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}"
-                                            style="object-fit:cover" height="350" width="100%" style="object-fit:cover">
-                                    @endif
-                                    @if ($logo)
-                                        <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" alt="Logo"
-                                            id="logo" class="logo" style="object-fit:cover">
-                                    @else
-                                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
-                                            id="logo" class="logo" style="object-fit:cover">
-                                    @endif
+                                    <img src="{{ route('storages.image', ['url' => $product->pic]) }}" style="object-fit:cover"
+                                        alt="{{ $product->name }}" height="350" width="100%">
+                                    <img src="{{ route('storages.image', ['url' => $logo->pic]) }}" alt="Logo"
+                                        id="logo" class="logo" style="object-fit:cover">
                                     <div class="price-tag position-absolute">
                                         From ${{ $product->from }}
                                     </div>

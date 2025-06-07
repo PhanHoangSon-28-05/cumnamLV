@@ -40,7 +40,7 @@
 
     @yield('content')
 
-    <footer class="mt-3" style="background-color: D9D9D9;">
+    <footer class="mt-3 border-top border-dark">
         @include('client.footer')
     </footer>
 

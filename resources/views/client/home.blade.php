@@ -2,448 +2,349 @@
 @section('title', 'Home')
 
 @section('content')
-    <main id="content-wrapper" class="main-v2 text-body">
-        <section id="introduction-section" class="container-fluid mt-2 px-0">
-            <div class="slider-container">
-                <div id="sliderTrack" class="slider-track">
-                    @foreach ($sliders as $value)
-                        <div class="slider-item"
-                            style="background-image: url('{{ route('storages.image', ['url' => $value->pic]) }}');">
+    <main id="content-wrapper" class="main-v2 text-body px-5">
+        <section id="introduction-section" class="container-fluid py-2 border-bottom border-dark">
+            <div class="row align-items-stretch">
+                <div class="col-4 py-4">
+                    <div class="row flex-column h-100">
+                        <div class="col">
+                            <h1><strong>Smart, Stylish Shades Custom-Made for Seattle Living</strong></h1>
                         </div>
-                    @endforeach
-                </div>
-                {{-- <button class="get-started-btn text-white bg-dark border border-dark">Get Started</button> --}}
-                <button class="get-started-btn"><span class="font-weight-bold">Get Started</span></button>
-            </div>
-            {{-- <div class="row">
-                <div class="col-6 pr-0 pr-md-2 image-left">
-                    <img src="{{ URL::asset('view/style/images/hinh-1.jpg') }}" class=" rounded" alt="Top Image">
-                    <h3 class="">CUSTOM-MADE SHADES & BLINDS</h3>
-                    <p class="">HIGH QUALITY WITHOUT HEFTY PRICE TAGS</p>
-                    <a class="btn btn-primary rounded-pill">GET STARTED</a>
-                </div>
-                <div class="col-6 image-right">
-                    <img src="{{ URL::asset('view/style/images/hinh-2.png') }}" class="rounded" alt="Right Image">
-                </div>
-            </div> --}}
-        </section>
-        <section class="container my-md-5 mb-0 mt-3 process-work">
-            <div class="row step-row">
-                <div class="col-4">
-                    <div class="card pl-1 mb-2 mb-md-5 border-0 text-center">
-                        <img src="{{ URL::asset('view/style/images/32acce8ca1f734b86113d04540b96eb8.svg') }}" alt="Measure"
-                            class="step-icon rounded mx-auto d-block">
-                        <h5 class="step-title text-uppercase">BEST PRICING</h5>
-                        <p class="text-truncate">"Meals with my family are always extra special because of the
-                            beautiful
-                            plates I got from
-                            Custom & Nooke."</p>
+                        <div class="col-auto">
+                            <div class="px-3 pb-5">
+                                <p class="text-justify" style="font-size: 1.2rem">
+                                    Say goodbye to showroom markups. Simply, we offer FREE samplings or Free in-home consultation with a 100% 
+                                    satisfaction guarantee.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="px-3 d-flex flex-column">
+                                <button class="btn btn-dark rounded-pill mb-2">Shop now</button>
+                                <button class="btn btn-outline-dark rounded-pill">Make Appointment</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="card pl-1 mb-2 mb-md-5 border-0 text-center">
-                        <img src="{{ URL::asset('view/style/images/03bd4576649ef1d56e4816d333f80cfc.svg') }}" alt="Order"
-                            class="step-icon rounded mx-auto d-block">
-                        <h5 class="step-title text-uppercase">PERFECT FIT</h5>
-                        <p class="text-truncate">"Very pleased with my new sofa--the quality is great, it's
-                            comfortable,
-                            and elevates the look
-                            of my home."
-                        </p>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card pl-1 mb-2 mb-md-5 border-0 text-center">
-                        <img src="{{ URL::asset('view/style/images/7e38d417227a447a118273e451275720.svg') }}" alt="Install"
-                            class="step-icon rounded mx-auto d-block">
-                        <h5 class="step-title text-uppercase">SATISFACTIO​N GUARENTEE</h5>
-                        <p class="text-truncate">"I love how timeless my decor are. I just need to move things around
-                            to
-                            update the look of my
-                            space."</p>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
-        <section class="container-fluid my-md-5 mt-0 products" style="background-color: #EFEFEF;">
-            <div class="container-product">
-                <div class="px-md-5 px-sm-0">
-                    @if ($producthome)
-                        <h1 class="text-center text-uppercase">{{ $producthome->name }}</h1>
-                        <p class="text-center">{{ $producthome->content }}
-                    @endif
-                    </p>
-                    <div class="shop-now">
-                        {{-- <a class="text-white bg-dark border border-dark" href="#">LEARN ​MORE</a> --}}
-                        <a class="get-learnmore-btn" href="#">LEARN ​MORE</a>
-                    </div>
-                </div>
-                <div class=" d-none d-sm-block">
-                    <div class="row">
-                        @if ($lisporudct)
-                            @foreach ($lisporudct as $value)
-                                <div class="col-3 my-1 ">
-                                    <a href="{{ URL::route('home.products', $value->slug) }}">
-                                        <div class="card product-container">
-                                            @if ($value->pic != 'null')
-                                                {{-- <img id="{{ $value->slug }}"
-                                                    src="{{ URL::asset('storage/' . $value->pic) }}" class="card-img-top"
-                                                    alt="Oakley"> --}}
-                                                <img id="{{ $value->slug }}"
-                                                    src="{{ route('storages.image', ['url' => $value->pic]) }}"
-                                                    class="card-img-top product-image" alt="Oakley">
-                                                @if ($logo)
-                                                    <img src="{{ route('storages.image', ['url' => $logo->pic]) }}"
-                                                        alt="Logo" id="logo" class="logo">
-                                                @else
-                                                    <img src="{{ URL::asset('images/placeholder/placeholder.png') }}"
-                                                        alt="Logo" id="logo" class="logo">
-                                                @endif
-                                            @else
-                                                <img id="{{ $value->slug }}"
-                                                    src="{{ URL::asset('images/placeholder/placeholder.png') }}"
-                                                    class="card-img-top" alt="Oakley">
-                                            @endif
-                                            <div class="card-body product-info row flex-column">
-                                                <div class="col-auto">
-                                                    @if ($value->item && count($value->item) != 0)
-                                                        @php
-                                                        $count = count($value->item);
-                                                        $i = 1;
-                                                        $moreShown = false;
-                                                        @endphp
-
-                                                        @if ($count <= 5)
-                                                            @foreach ($value->item as $color)
-                                                                @if ($color->id_color != null)
-                                                                    <div class="color-dot"
-                                                                        style="background-color: {{ $color->color->code_color }};"
-                                                                        onmouseover="changeImage('{{ $value->slug }}', '{{ URL::asset('storage/' . $color->image) }}')">
-                                                                    </div>
-                                                                @endif
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($value->item as $color)
-                                                                @if ($i <= 4)
-                                                                    @if ($color->id_color != null)
-                                                                        <div class="color-dot"
-                                                                            style="background-color: {{ $color->color->code_color }};"
-                                                                            onmouseover="changeImage('{{ $value->slug }}', '{{ URL::asset('storage/' . $color->image) }}')">
-                                                                        </div>
-                                                                        @php($i++)
-                                                                    @endif
-                                                                @elseif (!$moreShown)
-                                                                    <p><a href="#"
-                                                                            class="text-decoration-none text-dark">+
-                                                                            {{ $count - $i }} more</a></p>
-                                                                    @php($moreShown = true)
-                                                                @endif
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="card-title row">
-                                                        <div class="col">
-                                                            <h5 class="m-0">{{ $value->name }}</h5>
-                                                        </div>
-                                                        @if ($value->fromOLD)
-                                                        <div class="col-auto">
-                                                            <span class="badge badge-discount float-right text-uppercase">
-                                                                {{ round(($value->from / $value->fromOLD) * 100) }}%
-                                                                OFF
-                                                            </span>
-                                                        </div>
-                                                        @else
-                                                            {{-- <p class="card-text card-price">
-                                                                <small class="text-muted">From
-                                                                    <span
-                                                                        class="font-weight-bolder h5 text-black">${{ $value->from }}</span>
-                                                                </small>
-                                                            </p> --}}
-                                                        @endif
-    
-                                                        {{-- @if ($value->promotion)
-                                                            <span
-                                                                class="badge badge-discount float-right text-uppercase">{{ $value->promotion }}%
-                                                                OFF</span>
-                                                        @endif --}}
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <p class="card-text description">{{ $value->description }}</p>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <p class="card-text card-price">
-                                                        <small class="text-muted">
-                                                            From
-                                                            @if ($value->fromOLD)
-                                                            <span class="font-weight-bolder h5 text-danger">
-                                                                ${{ $value->from }}
-                                                            </span>
-                                                            <del>${{ $value->fromOLD }}</del>
-                                                            @else
-                                                            <span class="font-weight-bolder h5 text-black">
-                                                                ${{ $value->from }}
-                                                            </span>
-                                                            @endif
-                                                        </small>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            @endforeach
-                        @else
-                            Updating !!!!!
-                        @endif
-                    </div>
-                </div>
-                <div class=" d-md-none d-block">
-                    <div class="row">
-                        <div class="flipster">
-                            <ul class="flip-items">
-                                @if ($lisporudct)
-                                    @foreach ($lisporudct as $value)
-                                        <li class="col-10">
-                                            <a href="{{ URL::route('home.products', $value->slug) }}">
-                                                <div class="card">
-                                                    <img src="{{ route('storages.image', ['url' => $value->pic]) }}"
-                                                        class="card-img-top" alt="Oakley">
-                                                    <div class="card-body">
-                                                        <div class="d-flex">
-                                                            @if ($value->item && count($value->item) != 0)
-                                                                <?php
-                                                                $count = count($value->item);
-                                                                $i = 1;
-                                                                $moreShown = false;
-                                                                ?>
-
-                                                                @if ($count <= 5)
-                                                                    @foreach ($value->item as $color)
-                                                                        @if ($color->id_color != null)
-                                                                            <div class="color-dot"
-                                                                                style="background-color: {{ $color->color->code_color }};">
-                                                                            </div>
-                                                                        @endif
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($value->item as $color)
-                                                                        @if ($i <= 4)
-                                                                            @if ($color->id_color != null)
-                                                                                <div class="color-dot"
-                                                                                    style="background-color: {{ $color->color->code_color }};">
-                                                                                </div>
-                                                                                <?php $i++; ?>
-                                                                            @endif
-                                                                        @elseif (!$moreShown)
-                                                                            <p><a href="#"
-                                                                                    class="text-decoration-none text-dark">+
-                                                                                    {{ $count - $i }} more</a></p>
-                                                                            <?php $moreShown = true; ?>
-                                                                        @endif
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-                                                        </div>
-                                                        <h5 class="card-title">
-                                                            <span class="float-left">{{ $value->name }}</span>
-                                                            @if ($value->promotion)
-                                                                <span
-                                                                    class="badge badge-discount float-right text-uppercase">{{ $value->promotion }}%
-                                                                    OFF</span>
-                                                            @endif
-                                                        </h5>
-                                                        <br>
-                                                        <p class="card-text">{{ $value->description }}</p>
-                                                        @if ($value->fromOLD)
-                                                            <p class="card-text card-price">
-                                                                <small class="text-muted">From
-                                                                    <span
-                                                                        class="font-weight-bolder h5 text-danger">${{ $value->from }}</span>
-                                                                    <del>${{ $value->fromOLD }}</del>
-                                                                </small>
-                                                            </p>
-                                                        @else
-                                                            <p class="card-text card-price">
-                                                                <small class="text-muted">From
-                                                                    <span
-                                                                        class="font-weight-bolder h5 text-black">${{ $value->from }}</span>
-                                                                </small>
-                                                            </p>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                @else
-                                    Updating !!!!!
-                                @endif
-                            </ul>
+                <div class="col">
+                    <div class="row align-items-end">
+                        <div class="col-8">
+                            <img src="{{ asset('images/home-page/254a880356f340fe7edf90a5117eb200.jpg') }}" alt="" class="img-fluid">
+                        </div>
+                        <div class="col">
+                            <img src="{{ asset('images/home-page/836d1b78890b76c6a4c814536837fa18.jpg') }}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="container-fluid my-md-5 mb-0 process-work text-center">
-            <div class="px-5">
-                <h1 class="text-center text-uppercase d-none d-md-block">DIY WITH OUR EASY STEPS</h1>
-                <h3 class="text-center text-uppercase d-md-none d-block">DIY WITH OUR EASY STEPS</h3>
-            </div>
-            <div class="row step-row">
-                <div class="col-3">
-                    <div class="card pl-1 mb-md-5 mb-0 border-0" id="steps">
-                        <img src="{{ URL::asset('view/style/images/869ef8f4ec499c3e11feed4bad1aff76.svg') }}"
-                            alt="Measure" class="step-icon rounded mx-auto d-block">
-                        <h6 class="mb-md-4 mb-3 d-md-none d-block">
-                            <span
-                                class="bg-dark border border-dark rounded-circle text-white px-1 py-1 font-weight-bolder">1</span>
-                        </h6>
-                        <h6 class="mb-4 d-none d-md-block">
-                            <span
-                                class="bg-dark border border-dark rounded-circle text-white px-3 py-2 font-weight-bolder h5">1</span>
-                        </h6>
-                        <h5 class="step-title text-uppercase">BMEASURE</h5>
-                        <p class="h5">All you need is a measure​tape. Check our <span><a href="">How to
-                                    ​measure</a></span> for an
-                            easy​intrusctions before
-                            ordering</p>
+
+        <div style="height:4rem"></div>
+
+        <section class="container-fluid process-work">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="row border-bottom py-3">
+                        <div class="col text-center">
+                            <h2><strong>Trusted by your Seattle Neighbors</strong></h2>
+                        </div>
                     </div>
-                </div>
-                <div class="col-3">
-                    <div class="card pl-1 mb-md-5 mb-0 border-0" id="steps">
-                        <img src="{{ URL::asset('view/style/images/7b4b81ba71cd9ea9e62e30ed93f2f082.svg') }}"
-                            alt="Order" class="step-icon rounded mx-auto d-block">
-                        <h6 class="mb-md-4 mb-3 d-md-none d-block">
-                            <span
-                                class="bg-dark border border-dark rounded-circle text-white px-1 py-1 font-weight-bolder">2</span>
-                        </h6>
-                        <h6 class="mb-4 d-none d-md-block">
-                            <span
-                                class="bg-dark border border-dark rounded-circle text-white px-3 py-2 font-weight-bolder h5">2</span>
-                        </h6>
-                        <h5 class="step-title text-uppercase">ORDER & RECEIVE</h5>
-                        <p class="h5">All custom order takes 3-4 da​ys to make and 5 days to sh​ip to your p​lace
-                        </p>
+                    <div class="row border-bottom py-3">
+                        <div class="col-12" type="button" data-toggle="collapse" data-target="#trustedBy_1">
+                            <i class="fa-regular fa-star"></i>
+                            <strong class="ml-2">Google and Yelp Reviews</strong>
+                            <i class="fa-solid fa-chevron-down float-right arrow"></i>
+                        </div>
+                        <div class="col collapse trusted-by" id="trustedBy_1">
+                            <div class="mt-3">
+                                <span>
+                                    Our happy customers say it best - check out our 5-star reviews on 
+                                    Google and Yelp to see why Seattle families trust us.
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-3">
-                    <div class="card pl-1 mb-md-5 mb-0 border-0" id="steps">
-                        <img src="{{ URL::asset('view/style/images/7752bbabf34b9e9dffb4c825b7ebefe6.svg') }}"
-                            alt="Install" class="step-icon rounded mx-auto d-block">
-                        <h6 class="mb-md-4 mb-3 d-md-none d-block">
-                            <span
-                                class="bg-dark border border-dark rounded-circle text-white px-1 py-1 font-weight-bolder">3</span>
-                        </h6>
-                        <h6 class="mb-4 d-none d-md-block">
-                            <span
-                                class="bg-dark border border-dark rounded-circle text-white px-3 py-2 font-weight-bolder h5">3</span>
-                        </h6>
-                        <h5 class="step-title text-uppercase">INSTALLATION</h5>
-                        <p class="h5">You can DIY with <span><a href="">our ​easy-peasy guide</a></span>
-                        </p>
+                    <div class="row border-bottom py-3">
+                        <div class="col-12" type="button" data-toggle="collapse" data-target="#trustedBy_2">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <strong class="ml-2">Locally owned and operated</strong>
+                            <i class="fa-solid fa-chevron-down float-right arrow"></i>
+                        </div>
+                        <div class="col collapse trusted-by" id="trustedBy_2">
+                            <div class="mt-3">
+                                <span>
+                                    Born and raised in the Northwest, we bring local insight, personal care, and fast response to every home.
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-3">
-                    <div class="card pl-1 mb-md-5 mb-0 border-0" id="steps">
-                        <img src="{{ URL::asset('view/style/images/33968180c9367d1a5d778fdee13e71ff.svg') }}"
-                            alt="Install" class="step-icon rounded mx-auto d-block">
-                        <h6 class="mb-md-4 mb-3 d-md-none d-block">
-                            <span
-                                class="bg-dark border border-dark rounded-circle text-white px-1 py-1 font-weight-bolder">4</span>
-                        </h6>
-                        <h6 class="mb-4 d-none d-md-block">
-                            <span
-                                class="bg-dark border border-dark rounded-circle text-white px-3 py-2 font-weight-bolder h5">4</span>
-                        </h6>
-                        <h5 class="step-title text-uppercase">GUARANTEED</h5>
-                        <p class="h5">We are always here 24/7 ​whenever you need us, from ​step 1 until you satisfy
-                            with
-                            ​your new
-                            window coverings !</p>
+                    <div class="row border-bottom py-3">
+                        <div class="col-12" type="button" data-toggle="collapse" data-target="#trustedBy_3">
+                            <i class="fa-solid fa-carrot"></i>
+                            <strong class="ml-2">Family owned & Child - safe solutions</strong>
+                            <i class="fa-solid fa-chevron-down float-right arrow"></i>
+                        </div>
+                        <div class="col collapse trusted-by" id="trustedBy_3">
+                            <div class="mt-3">
+                                <span>
+                                    As a family business, we understand what matters. That's why we offer stylish, functional, and child-safe 
+                                    window treatments you can feel good about.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row border-bottom py-3">
+                        <div class="col-12" type="button" data-toggle="collapse" data-target="#trustedBy_4">
+                            <i class="fa-regular fa-heart"></i>
+                            <strong class="ml-2">Serviving Greater Seattle area with care since 2023</strong>
+                            <i class="fa-solid fa-chevron-down float-right arrow"></i>
+                        </div>
+                        <div class="col collapse trusted-by" id="trustedBy_4">
+                            <div class="mt-3">
+                                <span>
+                                    From Ballard to Bellevue, we're pround to serve our community with premium shades, blinds, and 
+                                    delicated services.
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section id="committed">
-            <div class="container pt-5 pb-5 text-center text-md-left">
+
+        <div style="height:7rem"></div>
+
+        <section class="container-fluid py-5 px-4 process-work">
+            <div class="row mb-3">
                 <div class="col-12">
-                    <div class="row">
-                        <div class="col-12 col-md-5">
-                            <h2 class="custom-title">Committed to sustainability</h2>
-                        </div>
-                    </div>
+                    <h2 class="text-uppercase">Shop by style</h2>
                 </div>
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-md-4 col-12 mt-md-5 mt-0 h5">
-                            <p class="content">Our made-to-measure, each piece from​Custom & Nooke is personal and
-                                unlike ​any other.
-                                Inspired by the clean lines, cozy ​feel, and monochromatic palette of a ​modern
-                                minimalist home, we ensure every​single piece makes to last</p>
-                            {{-- <a class="btn rounded-pill d-none d-md-inline text-white bg-dark border border-dark">FR​EE
-                                SWATCHES</a> --}}
-                            <a class="btn rounded-pill d-none d-md-inline">FR​EE
-                                SWATCHES</a>
-                        </div>
-                        <div class="col-md-8 col-6">
-                            {{-- <img class="image"
-                                src="{{ URL::asset('view/style/images/49bff58e2403308511216c20edd05fdf.jpg') }}"
-                                alt=""> --}}
-                            {{-- <iframe class="w-100" height="100%"
-                                src="{{ URL::asset('images/placeholder/Download.mp4') }}" title="YouTube video player"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                            </iframe> --}}
-
-                        </div>
-                        {{-- <div class="col-md-4 col-6">
-                            <img class="image"
-                                src="{{ URL::asset('view/style/images/49bff58e2403308511216c20edd05fdf.jpg') }}"
-                                alt="">
-                        </div> --}}
-                        <div class="col-12
-                                    text-center d-sm-inline d-md-none mt-4">
-                            <a class="btn btn-primary rounded-pill text-white bg-dark border border-dark">FR​EE
-                                SWATCHES</a>
-                        </div>
-                    </div>
+                <div class="col text-right">
+                    <a href="#!" class="text-dark" style="font-size:1.2rem">View all ⟶</a>
                 </div>
             </div>
-        </section>
-        {{-- Email --}}
-        @include('client.mail')
-
-        <section id="client">
-            <div class="container my-md-5 my-2">
-                <div class="row ">
-                    <div class="col-12 container">
-                        <p class="display-4 d-none d-md-inline">Client </br>
-                            Testimonials</p>
-                        <p class="h2 font-weight-bold d-sm-inline d-md-none">Client
-                            Testimonials</p>
+            <div class="row">
+                @if ($shadeCates->count() > 0)
+                @foreach ($shadeCates as $shadeCate)
+                <div class="col-3">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <a href="{{ route('home.category', ['slug' => $shadeCate->slug]) }}">
+                                <img src="{{ route('storages.image', ['url' => $shadeCate->image]) }}" alt="" 
+                                class="img-fluid" style="aspect-ratio:5/6;object-fit:cover" width="100%">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <a href="{{ route('home.category', ['slug' => $shadeCate->slug]) }}" class="text-dark">
+                                <h3>
+                                    <span>{{ $shadeCate->name }} </span>
+                                    <span class="d-inline-block" style="transform: translateY(20%)">⟶</span>
+                                </h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col" style="overflow-wrap: break-word">
+                            <span>{{ $shadeCate->description }}</span>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 content container-fluid">
-                        <div class="row text-center">
-                            @foreach ($clientTestimonials as $value)
-                            <div class="col-md-4 col-12">
-                                <a href="{{ $value->link }}">
-                                    <img class="img-fluid client-img" style="object-fit:cover;height:400px" 
-                                    src="{{ route('storages.image', ['url' => $value->pic]) }}" alt="">
+                @endforeach
+                @else
+                    
+                @endif
+            </div>
+        </section>
+
+        <div style="height:6rem"></div>
+
+        <section class="container-fluid px-4 process-work">
+            <div class="row mb-3">
+                <div class="col-12">
+                    <h2 class="text-uppercase">Our bestsellers</h2>
+                </div>
+                <div class="col text-right">
+                    <a href="{{ route('home.category') }}" class="text-dark" style="font-size:1.2rem">View all ⟶</a>
+                </div>
+            </div>
+            <div class="row">
+                @if ($lisporudct->count() > 0)
+                @foreach ($lisporudct as $product)
+                <div class="col-3">
+                    <div class="row mb-2 flex-column h-100">
+                        <div class="col">
+                            <div class="mb-4 position-relative">
+                                <a href="{{ route('home.products', $product->slug) }}">
+                                    <img src="{{ route('storages.image', ['url' => $product->pic]) }}" alt="" 
+                                    class="img-fluid" style="aspect-ratio:5/6;object-fit:cover" width="100%">
                                 </a>
-                                <u>{{ $value->title }}</u>
-                                <p>{{ $value->description }}</p>
+                                @if ($product->fromOLD)
+                                <div class="rounded-pill px-3 py-2 position-absolute badge-dark" style="top:10px;left:10px">
+                                    <strong>SALE</strong>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col">
+                            <a href="{{ route('home.products', $product->slug) }}" class="text-dark">
+                                <h5 class="text-uppercase">{{ $product->name }}</h5>
+                            </a>
+                        </div>
+                        <div class="col-auto">
+                            <p>
+                                <a style="font-size:1.5rem">
+                                    From 
+                                    @if ($product->fromOLD)
+                                    <del class="text-muted">${{ $product->fromOLD }} </del>
+                                    @endif
+                                </a>
+                                <span style="font-size:1.7rem">
+                                    ${{ $product->from ?? 0 }} 
+                                </span>
+                                <span style="font-size:1.2rem">
+                                    / Square Ft.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @else
+                    
+                @endif
+            </div>
+        </section>
+
+        <div style="height:10rem"></div>
+
+        @if ($clientTestimonials->count() > 0)
+        <section class="container-fluid process-work">
+            <div class="row mb-5">
+                <div class="col-7 border-right border-dark pb-3">
+                    <div id="clientCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach ($clientTestimonials as $client)
+                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}"
+                                data-description="{{ $client->description }}" data-title="{{ $client->title }}">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <img src="{{ route('storages.image', ['url' => $client->pic]) }}" alt="" 
+                                        height="600" width="100%" style="object-fit:cover">
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="{{ route('storages.image', ['url' => '']) }}" alt="" 
+                                        height="600" width="100%" style="object-fit:cover">
+                                    </div>
+                                </div>
                             </div>
                             @endforeach
-
                         </div>
                     </div>
+                </div>
+                <div class="col-5 d-flex flex-column justify-content-center px-5" style="font-size:1.5rem">
+                    <div class="row mb-5">
+                        <div class="col">
+                            <p class="font-italic client-description">
+                                “{{ $clientTestimonials->first()->description }}”
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-right">
+                            <span class="client-title">_{{ $clientTestimonials->first()->title }}_</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    @foreach ($clientTestimonials as $client)
+                    <i class="fa-solid {{ $loop->first ? 'fa-circle-dot' : 'fa-circle' }} {{ !$loop->last ? 'mr-4' : '' }}" 
+                        data-slide-to="{{ $loop->index }}" data-target="#clientCarousel" type="button"></i>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+        <div style="height:10rem"></div>
+        @endif
+
+        <section class="container-fluid px-4 process-work" id="appointment">
+            <div class="row mb-3">
+                <div class="col-4 border-right border-dark py-5">
+                    <div class="row h-100 flex-column">
+                        <div class="col">
+                            <h1>From residential to comercical design, we have you covered.</h1>
+                        </div>
+                        <div class="col-auto mb-3">
+                            <p class="text-justify" style="font-size: 1.2rem">
+                                Booking a consultation is your first step toward creating a captivating and harmonious 
+                                environment that reflects your style and aspirations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 border-right border-dark py-5">
+                    <div class="row mb-5">
+                        <div class="col text-center">
+                            <h3>Free in-house consultation</h3>
+                            <h5>Contact form</h5>
+                        </div>
+                    </div>
+                    <form action="{{ route('send-email') }}" method="POST">
+                        @method('POST')
+                        @csrf
+                        <div class="row mb-4">
+                            <div class="col-5">
+                                <label>Name</label>
+                                <input type="text" name="fullname" class="form-control" required>
+                            </div>
+                            <div class="col-7">
+                                <label>Phone Number</label>
+                                <input type="number" name="phone" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label>Email *</label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label>Message</label>
+                                <textarea type="text" name="message" class="form-control" required></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-dark rounded-pill py-2 px-5">
+                                    Send
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-4 pb-5">
+                    <img src="{{ asset('images/home-page/29fc9f776904c959a7e128078706f3ce.jpg') }}" alt="" 
+                    height="600" style="object-fit:cover">
+                </div>
+            </div>
+        </section>
+
+        <div style="height:8rem"></div>
+
+        <section class="container-fluid process-work" style="height:460px;background-position:center;
+        background-image:url({{ asset('images/home-page/ba073c2c7ed563c5b49144233828210a.jpg') }});">
+            <div class="row align-items-center justify-content-center h-100">
+                <div class="col-6 text-center p-5" style="background-color: rgba(68, 27, 27, 0.5)">
+                    <span class="text-white" style="font-size: 1.4rem">
+                        “We believe in being transparent about our pricing. If you 
+                        come across a lower price for a similar product, simply 
+                        share the details with us. We’ll gladly match it.“
+                    </span>
                 </div>
             </div>
         </section>
@@ -505,6 +406,33 @@
         $(document).ready(function() {
             setEqualHeight($('.products .product-info'));
             // setEqualHeight($('.client-img'));
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#clientCarousel').on('slide.bs.carousel', function(e) {
+                let slide = $(e.relatedTarget);
+                let title = slide.attr('data-title');
+                let description = slide.attr('data-description');
+                let index = e.to;
+
+                $('.client-description').text(`"${description}"`);
+                $('.client-title').text(`_${title}_`);
+
+                $('i.fa-circle-dot[data-target="#clientCarousel"]').removeClass('fa-circle-dot').addClass('fa-circle');
+                $(`i[data-target="#clientCarousel"][data-slide-to="${index}"]`).removeClass('fa-circle').addClass('fa-circle-dot');
+            });
+
+            $('.trusted-by').on('show.bs.collapse', function(e) {
+                let id = e.currentTarget.id;
+                $(`[data-target="#${id}"] .arrow`).removeClass('fa-chevron-down').addClass('fa-chevron-up');
+            });
+
+            $('.trusted-by').on('hide.bs.collapse', function(e) {
+                let id = e.currentTarget.id;
+                $(`[data-target="#${id}"] .arrow`).removeClass('fa-chevron-up').addClass('fa-chevron-down');
+            });
         });
     </script>
 @endsection
