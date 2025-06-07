@@ -6,6 +6,8 @@ use App\Models\Footer;
 use App\Models\Header;
 use App\Models\Category;
 use App\Models\OrderItem;
+use App\Mail\CheckoutMail;
+use App\Models\SiteConfig;
 use App\Mail\MailCunamhouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -86,6 +88,7 @@ class ViewController extends Controller
         $products = $this->productRepo->getAll();
         $post = $this->postRepo->getAll();
         $page = $this->pageRepo->getId();
+        $siteConfigs = SiteConfig::first();
 
         return [
             //Header
@@ -100,20 +103,23 @@ class ViewController extends Controller
             // /Header
 
             'footer' => $footer,
+            'siteConfigs' => $siteConfigs,
         ];
     }
     public function home()
     {
-        $lisporudct = $this->productRepo->getProduct();
+        $lisporudct = $this->productRepo->getProduct()->take(4);
         $sliders = $this->sliderRepo->getSlider();
         $clientTestimonials = $this->clientRepo->getClientGet3();
         $producthome = $this->producthomeRepo->getProductHome();
+        $shadeCates = $this->cateRepo->getSlug('shades')->children->take(4);
         // dd($lisporudct);
         $attributes = [
             'lisporudct' => $lisporudct,
             'sliders' => $sliders,
             'clientTestimonials' => $clientTestimonials,
             'producthome' => $producthome,
+            'shadeCates' => $shadeCates,
         ];
 
         $result = array_merge($attributes, $this->get());
@@ -146,10 +152,11 @@ class ViewController extends Controller
         }
     }
 
-    public function categories($slug)
+    public function categories($slug = '')
     {
         $cate = $this->cateRepo->getProductPostSlug($slug);
-        $productcates = $this->cateRepo->getProductPostSlug($slug)->products()->get();
+        $productcates = $slug == '' ? $this->productRepo->getAll() : $this->cateRepo->getProductPostSlug($slug)->products()->get();
+
         // @dd($products);
         $attributes = [
             'cate' => $cate,
@@ -189,9 +196,9 @@ class ViewController extends Controller
         return view('client.post', $result);
     }
 
-    public function products($slug)
+    public function products($slug = '')
     {
-        return redirect()->route('home.order', ['slug' => $slug]);
+        if ($slug != '') return redirect()->route('home.order', ['slug' => $slug]);
 
         $product = $this->productRepo->getProductSlug($slug);
         $colorPros = $this->itemRepo->getColorProduct($product->id);
@@ -256,7 +263,7 @@ class ViewController extends Controller
 
     public function checkout(Request $request)
     {
-        if (!auth()->guard('web')->check()) return abort(403);
+        // if (!auth()->guard('web')->check()) return abort(403);
 
         $params = $request->input();
         unset($params['_method']);
@@ -298,7 +305,7 @@ class ViewController extends Controller
                 ]);
             }
 
-            foreach ($product['orders'] as $key => $item) {
+            foreach ($product['orders'] ?? [] as $key => $item) {
                 $checkout_product_item = $this->checkoutProductItemRepo->create([
                     'checkout_product_id' => $checkout_product->id,
                     'product_item_id' => $item['id'],
@@ -310,6 +317,15 @@ class ViewController extends Controller
         $checkout->update(['total_price' => $checkout_total_price]);
 
         Session::forget('shopping-cart');
+
+        if (!$request->has('account_id')) {
+            try {
+                $checkout_mail = new CheckoutMail($cart_items, $params);
+                \Mail::to($request->input('email'))->send($checkout_mail);
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+        }
 
         return redirect()->route('shopping-cart');
     }

@@ -2,7 +2,7 @@
     <h2 class="font-weight-bold pb-4">Your Cart</h2>
     <div class="row align-items-start">
         <!-- Combined Product Image and Details -->
-        <div class="col-md-8 col-12 product border-bottom border-dark pb-2">
+        <div class="col-md-8 col-12 product pb-2">
             @php($total_price = 0)
             @if (isset($cart_items) && count($cart_items) > 0)
                 @foreach ($cart_items as $key => $cart_item)
@@ -83,7 +83,7 @@
                 </p>
             </div>
             
-            @auth('web')
+            {{-- @auth('web')
             <button class="btn btn-dark btn-block" data-toggle="modal" data-target="#checkoutModal"
                 @disabled($cart_items == null || count($cart_items) <= 0)>
                 CHECKOUT
@@ -93,7 +93,11 @@
                 @disabled($cart_items == null || count($cart_items) <= 0)>
                 CHECKOUT
             </button>
-            @endauth
+            @endauth --}}
+            <button class="btn btn-dark btn-block" data-toggle="modal" data-target="#checkoutModal"
+                @disabled($cart_items == null || count($cart_items) <= 0)>
+                CHECKOUT
+            </button>
         </div>
     </div>
 </div>
