@@ -7,16 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title> @yield('title')</title>
 
-    <link rel="stylesheet" href="{{ URL::asset('view/bootstrap-4.6.2-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admins/assets/css/responsive_border.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admins/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admins/assets/css/components.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ URL::asset('view/bootstrap-4.6.2-dist/css/bootstrap.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ URL::asset('view/fontawesome-free-6.5.2-web/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('view/style/ajax/libs/slick-carousel/1.6.0/slick.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('view/style/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:100">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" href="{{ URL::asset('view/style/css/font-face.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('view/style/css/header.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('view/style/css/custom.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('view/style/css/logo.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('view/style/css/font-face.css?v=').time() }}">
+    <link rel="stylesheet" href="{{ URL::asset('view/style/css/header.css?v=').time() }}">
+    <link rel="stylesheet" href="{{ URL::asset('view/style/css/custom.css?v=').time() }}">
+    <link rel="stylesheet" href="{{ URL::asset('view/style/css/logo.css?v=').time() }}">
     <link rel="stylesheet" href="{{ URL::asset('view/noty-js/lib/noty.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('view/noty-js/lib/themes/nest.css') }}">
 
@@ -28,6 +31,7 @@
     <script src="{{ URL::asset('view/style/ajax/libs/slick-carousel/1.6.0/slick.min.js') }}"></script>
 
     <!-- <link rel="stylesheet" href="style/slider/line/line.css"> -->
+
     @yield('style')
     @livewireStyles
     @stack('style')

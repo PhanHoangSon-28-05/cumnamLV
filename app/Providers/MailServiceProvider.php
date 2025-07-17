@@ -23,7 +23,7 @@ class MailServiceProvider extends ServiceProvider
             }
         }
 
-        if (Schema::hasTable('mail_configs')) {
+        if (Schema::hasTable('site_configs')) {
             $site_config = DB::table('site_configs')->first();
     
             if ($site_config) {

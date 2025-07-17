@@ -143,6 +143,13 @@ ul {
     }
 }
 
+@media (max-width: 576px) {
+    #header .name-logo .logo {
+        width: 200px;
+        height: 50px;
+    }
+}
+
 #myUL li {
     font-family: YACkoA9eHeY-0;
 }
@@ -163,6 +170,14 @@ ul {
     font-family: YACkoA9eHeY-0;
     /* background-color: #EFEFEF;
     padding: 40px 20px; */
+
+    * {
+        font-size: clamp(0.8rem, 0.198rem + 1.2524vw, 1.2rem);
+    }
+
+    h1 {
+        font-size: clamp(1.5rem, -0.3059rem + 3.7573vw, 2.7rem);
+    }
 }
 
 #introduction-section .slider-container {
@@ -281,15 +296,25 @@ ul {
         margin-top: 10px;
     }
 
-    #introduction-section p {
+    /* #introduction-section p {
         font-size: 0.5rem;
         margin: 5px 0;
-    }
+    } */
 
     #introduction-section .btn {
         font-size: 0.75rem;
         margin-top: 10px;
         padding: 5px 5px;
+    }
+
+    #introduction-section {
+        * {
+            font-size: 1.2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
     }
 
 }
@@ -816,6 +841,27 @@ input::-webkit-inner-spin-button {
 }
 
 /* End client */
+
+/* Quote */
+
+#quote {
+    height: 460px;
+    background-image: url("/images/home-page/ba073c2c7ed563c5b49144233828210a.jpg");
+    background-position: center;
+    background-size: cover;
+
+    span {
+        font-size: clamp(0.8rem, 0.3091rem + 1.3636vw, 1.4rem);
+    }
+}
+
+@media (max-width: 576px) {
+    #quote {
+        height: 300px;
+    }
+}
+
+/* End quote */
 
 /* Footer */
 footer {

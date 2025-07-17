@@ -15,16 +15,11 @@
 @endif
 <div class="container-fluid">
     <div class="name-logo row">
-        <div class="logodiv col-12 p-0 text-center d-flex justify-content-center align-items-end position-relative">
-            <a href="{{ URL::route('home') }}"
-                style="display: flex; align-items: center; text-decoration: none; color: black;">
+        <div class="logodiv col text-left text-sm-center position-relative">
+            <a href="{{ URL::route('home') }}" class="d-inline-block">
                 {{-- @dd($logoHeader) --}}
-                @if ($logoHeader)
-                    @if ($logoHeader->pic != 'null')
-                        <img src="{{ route('storages.image', ['url' => $logoHeader->pic]) }}" class="logo">
-                    @else
-                        <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" class="logo">
-                    @endif
+                @if ($logoHeader && $logoHeader->pic != 'null')
+                    <img src="{{ route('storages.image', ['url' => $logoHeader->pic]) }}" class="logo">
                 @else
                     <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" class="logo">
                 @endif
@@ -67,19 +62,19 @@
     </div>
 </div>
 <div class="container-fluid">
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-lg-center border-top border-bottom border-dark">
         <div class="d-none d-md-block">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white pb-0">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <span class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </span>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         @foreach ($cates as $cate)
                             <li class="nav-item dropdown" id="menu-{{ $cate->slug }}">
-                                <a class="nav-link dropdown-toggle text-uppercase text-body"
-                                    href="@if (in_array($cate->id, $pages)) {{ URL::route('home.pages', $cate->slug) }} @endif"
+                                <a class="nav-link dropdown-toggle text-capitalize text-body"
+                                    href="{{ in_array($cate->id, $pages) ? URL::route('home.pages', $cate->slug) : '#!' }}"
                                     role="button" data-toggle="dropdown" aria-expanded="false">
                                     {{ $cate->name }}
                                     @if ($cate->slug != 'how-to')
@@ -128,22 +123,23 @@
                                 aria-hidden="true" class="text-body">&times;</span></button> -->
                     </div>
                 </header>
-                <div class="bs-canvas-content">
+                <div class="bs-canvas-content" id="mobileMenu">
                     @foreach ($cates as $cate)
-                        <div class="dropdown border-bottom border-dark" id="catergoryChild">
-                            <button class="btn dropdown-toggle w-100 text-left text-uppercase" type="button"
-                                data-toggle="dropdown" aria-expanded="false">
+                        <div class="border-bottom border-dark">
+                            <a href="#category_{{ $loop->iteration }}" class="btn w-100 text-left text-capitalize shadow-none" 
+                                data-toggle="collapse">
                                 {{ $cate->name }}
                                 @if ($cate->slug != 'how-to')
                                     <i class="fas fa-angle-down float-right mt-1"></i>
                                 @endif
-                            </button>
+                            </a>
                             @if ($cate->slug != 'how-to')
-                                <div class="dropdown-menu w-100">
-                                    @include('client.partials.catergoryChild', [
-                                        'parentId' => $cate->id,
-                                    ])
-                                </div>
+                            <div class="collapse w-100 pl-4 pt-2 border-top border-dark" id="category_{{ $loop->iteration }}" 
+                                data-parent="#mobileMenu">
+                                @include('client.partials.catergoryChild', [
+                                    'parentId' => $cate->id,
+                                ])
+                            </div>
                             @endif
                         </div>
                     @endforeach

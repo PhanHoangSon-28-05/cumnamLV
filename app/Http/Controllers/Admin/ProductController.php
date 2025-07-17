@@ -28,7 +28,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = $this->cateRepo->getremoveParentPro();
+        // $categories = $this->cateRepo->getremoveParentPro();
+        $categories = $this->cateRepo->getProductCategories();
         return view(
             'admins.product.create',
             ['categories' => $categories]

@@ -34,7 +34,7 @@
                     @else
                         {{-- @dd($productcates) --}}
                         @foreach ($productcates as $product)
-                        <div class="col-md-4 col-12 mb-4">
+                        <div class="col-12 col-md-6 col-lg-4 col-12 mb-4">
                             <div class="card">
                                 <div class="position-relative">
                                     <img src="{{ route('storages.image', ['url' => $product->pic]) }}" style="object-fit:cover"

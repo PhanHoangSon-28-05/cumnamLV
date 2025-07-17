@@ -138,4 +138,16 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         $products = $this->model->where('slug', $slug)->first();
         return $products;
     }
+
+    public function getProductCategories() 
+    {
+        return $this->model->where('is_product_category', 1)->get();
+    }
+
+    public function toggleProductCate($id) 
+    {
+        $cate = $this->model->find($id);
+        $status = $cate->is_product_category;
+        $cate->update(['is_product_category' => !$status]);
+    }
 }

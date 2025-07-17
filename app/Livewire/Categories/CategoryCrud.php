@@ -16,7 +16,8 @@ class CategoryCrud extends Component
         $parent_id,
         $modelCate,
         $pic,
-        $category_id;
+        $category_id,
+        $is_product_category;
 
     #[Rule('required|string|max:255', message: 'Please provide a category name')]
     public $name;
@@ -51,6 +52,7 @@ class CategoryCrud extends Component
             $this->description = $this->modelCate->description;
             $this->content = $this->modelCate->content;
             $this->pic = $this->modelCate->image;
+            $this->is_product_category = $this->modelCate->is_product_category;
         } else {
             $this->stt = '';
             $this->parent_id = 0;
@@ -58,6 +60,7 @@ class CategoryCrud extends Component
             $this->description = '';
             $this->content = '';
             $this->pic = '';
+            $this->is_product_category = 0;
         }
     }
 
@@ -104,10 +107,23 @@ class CategoryCrud extends Component
 
     public function render()
     {
+        if ($this->pic) {
+            if (gettype($this->pic) == 'string') {
+                $cover_img = 'storage/' . $this->pic;
+            } else {
+                $cover_img = $this->pic->temporaryUrl();
+            }
+        } else {
+            $cover_img = 'images/placeholder/placeholder.png';
+        }
+
         $cate = $this->cateRepos->getParent();
         return view(
             'admins.category.livewire.category-crud',
-            ['categories' => $cate]
+            [
+                'categories' => $cate,
+                'cover_img' => $cover_img,
+            ]
         );
     }
 }

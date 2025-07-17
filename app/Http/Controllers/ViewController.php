@@ -112,7 +112,8 @@ class ViewController extends Controller
         $sliders = $this->sliderRepo->getSlider();
         $clientTestimonials = $this->clientRepo->getClientGet3();
         $producthome = $this->producthomeRepo->getProductHome();
-        $shadeCates = $this->cateRepo->getSlug('shades')->children->take(4);
+        // $shadeCates = $this->cateRepo->getSlug('shades')->children->take(4);
+        $shadeCates = $this->cateRepo->getProductCategories()->take(4);
         // dd($lisporudct);
         $attributes = [
             'lisporudct' => $lisporudct,
@@ -150,6 +151,12 @@ class ViewController extends Controller
         } catch (\Throwable $th) {
             return redirect()->route('home')->with('error', 'Some Errors Occurred');
         }
+    }
+
+    public function allCategories() {
+        $categories = $this->cateRepo->getProductCategories();
+        $result = array_merge(['categories' => $categories], $this->get());
+        return view('client.categories', $result);
     }
 
     public function categories($slug = '')

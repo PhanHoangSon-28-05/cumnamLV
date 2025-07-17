@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md col-12 border-md-0 border-right border-dark pt-5 pb-4">
+        <div class="col-md col-12 border-sm-right border-dark pt-5 pb-4">
             <div class="row flex-column h-100">
                 <div class="col pl-5">
                     <ul class="text-uppercase" style="font-size:1.2rem">
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5 col-12 border-md-0 border-right border-dark pt-5 pb-4">
+        <div class="col-md-5 col-12 border-sm-right border-dark pt-5 pb-4">
             <div class="row mb-3">
                 <div class="col text-center text-uppercase" style="font-size:1.2rem">
                     <span>Available Hours (Pacific Time):</span> <br>
@@ -50,17 +50,17 @@
         </div>
         <div class="col-md col-12 pt-5 pb-4">
             <div class="row flex-column">
-                <div class="col-auto pl-5">
+                <div class="col-auto pl-sm-5">
                     <h5 class="text-uppercase font-weight-bold">{{ $footer->title3 }}</h5>
                     <p class="">{{ $footer->content31 }}</p>
                 </div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col pl-5">
+                <div class="col pl-sm-5">
+                    <div class="row flex-row flex-lg-row flex-md-column">
+                        <div class="col mb-0 mb-lg-0 mb-md-2">
                             <input type="text" class="form-control">
                         </div>
-                        <div class="col-auto pr-5">
-                            <button class="btn btn-dark text-uppercase h-100">Sign up</button>
+                        <div class="col-auto">
+                            <button class="btn btn-dark text-uppercase h-100 btn-block">Sign up</button>
                         </div>
                     </div>
                 </div>

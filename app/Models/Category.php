@@ -24,6 +24,7 @@ class Category extends Model
         'content',
         'image',
         'post',
+        'is_product_category',
     ];
 
     public function products(): HasMany

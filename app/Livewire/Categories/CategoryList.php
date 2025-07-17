@@ -27,6 +27,11 @@ class CategoryList extends Component
         $this->cateRepo->noselectPost($id);
     }
 
+    public function toggleProductCate($id)
+    {
+        $this->cateRepo->toggleProductCate($id);
+    }
+
     public function render()
     {
         $cate = $this->cateRepo->getParent();
