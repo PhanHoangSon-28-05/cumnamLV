@@ -37,6 +37,7 @@ Route::get('/shopping-cart', [ViewController::class, 'shoppingCart'])->name('sho
 Route::post('/shopping-cart/remove', [ViewController::class, 'removeCartItem'])->name('shopping-cart.remove');
 Route::post('/checkout', [ViewController::class, 'checkout'])->name('checkout');
 Route::get('/my-checkouts', [ViewController::class, 'myCheckouts'])->name('my-checkouts');
+Route::get('categories', [ViewController::class, 'allCategories'])->name('home.category-all');
 Route::get('category-product/{slug?}', [ViewController::class, 'categories'])->name('home.category');
 Route::get('category-post/{slug}', [ViewController::class, 'categoriespost'])->name('home.category-post');
 Route::get('category-post/{slug}/{post}', [ViewController::class, 'post'])->name('home.post');

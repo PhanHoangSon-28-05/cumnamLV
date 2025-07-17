@@ -1,37 +1,49 @@
 @extends('client.master')
 @section('title', 'Home')
 
+@section('style')
+<style>
+    .view-all {
+        font-size: clamp(1rem, 0.6727rem + 0.9091vw, 1.4rem);
+    }
+</style>
+@endsection
+
 @section('content')
-    <main id="content-wrapper" class="main-v2 text-body px-5">
+    <main id="content-wrapper" class="main-v2 text-body">
         <section id="introduction-section" class="container-fluid py-2 border-bottom border-dark">
-            <div class="row align-items-stretch">
-                <div class="col-4 py-4">
+            <div class="row align-items-stretch flex-column-reverse flex-md-row">
+                <div class="col col-md-4 py-4">
                     <div class="row flex-column h-100">
                         <div class="col">
-                            <h1><strong>Smart, Stylish Shades Custom-Made for Seattle Living</strong></h1>
+                            <h1>Smart, Stylish Shades Custom-Made for Seattle Living</h1>
                         </div>
                         <div class="col-auto">
-                            <div class="px-3 pb-5">
-                                <p class="text-justify" style="font-size: 1.2rem">
+                            <div class="px-3 pb-lg-2">
+                                <p class="text-justify">
                                     Say goodbye to showroom markups. Simply, we offer FREE samplings or Free in-home consultation with a 100% 
                                     satisfaction guarantee.
                                 </p>
                             </div>
                         </div>
                         <div class="col-auto">
-                            <div class="px-3 d-flex flex-column">
-                                <button class="btn btn-dark rounded-pill mb-2">Shop now</button>
-                                <button class="btn btn-outline-dark rounded-pill">Make Appointment</button>
+                            <div class="px-3 d-flex flex-column" style="max-width:15rem">
+                                <button class="btn btn-dark rounded-pill mb-3 py-2">
+                                    Shop now
+                                </button>
+                                <button class="btn btn-outline-dark rounded-pill py-2">
+                                    Make Appointment
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="row align-items-end">
-                        <div class="col-8">
+                        <div class="col">
                             <img src="{{ asset('images/home-page/254a880356f340fe7edf90a5117eb200.jpg') }}" alt="" class="img-fluid">
                         </div>
-                        <div class="col">
+                        <div class="col-4 d-none d-lg-block">
                             <img src="{{ asset('images/home-page/836d1b78890b76c6a4c814536837fa18.jpg') }}" alt="" class="img-fluid">
                         </div>
                     </div>
@@ -43,17 +55,23 @@
 
         <section class="container-fluid process-work">
             <div class="row justify-content-center">
-                <div class="col-6">
+                <div class="col col-md-6">
                     <div class="row border-bottom py-3">
                         <div class="col text-center">
-                            <h2><strong>Trusted by your Seattle Neighbors</strong></h2>
+                            <h1><strong>Trusted by your Seattle Neighbors</strong></h1>
                         </div>
                     </div>
                     <div class="row border-bottom py-3">
                         <div class="col-12" type="button" data-toggle="collapse" data-target="#trustedBy_1">
-                            <i class="fa-regular fa-star"></i>
-                            <strong class="ml-2">Google and Yelp Reviews</strong>
-                            <i class="fa-solid fa-chevron-down float-right arrow"></i>
+                            <div class="row">
+                                <div class="col">
+                                    <i class="fa-regular fa-star"></i>
+                                    <strong class="ml-2">Google and Yelp Reviews</strong>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa-solid fa-chevron-down float-right arrow"></i>
+                                </div>
+                            </div>
                         </div>
                         <div class="col collapse trusted-by" id="trustedBy_1">
                             <div class="mt-3">
@@ -66,9 +84,15 @@
                     </div>
                     <div class="row border-bottom py-3">
                         <div class="col-12" type="button" data-toggle="collapse" data-target="#trustedBy_2">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <strong class="ml-2">Locally owned and operated</strong>
-                            <i class="fa-solid fa-chevron-down float-right arrow"></i>
+                            <div class="row">
+                                <div class="col">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <strong class="ml-2">Locally owned and operated</strong>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa-solid fa-chevron-down float-right arrow"></i>
+                                </div>
+                            </div>
                         </div>
                         <div class="col collapse trusted-by" id="trustedBy_2">
                             <div class="mt-3">
@@ -80,9 +104,15 @@
                     </div>
                     <div class="row border-bottom py-3">
                         <div class="col-12" type="button" data-toggle="collapse" data-target="#trustedBy_3">
-                            <i class="fa-solid fa-carrot"></i>
-                            <strong class="ml-2">Family owned & Child - safe solutions</strong>
-                            <i class="fa-solid fa-chevron-down float-right arrow"></i>
+                            <div class="row">
+                                <div class="col">
+                                    <i class="fa-solid fa-carrot"></i>
+                                    <strong class="ml-2">Family owned & Child - safe solutions</strong>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa-solid fa-chevron-down float-right arrow"></i>
+                                </div>
+                            </div>
                         </div>
                         <div class="col collapse trusted-by" id="trustedBy_3">
                             <div class="mt-3">
@@ -95,9 +125,15 @@
                     </div>
                     <div class="row border-bottom py-3">
                         <div class="col-12" type="button" data-toggle="collapse" data-target="#trustedBy_4">
-                            <i class="fa-regular fa-heart"></i>
-                            <strong class="ml-2">Serviving Greater Seattle area with care since 2023</strong>
-                            <i class="fa-solid fa-chevron-down float-right arrow"></i>
+                            <div class="row">
+                                <div class="col">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <strong class="ml-2">Serviving Greater Seattle area with care since 2023</strong>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa-solid fa-chevron-down float-right arrow"></i>
+                                </div>
+                            </div>
                         </div>
                         <div class="col collapse trusted-by" id="trustedBy_4">
                             <div class="mt-3">
@@ -114,20 +150,23 @@
 
         <div style="height:7rem"></div>
 
-        <section class="container-fluid py-5 px-4 process-work">
-            <div class="row mb-3">
-                <div class="col-12">
-                    <h2 class="text-uppercase">Shop by style</h2>
+        <section class="container-fluid px-md-5 process-work">
+            <div class="row mb-4">
+                <div class="col-12 text-center text-md-left">
+                    <h1 class="text-uppercase">Shop by style</h1>
                 </div>
-                <div class="col text-right">
-                    <a href="#!" class="text-dark" style="font-size:1.2rem">View all ⟶</a>
+                <div class="col text-center text-md-right">
+                    <a href="{{ route('home.category-all') }}" class="text-dark mr-sm-4 view-all">
+                        View all
+                        <span class="d-none d-sm-inline"> ⟶</span>
+                    </a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row flex-nowrap overflow-auto">
                 @if ($shadeCates->count() > 0)
                 @foreach ($shadeCates as $shadeCate)
-                <div class="col-3">
-                    <div class="row mb-4">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="row mb-3">
                         <div class="col">
                             <a href="{{ route('home.category', ['slug' => $shadeCate->slug]) }}">
                                 <img src="{{ route('storages.image', ['url' => $shadeCate->image]) }}" alt="" 
@@ -160,22 +199,25 @@
 
         <div style="height:6rem"></div>
 
-        <section class="container-fluid px-4 process-work">
-            <div class="row mb-3">
-                <div class="col-12">
-                    <h2 class="text-uppercase">Our bestsellers</h2>
+        <section class="container-fluid px-md-5 process-work">
+            <div class="row mb-4">
+                <div class="col-12 text-center text-md-left">
+                    <h1 class="text-uppercase">Our bestsellers</h1>
                 </div>
-                <div class="col text-right">
-                    <a href="{{ route('home.category') }}" class="text-dark" style="font-size:1.2rem">View all ⟶</a>
+                <div class="col text-center text-md-right">
+                    <a href="{{ route('home.category') }}" class="text-dark mr-sm-4 view-all">
+                        View all
+                        <span class="d-none d-sm-inline"> ⟶</span>
+                    </a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row flex-nowrap overflow-auto">
                 @if ($lisporudct->count() > 0)
                 @foreach ($lisporudct as $product)
-                <div class="col-3">
+                <div class="col-12 col-md-6 col-lg-3">
                     <div class="row mb-2 flex-column h-100">
                         <div class="col">
-                            <div class="mb-4 position-relative">
+                            <div class="mb-3 position-relative">
                                 <a href="{{ route('home.products', $product->slug) }}">
                                     <img src="{{ route('storages.image', ['url' => $product->pic]) }}" alt="" 
                                     class="img-fluid" style="aspect-ratio:5/6;object-fit:cover" width="100%">
@@ -189,7 +231,7 @@
                         </div>
                         <div class="col">
                             <a href="{{ route('home.products', $product->slug) }}" class="text-dark">
-                                <h5 class="text-uppercase">{{ $product->name }}</h5>
+                                <h5 class="text-uppercase mb-0">{{ $product->name }}</h5>
                             </a>
                         </div>
                         <div class="col-auto">
@@ -221,21 +263,34 @@
 
         @if ($clientTestimonials->count() > 0)
         <section class="container-fluid process-work">
-            <div class="row mb-5">
-                <div class="col-7 border-right border-dark pb-3">
+            <div class="row mb-5 flex-column flex-lg-row">
+                <div class="col col-lg-7 pb-3">
                     <div id="clientCarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             @foreach ($clientTestimonials as $client)
                             <div class="carousel-item {{ $loop->first ? 'active' : '' }}"
                                 data-description="{{ $client->description }}" data-title="{{ $client->title }}">
-                                <div class="row">
-                                    <div class="col-6">
+                                <div class="row position-relative">
+                                    <div class="col">
                                         <img src="{{ route('storages.image', ['url' => $client->pic]) }}" alt="" 
                                         height="600" width="100%" style="object-fit:cover">
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-6 d-none d-md-block">
                                         <img src="{{ route('storages.image', ['url' => '']) }}" alt="" 
                                         height="600" width="100%" style="object-fit:cover">
+                                    </div>
+                                    <div class="col position-absolute d-block d-md-none" style="bottom:0">
+                                        <div class="container-fluid d-flex flex-column justify-content-center py-2" 
+                                        style="background-color: rgba(255,255,255,0.6)">
+                                            <div class="col-auto mb-2">
+                                                <p class="font-italic">
+                                                    “{{ $client->description }}”
+                                                </p>
+                                            </div>
+                                            <div class="col-auto text-right">
+                                                <span>_{{ $client->title }}_</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -243,16 +298,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-5 d-flex flex-column justify-content-center px-5" style="font-size:1.5rem">
-                    <div class="row mb-5">
-                        <div class="col">
+                <div class="col col-lg-5 px-5 border-lg-left border-dark d-none d-md-block" style="font-size:1.5rem">
+                    <div class="row flex-column justify-content-center h-100">
+                        <div class="col-auto mb-5">
                             <p class="font-italic client-description">
                                 “{{ $clientTestimonials->first()->description }}”
                             </p>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col text-right">
+                        <div class="col-auto text-right">
                             <span class="client-title">_{{ $clientTestimonials->first()->title }}_</span>
                         </div>
                     </div>
@@ -272,8 +325,8 @@
         @endif
 
         <section class="container-fluid px-4 process-work" id="appointment">
-            <div class="row mb-3">
-                <div class="col-4 border-right border-dark py-5">
+            <div class="row mb-3 flex-column flex-md-row">
+                <div class="col py-5">
                     <div class="row h-100 flex-column">
                         <div class="col">
                             <h1>From residential to comercical design, we have you covered.</h1>
@@ -286,7 +339,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 border-right border-dark py-5">
+                <div class="col border-sm-left border-dark py-5">
                     <div class="row mb-5">
                         <div class="col text-center">
                             <h3>Free in-house consultation</h3>
@@ -327,7 +380,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-4 pb-5">
+                <div class="col border-left border-dark pb-5 d-none d-lg-block">
                     <img src="{{ asset('images/home-page/29fc9f776904c959a7e128078706f3ce.jpg') }}" alt="" 
                     height="600" style="object-fit:cover">
                 </div>
@@ -336,11 +389,10 @@
 
         <div style="height:8rem"></div>
 
-        <section class="container-fluid process-work" style="height:460px;background-position:center;
-        background-image:url({{ asset('images/home-page/ba073c2c7ed563c5b49144233828210a.jpg') }});">
+        <section class="container-fluid process-work" id="quote">
             <div class="row align-items-center justify-content-center h-100">
-                <div class="col-6 text-center p-5" style="background-color: rgba(68, 27, 27, 0.5)">
-                    <span class="text-white" style="font-size: 1.4rem">
+                <div class="col col-md-6 text-center p-5" style="background-color: rgba(68, 27, 27, 0.5)">
+                    <span class="text-white">
                         “We believe in being transparent about our pricing. If you 
                         come across a lower price for a similar product, simply 
                         share the details with us. We’ll gladly match it.“

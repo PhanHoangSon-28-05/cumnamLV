@@ -20,4 +20,5 @@ interface CategoryRepositoryInterface extends RepositoryInterface
     public function getChildNew($id);
 
     public function getProductPostSlug($slug);
+    public function getProductCategories();
 }
