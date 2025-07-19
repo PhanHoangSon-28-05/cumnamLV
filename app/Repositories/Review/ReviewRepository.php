@@ -20,17 +20,14 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
 
     public function check($id_product, $email)
     {
-        $check = Checkout::where('email', $email)->get()->first();
-        if ($check) {
+        $check = Checkout::where('email', $email)->where('status', 1)->get()->modelKeys();
+        if (count($check) <= 0) {
             return false;
         }
-        if ($check->status == 1) {
-            $checkpro = CheckoutProduct::where('checkout_id', $check->id)->where('product_id', $id_product)->get()->first();
-            if ($checkpro) {
-                return true;
-            } else {
-                return false;
-            }
+
+        $checkpro = CheckoutProduct::whereIn('checkout_id', $check)->where('product_id', $id_product)->get()->first();
+        if ($checkpro) {
+            return true;
         } else {
             return false;
         }

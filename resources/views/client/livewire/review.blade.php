@@ -48,75 +48,86 @@
     wire:ignore.self>
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header">
-                {{-- <h1 class="modal-title fs-5" id="exampleModalLabel" wire:loading.remove wire:target="getData">
+            {{-- <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel" wire:loading.remove wire:target="getData">
                     Review:
                 </h1>
-                <button type="button" class="close" data-dismiss="modal">×</button> --}}
+                <button type="button" class="close" data-dismiss="modal">×</button>
 
-            </div>
+            </div> --}}
 
             <div class="modal-body">
                 <div class="row flex-row-reverse">
-                    <div
-                        class="
-                    @if ($action == 'create') col-md-12
-                     @elseif ($action == 'update')
-                        col-md-4 @endif">
+                    <div class="{{ $action == 'create' ? 'col-md-12' : ($action == 'update' ? 'col-md-4' : '') }}">
                         <form wire:submit.prevent="updateImage">
-                            <div class="">
-                                <label class="crud-label">Add photos (Max: 20 photos)</label>
-                                <div class="input-group mb-3">
-                                    @if ($images)
-                                        @foreach ($images as $image)
-                                            <img src="{{ $image->temporaryUrl() }}" class="w-25 mb-2">
-                                        @endforeach
-                                    @endif
-                                    <input type="file" class="form-control" multiple hidden id="cover_img"
-                                        wire:model="images" rules="mimes:jpeg,png">
-                                    <label for="cover_img" class="shadow mt-2 w-25">
-                                        <img src="{{ asset($cover_img) }}" alt="" class="w-100"
-                                            id="image-preview">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="crud-label">Add photos (Max: 20 photos)</label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                @if ($images)
+                                @foreach ($images as $image)
+                                <div class="col-3 mb-2">
+                                    <img src="{{ $image->temporaryUrl() }}" class="border" width="100%" 
+                                    style="aspect-ratio:3/2;object-fit:cover">
+                                </div>
+                                @endforeach
+                                @endif
+                                <input type="file" class="form-control" multiple hidden id="cover_img"
+                                    wire:model="images" rules="mimes:jpeg,png">
+                                {{-- <label for="cover_img" class="shadow mt-2 w-25">
+                                    <img src="{{ asset($cover_img) }}" alt="" class="w-100"
+                                        id="image-preview">
+                                </label> --}}
+                                <div class="col-3 mb-2">
+                                    <label class="h-100 w-100 border-dashed border-secondary rounded d-flex align-items-center justify-content-center" 
+                                    style="aspect-ratio:3/2;border-width:0.5rem" for="cover_img" type="button">
+                                        <i class="fa-solid fa-image fa-3x text-secondary"></i>
                                     </label>
                                 </div>
-                                @error('images.*')
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    @error('images.*')
                                     <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                    @enderror
+                                </div>
                             </div>
 
                             {{-- <button type="submit" class="btn btn-primary">Update</button> --}}
                         </form>
                     </div>
-                    @if ($action == 'create')
-                    @elseif ($action == 'update')
-                        <div class="col-md-12" wire:ignore.self wire:loading.remove>
-                            @if ($this->review_id != null)
-                                <div id="imageReviewData" class="row">
-                                    {{-- @dd($imagesData) --}}
-                                    @if (isset($imagesData))
-                                        @foreach ($imagesData as $image)
-                                            <div class="d-inline mb-2">
-                                                <div class="col-3">
-                                                    <div class="shadow rounded">
-                                                        {{-- <img src="{{ URL::asset('storage/'.$image->image) }}" alt="" width="100px"> --}}
-                                                        <img src="{{ route('storages.image', ['url' => $image->image]) }}"
-                                                            alt="" width="100px">
-                                                        <div class="d-flex flex-row bd-highlight">
-                                                            <button type="button"
-                                                                class="btn btn-sm btn-danger bd-highlight"
-                                                                wire:click="deleteImage({{ $image->id }})">
-                                                                <i class="fa-solid fa-trash"></i>
-                                                            </button>
-                                                        </div>
+                    @if ($action == 'update')
+                    <div class="col-md-12" wire:ignore.self wire:loading.remove>
+                        @if ($this->review_id != null)
+                            <div id="imageReviewData" class="row">
+                                {{-- @dd($imagesData) --}}
+                                @if (isset($imagesData))
+                                    @foreach ($imagesData as $image)
+                                        <div class="d-inline mb-2">
+                                            <div class="col-3">
+                                                <div class="shadow rounded">
+                                                    {{-- <img src="{{ URL::asset('storage/'.$image->image) }}" alt="" width="100px"> --}}
+                                                    <img src="{{ route('storages.image', ['url' => $image->image]) }}"
+                                                        alt="" width="100px">
+                                                    <div class="d-flex flex-row bd-highlight">
+                                                        <button type="button"
+                                                            class="btn btn-sm btn-danger bd-highlight"
+                                                            wire:click="deleteImage({{ $image->id }})">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endforeach
-                                    @endif
-                                </div>
-                            @endif
-                        </div>
-                    @else
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        @endif
+                    </div>
                     @endif
 
                 </div>
@@ -152,11 +163,11 @@
                         <div class="row">
                             <div class="col-6 pr-1">
                                 <input type="text" class="form-control" placeholder="Recipient's username"
-                                    aria-label="Recipient's username" wire:model.lazy="name">
+                                    aria-label="Recipient's username" wire:model.lazy="name" {{ $user ? 'readonly' : '' }}>
                             </div>
                             <div class="col-6 pl-1">
                                 <input type="text" class="form-control" placeholder="Recipient's email"
-                                    aria-label="Recipient's email" wire:model.lazy="email">
+                                    aria-label="Recipient's email" wire:model.lazy="email" {{ $user ? 'readonly' : '' }}>
                             </div>
                         </div>
 

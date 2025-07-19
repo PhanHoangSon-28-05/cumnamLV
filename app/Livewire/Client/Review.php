@@ -14,6 +14,7 @@ class Review extends Component
 {
     use WithFileUploads;
 
+    public $user;
     public $review;
     public $review_id;
     public $imagesData;
@@ -39,6 +40,10 @@ class Review extends Component
 
     #[Rule(['images.*' => 'required|file|mimes:png,jpg,pdf'], message: 'Chưa nhập nội dung')]
     public $images = [];
+
+    public function mount() {
+        $this->user = auth()->guard('web')->user();
+    }
 
     public function getData($id)
     {
@@ -102,8 +107,8 @@ class Review extends Component
             $this->email = $this->modelReview->email;
         } else {
             $this->star = '';
-            $this->name = '';
-            $this->email = '';
+            $this->name = $this->user->fullname ?? '';
+            $this->email = $this->user->email ?? '';
             $this->content = '';
         }
     }
