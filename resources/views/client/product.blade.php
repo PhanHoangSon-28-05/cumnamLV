@@ -248,110 +248,6 @@
             </div>
         </section>
 
-        {{-- <section id="recommended-product" class="container-fluid my-5">
-            <div class="container">
-                <h2 class="text-center mt-5 mb-4">RECOMMENDED PRODUCTS</h2>
-                <button class="pre-btn"><img src="{{ asset('view/style/images/arrow.png') }}" alt=""></button>
-                <button class="nxt-btn"><img src="{{ asset('view/style/images/arrow.png') }}" alt=""></button>
-                <div class="product-container">
-                    <div class="row">
-                        <div class="col-md-3 col-12 mb-2 product-card">
-                            <div class="card">
-                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 120@4x.jpg') }}"
-                                    class="card-img-top product-image" alt="Wood Blind">
-                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
-                                    id="logo" class="logo">
-                                <div class="card-body">
-                                    <h5 class="card-title text-uppercase">3" Vane</h5>
-                                    <p class="card-text font-weight-bolder">WOOD BLIND</p>
-                                    <p class="card-text"><small class="text-muted">Starting <del>$150</del> $110 </small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-12 mb-2 product-card">
-                            <div class="card">
-                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 120@4x.jpg') }}"
-                                    class="card-img-top product-image" alt="Wood Blind">
-                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
-                                    id="logo" class="logo">
-                                <div class="card-body">
-                                    <h5 class="card-title text-uppercase">3" Vane</h5>
-                                    <p class="card-text font-weight-bolder">WOOD BLIND</p>
-                                    <p class="card-text"><small class="text-muted">Starting <del>$150</del> $110 </small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-12 mb-2 product-card">
-                            <div class="card">
-                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 13@4x.jpg') }}"
-                                    class="card-img-top" alt="Zebra Roman">
-                                <div class="card-body">
-                                    <h5 class="card-title text-uppercase">3" VANE-2" SHEER</h5>
-                                    <p class="card-text font-weight-bolder">THE ZEBRA ROMAN</p>
-                                    <p class="card-text"><small class="text-muted">Starting <del>$110</del> $150 </small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-12 mb-2 product-card">
-                            <div class="card">
-                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 120@4x.jpg') }}"
-                                    class="card-img-top product-image" alt="Wood Blind">
-                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
-                                    id="logo" class="logo">
-                                <div class="card-body">
-                                    <h5 class="card-title text-uppercase">3" Vane</h5>
-                                    <p class="card-text font-weight-bolder">WOOD BLIND</p>
-                                    <p class="card-text"><small class="text-muted">Starting <del>$150</del> $110 </small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-12 mb-2 product-card">
-                            <div class="card">
-                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 13@4x.jpg') }}"
-                                    class="card-img-top" alt="Vertical Sheer">
-                                <div class="card-body">
-                                    <h5 class="card-title text-uppercase">MAY 2025</h5>
-                                    <p class="card-text font-weight-bolder">THE VERTICAL SHEER</p>
-                                    <p class="card-text"><small class="text-muted">Starting <del>$110</del> $150 </small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-12 mb-2 product-card">
-                            <div class="card">
-                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 120@4x.jpg') }}"
-                                    class="card-img-top product-image" alt="Wood Blind">
-                                <img src="{{ URL::asset('images/placeholder/placeholder.png') }}" alt="Logo"
-                                    id="logo" class="logo">
-                                <div class="card-body">
-                                    <h5 class="card-title text-uppercase">3" Vane</h5>
-                                    <p class="card-text font-weight-bolder">WOOD BLIND</p>
-                                    <p class="card-text"><small class="text-muted">Starting <del>$150</del> $110 </small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-12 mb-2 product-card">
-                            <div class="card">
-                                <img src="{{ URL::asset('view/style/images/Zebra/Artboard 169@4x.jpg') }}"
-                                    class="card-img-top" alt="Wood Blind">
-                                <div class="card-body">
-                                    <h5 class="card-title text-uppercase">3" Vane</h5>
-                                    <p class="card-text font-weight-bolder">WOOD BLIND</p>
-                                    <p class="card-text"><small class="text-muted">Starting <del>$150</del> $110 </small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> --}}
-
         <section id="recommended-product">
             <h2 class="product-category text-center">RECOMMENDED PRODUCTS</h2>
             <button class="pre-btn"><img src="{{ asset('view/style/images/arrow.png') }}" alt=""></button>
@@ -407,11 +303,11 @@
                 @endif
             </div>
         </section>
-        <script src="{{ URL::asset('view/style/js/slider-product-recommend.js') }}"></script>
     </main>
-@endsection
-
+    @endsection
+    
 @section('script')
+    <script src="{{ URL::asset('view/style/js/slider-product-recommend.js') }}"></script>
 
     <script>
         function openCity(evt, cityName) {

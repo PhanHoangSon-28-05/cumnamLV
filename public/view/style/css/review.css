@@ -5,7 +5,7 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     background: #f9f9f9;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
 }
 
 #review .comment-icon {
@@ -25,7 +25,7 @@
 
 #review .comment-stars {
     color: #ffc107;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 }
 
 #review .comment-images {
