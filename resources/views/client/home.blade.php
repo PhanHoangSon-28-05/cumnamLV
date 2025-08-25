@@ -11,7 +11,7 @@
 
 @section('content')
     <main id="content-wrapper" class="main-v2 text-body">
-        <section id="introduction-section" class="container-fluid py-2 border-bottom border-dark">
+        <section id="introduction-section" class="container-fluid border-bottom border-dark">
             <div class="row align-items-stretch flex-column-reverse flex-md-row">
                 <div class="col col-md-4 py-4">
                     <div class="row flex-column h-100">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-auto">
                             <div class="px-3 d-flex flex-column" style="max-width:15rem">
-                                <button class="btn btn-dark rounded-pill mb-3 py-2">
+                                <button class="btn btn-dark rounded-pill mb-1 py-2">
                                     Shop now
                                 </button>
                                 <button class="btn btn-outline-dark rounded-pill py-2">
@@ -40,10 +40,10 @@
                 </div>
                 <div class="col">
                     <div class="row align-items-end">
-                        <div class="col">
+                        <div class="col px-0">
                             <img src="{{ asset('images/home-page/254a880356f340fe7edf90a5117eb200.jpg') }}" alt="" class="img-fluid">
                         </div>
-                        <div class="col-4 d-none d-lg-block">
+                        <div class="col-4 d-none d-lg-block px-0" style="padding-left:3.78px !important">
                             <img src="{{ asset('images/home-page/836d1b78890b76c6a4c814536837fa18.jpg') }}" alt="" class="img-fluid">
                         </div>
                     </div>
@@ -148,7 +148,7 @@
             </div>
         </section>
 
-        <div style="height:7rem"></div>
+        <div style="height:6rem" class="border-bottom border-dark mb-3"></div>
 
         <section class="container-fluid px-md-5 process-work">
             <div class="row mb-4">
@@ -179,7 +179,7 @@
                             <a href="{{ route('home.category', ['slug' => $shadeCate->slug]) }}" class="text-dark">
                                 <h3>
                                     <span>{{ $shadeCate->name }} </span>
-                                    <span class="d-inline-block" style="transform: translateY(20%)">⟶</span>
+                                    <span class="d-inline-block" style="transform: translateY(0%)">⟶</span>
                                 </h3>
                             </a>
                         </div>
@@ -197,7 +197,7 @@
             </div>
         </section>
 
-        <div style="height:6rem"></div>
+        <div style="height:6rem" class="border-bottom border-dark mb-3"></div>
 
         <section class="container-fluid px-md-5 process-work">
             <div class="row mb-4">
@@ -264,7 +264,7 @@
         @if ($clientTestimonials->count() > 0)
         <section class="container-fluid process-work">
             <div class="row mb-5 flex-column flex-lg-row">
-                <div class="col col-lg-7 pb-3">
+                <div class="col col-lg-7">
                     <div id="clientCarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             @foreach ($clientTestimonials as $client)
@@ -273,11 +273,11 @@
                                 <div class="row position-relative">
                                     <div class="col">
                                         <img src="{{ route('storages.image', ['url' => $client->pic]) }}" alt="" 
-                                        height="600" width="100%" style="object-fit:cover">
+                                        height="450" width="100%" style="object-fit:cover">
                                     </div>
                                     <div class="col-6 d-none d-md-block">
                                         <img src="{{ route('storages.image', ['url' => '']) }}" alt="" 
-                                        height="600" width="100%" style="object-fit:cover">
+                                        height="450" width="100%" style="object-fit:cover">
                                     </div>
                                     <div class="col position-absolute d-block d-md-none" style="bottom:0">
                                         <div class="container-fluid d-flex flex-column justify-content-center py-2" 
@@ -326,7 +326,7 @@
 
         <section class="container-fluid px-4 process-work" id="appointment">
             <div class="row mb-3 flex-column flex-md-row">
-                <div class="col py-5">
+                <div class="col pt-5">
                     <div class="row h-100 flex-column">
                         <div class="col">
                             <h1>From residential to comercical design, we have you covered.</h1>
@@ -339,7 +339,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col border-sm-left border-dark py-5">
+                <div class="col border-sm-left border-dark pt-5">
                     <div class="row mb-5">
                         <div class="col text-center">
                             <h3>Free in-house consultation</h3>
@@ -380,7 +380,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col border-left border-dark pb-5 d-none d-lg-block">
+                <div class="col border-left border-dark d-none d-lg-block">
                     <img src="{{ asset('images/home-page/29fc9f776904c959a7e128078706f3ce.jpg') }}" alt="" 
                     height="600" style="object-fit:cover">
                 </div>
