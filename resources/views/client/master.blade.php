@@ -38,6 +38,22 @@
 </head>
 
 <body>
+    @if (isset($header) && $header->title1 != '')
+    <div class="header-line p-0 m-0">
+        <div class="align-items-start">
+            <div class="d-flex justify-content-between">
+                <div class="col-12">
+                    <div class="row ms-1">
+                        <span class="mx-4 my-2 text-uppercase desplay-3">
+                            {{ $header->title1 }}<br>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
     <header id="header" class="header">
         @include('client.header')
     </header>

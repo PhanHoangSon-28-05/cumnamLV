@@ -4,10 +4,26 @@
             <div class="row flex-column h-100">
                 <div class="col pl-5">
                     <ul class="text-uppercase" style="font-size:1.2rem">
-                        <li>Home</li>
-                        <li>Shop</li>
-                        <li>Contact us</li>
-                        <li>About us</li>
+                        <li>
+                            <a class="text-body" href="{{ route('home') }}">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-body" href="{{ route('home.category-all') }}">
+                                Shop
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-body" href="{{ route('home.category-post', ['slug' => 'contact-us']) }}">
+                                Contact us
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-body" href="{{ route('home.category-post', ['slug' => 'our-story']) }}">
+                                About us
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-auto">
@@ -27,7 +43,7 @@
             <div class="row mb-3">
                 <div class="col text-center">
                     <span>Email us:</span> <br>
-                    <a href="mailto:{{ $siteConfigs->email }}" class="text-success">{{ $siteConfigs->email ?? '' }}</a>
+                    <a href="mailto:{{ $siteConfigs->email }}" class="footer-link">{{ $siteConfigs->email ?? '' }}</a>
                 </div>
             </div>
             @endif
@@ -35,7 +51,7 @@
             <div class="row mb-3">
                 <div class="col text-center">
                     <span>Call us:</span> <br>
-                    <a href="#!" class="text-success">{{ $siteConfigs->phone ?? '' }}</a>
+                    <a href="#!" class="footer-link">{{ $siteConfigs->phone ?? '' }}</a>
                 </div>
             </div>
             @endif

@@ -1,18 +1,3 @@
-@if (isset($header) && $header->title1 != '')
-<div class="line p-0 m-0">
-    <div class="align-items-start">
-        <div class="d-flex justify-content-between">
-            <div class="col-12">
-                <div class="row ms-1">
-                    <span class="mx-4 my-2 text-uppercase desplay-3" style="font-size:14px">
-                        <span style="color:#ffffff; white-space:pre-wrap;">{{ $header->title1 }}</span><br>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endif
 <div class="container-fluid">
     <div class="name-logo row">
         <div class="logodiv col text-left text-sm-center position-relative">
