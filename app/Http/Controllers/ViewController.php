@@ -176,6 +176,9 @@ class ViewController extends Controller
     {
         // dd($slug);
         $cate = $this->cateRepo->getProductPostSlug($slug);
+
+        if (!$cate) return abort(404);
+
         $postcates = $this->cateRepo->getProductPostSlug($slug)->posts()->get();
         // @dd($postcates);
         $attributes = [

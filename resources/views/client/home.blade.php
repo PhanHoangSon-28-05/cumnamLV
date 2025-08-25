@@ -58,7 +58,7 @@
                 <div class="col col-md-6">
                     <div class="row border-bottom py-3">
                         <div class="col text-center">
-                            <h1><strong>Trusted by your Seattle Neighbors</strong></h1>
+                            <h1 class="font-weight-semibold">Trusted by your Seattle Neighbors</h1>
                         </div>
                     </div>
                     <div class="row border-bottom py-3">
@@ -66,7 +66,7 @@
                             <div class="row">
                                 <div class="col">
                                     <i class="fa-regular fa-star"></i>
-                                    <strong class="ml-2">Google and Yelp Reviews</strong>
+                                    <span class="font-weight-semibold ml-2">Google and Yelp Reviews</span>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fa-solid fa-chevron-down float-right arrow"></i>
@@ -87,7 +87,7 @@
                             <div class="row">
                                 <div class="col">
                                     <i class="fa-solid fa-location-dot"></i>
-                                    <strong class="ml-2">Locally owned and operated</strong>
+                                    <span class="font-weight-semibold ml-2">Locally owned and operated</span>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fa-solid fa-chevron-down float-right arrow"></i>
@@ -107,7 +107,7 @@
                             <div class="row">
                                 <div class="col">
                                     <i class="fa-solid fa-carrot"></i>
-                                    <strong class="ml-2">Family owned & Child - safe solutions</strong>
+                                    <span class="font-weight-semibold ml-2">Family owned & Child - safe solutions</span>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fa-solid fa-chevron-down float-right arrow"></i>
@@ -128,7 +128,7 @@
                             <div class="row">
                                 <div class="col">
                                     <i class="fa-regular fa-heart"></i>
-                                    <strong class="ml-2">Serviving Greater Seattle area with care since 2023</strong>
+                                    <span class="font-weight-semibold ml-2">Serviving Greater Seattle area with care since 2023</span>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fa-solid fa-chevron-down float-right arrow"></i>
@@ -391,7 +391,7 @@
 
         <section class="container-fluid process-work" id="quote">
             <div class="row align-items-center justify-content-center h-100">
-                <div class="col col-md-6 text-center p-5" style="background-color: rgba(68, 27, 27, 0.5)">
+                <div class="col col-md-6 text-center px-4 py-5 qoute-background">
                     <span class="text-white">
                         “We believe in being transparent about our pricing. If you 
                         come across a lower price for a similar product, simply 
