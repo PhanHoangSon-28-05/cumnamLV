@@ -78,10 +78,12 @@ ul {
 /* Width of li */
 #header .navbar .navbar-nav .nav-link {
     font-family: YACkoA9eHeY-0;
-    margin-left: 30px;
-    margin-right: 30px;
+    /* margin-left: 30px;
+    margin-right: 30px; */
     font-size: 20px;
     color: #000;
+    padding-top: 0.4rem !important;
+    padding-bottom: 0.4rem !important;
 }
 
 #header .navbar .navbar-nav .dropdown-menu {
@@ -172,11 +174,18 @@ ul {
     padding: 40px 20px; */
 
     * {
-        font-size: clamp(0.8rem, 0.198rem + 1.2524vw, 1.2rem);
+        font-size: clamp(0.8rem, 0.198rem + 1.2524vw, 1.5rem);
     }
 
     h1 {
-        font-size: clamp(1.5rem, -0.3059rem + 3.7573vw, 2.7rem);
+        /* font-size: clamp(1.5rem, -0.3059rem + 3.7573vw, 2.7rem); */
+        font-size: clamp(1.2rem, 0.2159rem + 1.5873vw, 1.7rem);
+        /* font-size: 1.7rem; */
+        font-weight: bold;
+    }
+
+    button {
+        font-size: 1rem;
     }
 }
 
@@ -286,6 +295,16 @@ ul {
         font-size: 1rem;
         margin: 5px 0;
     } */
+
+    #introduction-section {
+        * {
+            font-size: 1.2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+    }
 
 }
 

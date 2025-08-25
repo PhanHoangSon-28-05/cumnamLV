@@ -4,9 +4,9 @@
         <div class="d-flex justify-content-between">
             <div class="col-12">
                 <div class="row ms-1">
-                    <p class="mx-4 my-3 h6 text-uppercase desplay-3" style="font-family: YACkoA9eHeY-0;">
+                    <span class="mx-4 my-2 text-uppercase desplay-3" style="font-size:14px">
                         <span style="color:#ffffff; white-space:pre-wrap;">{{ $header->title1 }}</span><br>
-                    </p>
+                    </span>
                 </div>
             </div>
         </div>
@@ -77,9 +77,9 @@
                                     href="{{ in_array($cate->id, $pages) ? URL::route('home.pages', $cate->slug) : '#!' }}"
                                     role="button" data-toggle="dropdown" aria-expanded="false">
                                     {{ $cate->name }}
-                                    @if ($cate->slug != 'how-to')
+                                    {{-- @if ($cate->slug != 'how-to')
                                         <i class="fas fa-angle-down"></i>
-                                    @endif
+                                    @endif --}}
                                 </a>
                             </li>
                         @endforeach
