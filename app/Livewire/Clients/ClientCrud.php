@@ -15,6 +15,7 @@ class ClientCrud extends Component
     public $action,
         $client,
         $pic,
+        $pic2,
         $link;
 
     #[Validate('required', message: 'No order number has been entered')]
@@ -45,12 +46,14 @@ class ClientCrud extends Component
         if ($this->client) {
             $this->stt = $this->client->stt;
             $this->pic = $this->client->pic;
+            $this->pic2 = $this->client->pic2;
             $this->title = $this->client->title;
             $this->description = $this->client->description;
             $this->link = $this->client->link;
         } else {
             $this->stt = '';
             $this->pic = '';
+            $this->pic2 = '';
             $this->title = '';
             $this->description = '';
             $this->link = '';
@@ -67,7 +70,7 @@ class ClientCrud extends Component
     public function create()
     {
         $this->validate();
-        $client = $this->clientRepo->createClient($this->stt, $this->title, $this->description, $this->pic, $this->link);
+        $client = $this->clientRepo->createClient($this->stt, $this->title, $this->description, $this->pic, $this->pic2, $this->link);
 
         $this->dispatch('refreshList')->to('clients.client-list');
         $this->dispatch('closeCrudClient');
@@ -77,7 +80,7 @@ class ClientCrud extends Component
     {
         $this->validate();
 
-        $this->clientRepo->updateClient($this->client, $this->stt, $this->title, $this->description, $this->pic, $this->link);
+        $this->clientRepo->updateClient($this->client, $this->stt, $this->title, $this->description, $this->pic, $this->pic2, $this->link);
 
         $this->dispatch('refreshList')->to('clients.client-list');
         $this->dispatch('closeCrudClient');
@@ -102,8 +105,19 @@ class ClientCrud extends Component
             $cover_img = 'images/placeholder/placeholder.png';
         }
 
+        if ($this->pic2) {
+            if (gettype($this->pic2) == 'string') {
+                $cover_img2 = route('storages.image', ['url' => $this->pic2]);
+            } else {
+                $cover_img2 = $this->pic2->temporaryUrl();
+            }
+        } else {
+            $cover_img2 = 'images/placeholder/placeholder.png';
+        }
+
         return view('admins.client.livewire.client-crud', [
             'cover_img' => $cover_img,
+            'cover_img2' => $cover_img2,
         ]);
     }
 }

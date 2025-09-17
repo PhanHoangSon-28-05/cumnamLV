@@ -38,8 +38,12 @@
                                 <tr class="odd">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $client->stt }}</td>
-                                    <td class="w-50"><img src="{{ route('storages.image', ['url' => $client->pic]) }}"
-                                            class="w-25" alt=""></td>
+                                    <td class="w-50">
+                                        <img src="{{ route('storages.image', ['url' => $client->pic]) }}" class="w-25" alt="">
+                                        @if ($client->pic2)
+                                        <img src="{{ route('storages.image', ['url' => $client->pic2]) }}" class="w-25" alt="">
+                                        @endif
+                                    </td>
                                     <td>
                                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                             data-target="#crudClientModal" data-client-id={{ $client->id }}><i

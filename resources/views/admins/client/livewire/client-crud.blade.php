@@ -97,17 +97,32 @@
                                     @enderror
                                 </div>
                                 <div class="row">
-                                    <label class="crud-label p-0 mt-2 mb-0">Cover Image:</label>
-                                    <div class="input-group">
-                                        <input type="file" wire:model="pic" hidden id="cover_img" accept="image/*">
-                                        <label for="cover_img" class="w-100 border shadow mt-2">
-                                            <img src="{{ asset($cover_img) }}" alt="" class="w-100"
-                                                id="image-preview">
-                                        </label>
+                                    <div class="col">
+                                        <label class="crud-label p-0 mt-2 mb-0">Cover Image:</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="input-group">
+                                                    <input type="file" wire:model="pic" hidden id="cover_img" accept="image/*">
+                                                    <label for="cover_img" class="w-100 border shadow mt-2">
+                                                        <img src="{{ asset($cover_img) }}" alt="" class="w-100"
+                                                            id="image-preview">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="input-group">
+                                                    <input type="file" wire:model="pic2" hidden id="cover_img2" accept="image/*">
+                                                    <label for="cover_img2" class="w-100 border shadow mt-2">
+                                                        <img src="{{ asset($cover_img2) }}" alt="" class="w-100"
+                                                            id="image-preview">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @error('pic')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
                                     </div>
-                                    @error('pic')
-                                        <span class="error">{{ $message }}</span>
-                                    @enderror
                                 </div>
                             </div>
                         @endif
