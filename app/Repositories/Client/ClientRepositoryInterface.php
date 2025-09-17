@@ -8,8 +8,8 @@ interface ClientRepositoryInterface extends RepositoryInterface
 {
     //ví dụ: lấy 5 sản phầm đầu tiên
     public function getClient();
-    public function createClient($stt, $title, $description, $pic, $link);
-    public function updateClient($clientModel, $stt, $title, $description, $pic, $link);
+    public function createClient($stt, $title, $description, $pic, $pic2, $link);
+    public function updateClient($clientModel, $stt, $title, $description, $pic, $pic2, $link);
     public function deleteClient($clientModel);
     public function getClientGet3();
 }

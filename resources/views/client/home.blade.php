@@ -28,12 +28,12 @@
                         </div>
                         <div class="col-auto">
                             <div class="px-3 d-flex flex-column" style="max-width:15rem">
-                                <button class="btn btn-dark rounded-pill mb-1 py-2">
+                                <a href="#shopNow" class="btn btn-dark rounded-pill mb-1 py-2">
                                     Shop now
-                                </button>
-                                <button class="btn btn-outline-dark rounded-pill py-2">
+                                </a>
+                                <a href="#appointment" class="btn btn-outline-dark rounded-pill py-2">
                                     Make Appointment
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -148,9 +148,9 @@
             </div>
         </section>
 
-        <div style="height:6rem" class="border-bottom border-dark mb-3"></div>
+        <div style="height:6rem" class="mb-3"></div>
 
-        <section class="container-fluid px-md-5 process-work">
+        <section class="container-fluid px-md-5 process-work" id="shopNow">
             <div class="row mb-4">
                 <div class="col-12 text-center text-md-left">
                     <h1 class="text-uppercase">Shop by style</h1>
@@ -165,7 +165,7 @@
             <div class="row flex-nowrap overflow-auto">
                 @if ($shadeCates->count() > 0)
                 @foreach ($shadeCates as $shadeCate)
-                <div class="col-12 col-md-6 col-lg-3">
+                <div class="col-12 col-md-6 col-lg-3 {{ !$loop->last ? 'border-right border-dark' : '' }}">
                     <div class="row mb-3">
                         <div class="col">
                             <a href="{{ route('home.category', ['slug' => $shadeCate->slug]) }}">
@@ -197,7 +197,7 @@
             </div>
         </section>
 
-        <div style="height:6rem" class="border-bottom border-dark mb-3"></div>
+        <div style="height:6rem" class="mb-3"></div>
 
         <section class="container-fluid px-md-5 process-work">
             <div class="row mb-4">
@@ -214,7 +214,7 @@
             <div class="row flex-nowrap overflow-auto">
                 @if ($lisporudct->count() > 0)
                 @foreach ($lisporudct as $product)
-                <div class="col-12 col-md-6 col-lg-3">
+                <div class="col-12 col-md-6 col-lg-3 {{ !$loop->last ? 'border-right border-dark' : '' }}">
                     <div class="row mb-2 flex-column h-100">
                         <div class="col">
                             <div class="mb-3 position-relative">
@@ -276,7 +276,7 @@
                                         height="450" width="100%" style="object-fit:cover">
                                     </div>
                                     <div class="col-6 d-none d-md-block">
-                                        <img src="{{ route('storages.image', ['url' => '']) }}" alt="" 
+                                        <img src="{{ route('storages.image', ['url' => $client->pic2]) }}" alt="" 
                                         height="450" width="100%" style="object-fit:cover">
                                     </div>
                                     <div class="col position-absolute d-block d-md-none" style="bottom:0">
